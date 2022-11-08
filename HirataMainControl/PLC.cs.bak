@@ -1,0 +1,1904 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Threading;
+using System.Collections;
+using System.Net.Sockets;
+using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
+
+namespace HirataMainControl
+{
+    public partial class PLC : UserControl
+    {
+        SocketServer Sk_RT;
+        BlockQueue<string> BK_RTRecv;
+        BlockQueue<string> BK_RTSend;
+        Thread TD_RTRecv;
+        Thread TD_RTSend;
+
+        private static SocketServer Sk_PLCCmd;
+        BlockQueue<string> BK_CmdRecv;
+        static BlockQueue<string> BK_CmdSend;
+        Thread TD_CmdSend;
+
+        BackgroundWorker BG_UIUpdate;
+
+        Thread TD_Interface;
+        Thread TD_CheckAlarm;
+        Thread TD_AlarmReset;
+        static BlockQueue<string[]> BK_AlarmReset;
+
+        Thread TD_TracePLC;
+        BackgroundWorker BG_Trace;
+        BackgroundWorker BG_TraceRead;
+
+        //Value temp
+        int Range_B = 1000;
+        int B_TotalTimes = 1;
+        int B_NowTimes = 0;
+        int B_Total ;
+        int Range_W = 1000;
+        int W_TotalTimes = 10;
+        int W_NowTimes = 0;
+        int Range_LR = 1000;
+        int LR_Total;
+        public static bool[] B;
+        public static int[] W;
+        public static bool[] LR;
+        private bool Connection = false;
+        public static bool ST_Conn = false;
+        private bool Alarm_Flag = false;
+        static bool ST_AlarmFlag=false;
+
+        //InterfaceCheck
+        bool InterRecv = false;
+        bool InterfaceNextStep = false;
+        string InterfaceRecvstr = "";
+        public static bool Initialing = false;
+        //AlarmReset
+        public static bool AlarmReseting = false;
+        static bool AlarmResetRecv = false;
+        static bool AlarmResetNextStep = false;
+        static string AlarmRecvstr = "";
+        //Initial Interface
+        static bool InitialRecv = false;
+        static string InitialRecvstr = "";
+        bool TracePLC_Start = false;
+		private static int InitialStepNo;
+        private static List<InitialStep> InitialStep_List = new List<HirataMainControl.InitialStep>();
+
+        //ReadFinish
+        public static bool PLCRead = false;
+
+        //UI
+        #region UI
+        TabControl tc_PLC;
+        TabPage tp_B;
+        DataGridView dgv_B;
+        TextBox tb_B;
+        Panel pl_b;
+        Button btn_B;
+        Button btn_B_Stop;
+
+        TabPage tp_W;
+        DataGridView dgv_W;
+        TextBox tb_W;
+        Panel pl_W;
+        Button btn_W;
+        Button btn_W_Stop;
+
+        TabPage tp_LR;
+        DataGridView dgv_LR;
+        TextBox tb_LR;
+        Panel pl_LR;
+
+        TabPage tp_Trace;
+        ComboBox cmb_PLCDevice;
+        TextBox tb_PLCPosition;
+        Panel pl_Trace;
+        DataGridView dgv_Trace;
+        Button btn_TraceAdd;
+        Button btn_TraceDelete;
+        Button btn_TraceStart;
+        Button btn_TraceStop;
+
+        TabPage tp_TraceRead;
+        Button btn_TraceRead;
+        Panel pl_TraceRead;
+        DataGridView dgv_TraceRead;
+        ProgressBar pgb_TraceRead; 
+        #endregion
+
+        bool SearchStart = false;
+        int Range=-1;
+        int Statr = -1;
+
+        private PLC_RTDevice RT_Device = PLC_RTDevice.Fn;
+
+        //CPLC_Cmd val
+        private static All_Device PLC_CmdDev = All_Device.Fn;
+        private static bool PLC_CmdNextStep = true;
+        public delegate void Evt_Cmd_Recv(string recv_str,All_Device ref_Device);
+        public event Evt_Cmd_Recv CmdRecv;
+
+        private byte CR = 0x0D;
+
+        Stopwatch sw = new Stopwatch();
+        DataTable Dt_trace;
+        StreamReader smr_TraceRead;
+
+        public PLC()
+        {
+            InitializeComponent();
+            tc_PLC = new TabControl();
+            tc_PLC.SelectedIndexChanged += new EventHandler(tc_PLCIdxChange);
+            tc_PLC.Dock = DockStyle.Fill;
+            UIB_Create();
+            UIW_Create();
+            UILR_Create();
+            TraceIO_Create();
+            TraceRead_Create();
+            this.Controls.Add(tc_PLC);
+        }
+
+        private void PLC_Load(object sender, EventArgs e)
+        {
+            pl_b.Size = new System.Drawing.Size(tp_B.Width, tp_B.Height-20);
+            pl_W.Size = new Size(tp_W.Width, tp_W.Height-20);
+            pl_LR.Size = new Size(tp_LR.Width, tp_LR.Height-20);
+            pl_Trace.Size = new Size(tp_Trace.Width - 10, tp_Trace.Height - 30);
+            pl_TraceRead.Size = new Size(tp_TraceRead.Width - 10, tp_Trace.Height - 35);
+            pgb_TraceRead.Size = new Size(300, 30);
+        }
+        public void init() 
+        {          
+            B_Total = Range_B * 16 * B_TotalTimes;
+            LR_Total=Range_LR*16;
+            stslb_PLCConn.Text = Sk_Connstr.Connect.ToString();
+            B = new bool[B_Total];
+            W = new int[Range_W * (W_TotalTimes+1)];
+            LR = new bool[LR_Total];
+
+            Sk_RT = new SocketServer();
+            Sk_RT.PLC_RTRecv += new SocketServer.Evt_PLC_RTRecv(plc_RTRecv);
+            Sk_RT.UI += new SocketServer.UI_Change(UI_Status);
+            Sk_RT.Open("192.168.0.10", 8501, Sk_Device.PLC_RT);
+
+            BK_RTRecv = new BlockQueue<string>();
+            BK_RTSend = new BlockQueue<string>();
+
+            TD_RTRecv = new Thread(Dowrok_RTRecv);
+            TD_RTSend = new Thread(Dowork_RTSend);
+            TD_RTRecv.Start();
+            TD_RTSend.Start();
+
+            Sk_PLCCmd = new SocketServer();
+            Sk_PLCCmd.PLC_CmdRecv += new SocketServer.Evt_PLC_CmdRecv(Plc_CmdRecv);
+            Sk_PLCCmd.UI += new SocketServer.UI_Change(UI_Status);
+            Sk_PLCCmd.Open("192.168.0.10", 8501, Sk_Device.PLC_Cmd);
+
+            BK_CmdRecv = new BlockQueue<string>();
+            BK_CmdSend = new BlockQueue<string>();
+            TD_CmdSend = new Thread(Dowork_CmdSend);
+            TD_CmdSend.IsBackground = true;
+            TD_CmdSend.Start();
+            
+            BG_UIUpdate = new BackgroundWorker();
+            BG_UIUpdate.DoWork += new DoWorkEventHandler(Dowork_UIUpdate);
+            BG_UIUpdate.WorkerReportsProgress = true;
+            BG_UIUpdate.WorkerSupportsCancellation = true;
+            BG_UIUpdate.ProgressChanged += new ProgressChangedEventHandler(PG_UIUpdate);
+
+            TD_Interface = new Thread(Dowork_Interface);
+            //TD_Interface.Start();
+
+            TD_CheckAlarm = new Thread(Action_Alarm);
+            TD_CheckAlarm.Start();
+
+            BG_TraceRead = new BackgroundWorker();
+            BG_TraceRead.DoWork += new DoWorkEventHandler(Dowork_TraceRead);
+            BG_TraceRead.WorkerReportsProgress = true;
+            BG_TraceRead.ProgressChanged += new ProgressChangedEventHandler(PG_TraceRead);
+            InitialStepadd();//Wayne 20190927
+            Task.Run(() => doInitial());
+        }
+
+        private void doInitial() 
+        {
+            int step=0;
+            bool nextstep = true;
+            while (true)
+            {
+                SpinWait.SpinUntil(() => false, 300);
+
+                if (step == -1) 
+                {
+                    InitialRecv = false;
+                    UI.InitialSystem(NormalStatic.PLC, NormalStatic.False, ErrorList.AP_SocketError_0382);
+                    break;
+                }
+                if (step == 99) 
+                {
+                    InitialRecv = false;
+                    UI.InitialSystem(NormalStatic.PLC, NormalStatic.True, ErrorList.MaxCnt);
+                    break;
+                }
+                switch (step)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        Plc_CmdSend_multi(All_Device.PLCInitial, PLC_Device.W, 0, 90, 0);
+                        break;
+                    case 2:
+                        Plc_CmdSend_multi(All_Device.PLCInitial, PLC_Device.B, 0, 50, 0);
+                        break;
+                }
+
+                InitialRecv = false;
+                nextstep = false;
+                DateTime CmdSendTime = DateTime.Now;
+
+                while (!nextstep)
+                {
+                    switch (step)
+                    {
+                        case 0:
+                            {
+                                //if (Connection == false)  //Mike
+                                //{
+                                //    step = -1;
+                                //}
+                                //else
+                                {
+                                    step++;
+                                }
+                                nextstep = true;
+                            }
+                            break;
+                        case 1:
+                            if ((DateTime.Now - CmdSendTime).Seconds > 10)
+                            {
+                                nextstep = true;
+                                step = -1;
+                            }
+                            else if (InitialRecv)
+                            {
+                                if (InitialRecvstr == "OK")
+                                {
+                                    step++;
+                                }
+                                //else 
+                                //{
+                                //    step = -1;
+                                //}
+                                nextstep = true;
+                            }
+                            break;
+                        case 2:
+                            if ((DateTime.Now - CmdSendTime).Seconds > 10)
+                            {
+                                UI.Alarm(NormalStatic.PLC, ErrorList.T0TimeOut_1011, step.ToString());
+                                nextstep = true;
+                                step = -1;
+                            }
+                            else if (InitialRecv)
+                            {
+                                if (InitialRecvstr == "OK")
+                                {
+                                    step = 99;
+                                }
+                                else
+                                {
+                                    step = -1;
+                                }
+                                nextstep = true;
+                            }
+                            break;
+                    }
+                }
+            }
+            
+        }
+
+        //PLC RT BG.BK Dowork
+        public void plc_RTSend(string str)
+        {
+            BK_RTSend.EnQueue(str);
+        }
+
+        private void Dowork_RTSend()
+        {
+            while (true)
+            {
+                string[] str = BK_RTSend.DeQueue(System.Threading.Timeout.Infinite).Split(',');         
+
+                if (Sk_RT.tcpclt.Connected && Sk_RT.tcpclt.GetStream().CanWrite)
+                {
+                    string temp = str[0];
+                    byte[] tmpByte = System.Text.Encoding.UTF8.GetBytes(temp);
+                    byte[] msgByte = new byte[tmpByte.Length + 1];
+                    for (int i = 0; i < tmpByte.Length; i++)
+                    {
+                        msgByte[i] = tmpByte[i];
+                    }
+                    msgByte[tmpByte.Length] = CR;
+                    Enum.TryParse(str[1], out RT_Device);
+                    Sk_RT.tcpclt.Client.Send(msgByte);
+                }
+                else 
+                {
+                    //UI.Alarm(Sk_Device.PLC_RT.ToString(),ErrorList.ConnectionError, "PLC DisConnection");
+                }
+            }
+        }
+        private void plc_RTRecv(string str)
+        {
+            BK_RTRecv.EnQueue(str);
+        }
+        private void Dowrok_RTRecv() 
+        {
+            while (true) 
+            {
+                string recv_str = BK_RTRecv.DeQueue(System.Threading.Timeout.Infinite);
+                if (recv_str == null)
+                {
+                    Console.WriteLine(1);
+                }
+
+                string[] splite = recv_str.Split(' ');
+                switch (RT_Device) 
+                {
+                    case PLC_RTDevice.B1:
+
+                        int B_Shift = B_NowTimes * 1000;
+
+                        for (int i = 0; i < splite.Length; i++)
+                        {
+                            string HexToBit = Convert.ToString(Convert.ToInt32(splite[i].ToString()), 2).PadLeft(16, '0');
+                           
+                            for (int j = 16; j > 0; j--)
+                            {
+                                B[(i * 16) + B_Shift + 16 - j] = HexToBit.Substring(j - 1, 1) == "1" ? true : false;
+                            }
+                        }
+                        if (B_NowTimes == B_TotalTimes-1)
+                        {
+                            B_NowTimes = 0;
+                            plc_RTSend(string.Format("RDS {0}0000.U {1},{2}", PLC_Device.W, Range_W, PLC_RTDevice.W1));
+                        }
+                        else 
+                        {
+                            B_NowTimes++;
+                            plc_RTSend(string.Format("RDS {0}{1}.U {2},{3}", PLC_Device.B, (B_Shift + 1000).ToString("X"), Range_B, PLC_RTDevice.B1));
+                        }
+
+
+                        break;
+                    case PLC_RTDevice.W1:
+
+                        int W_Shift = W_NowTimes * 1000;
+                        
+                        for (int i = 0; i < splite.Length; i++)
+                        {
+                            W[i + W_Shift] = Convert.ToInt32(splite[i].ToString());
+                        }
+                        
+                        if (W_NowTimes == W_TotalTimes-1)
+                        {
+                            W_NowTimes = 0;
+                            plc_RTSend(string.Format("RDS {0}0000.U {1},{2}", PLC_Device.B, Range_B, PLC_RTDevice.B1));
+                            PLCRead = true;
+                        }
+                        else 
+                        {
+                            W_NowTimes++;
+                            plc_RTSend(string.Format("RDS {0}{1}.U {2},{3}", PLC_Device.W, (W_Shift+1000).ToString("X"), Range_W, PLC_RTDevice.W1));
+                        }
+                        
+                        break;
+                    case PLC_RTDevice.W2:
+                        for (int i = 0; i < splite.Length; i++)
+                        {
+                            W[i + 1000] = Convert.ToInt32(splite[i].ToString());
+                        }
+                        plc_RTSend(string.Format("RDS {0}0000.U {1},{2}", PLC_Device.LR, Range_LR, PLC_RTDevice.LR1));
+                        break;
+                    case PLC_RTDevice.LR1:
+                        for (int i = 0; i < splite.Length; i++) 
+                        {
+                            string HexToBit = Convert.ToString(Convert.ToInt32(splite[i].ToString()), 2).PadLeft(16, '0');
+
+                            for (int j = 16; j > 0; j--)
+                            {
+                                LR[(i * 16) + 16 - j] = HexToBit.Substring(j - 1, 1) == "1" ? true : false;
+                            }
+                        }
+                        plc_RTSend(string.Format("RDS {0}0000.U {1},{2}", PLC_Device.B, Range_B, PLC_RTDevice.B1));
+                        break;
+                }
+            }
+        }
+
+        static object testlk = new object();
+        //PLC Cmd BG.BK Dowork
+        public static void Plc_CmdSend(All_Device ref_ADev,PLC_Device ref_Dev, int ref_Devno, int ref_val)
+        {
+            lock (testlk)
+            {
+                string send = string.Format("{0},WR {1}{2} {3}", ref_ADev, ref_Dev, ref_Devno.ToString("X"), ref_val);
+                BK_CmdSend.EnQueue(send);
+            }
+        }
+
+        public static void Plc_CmdSend_multi(All_Device ref_ADev, PLC_Device ref_Dev, int ref_DevStart, int ref_Devval, int ref_val)
+        {
+            lock (testlk)
+            {
+                string send = string.Format("{0},WRS {1}{2} {3}", ref_ADev, ref_Dev, ref_DevStart.ToString("X"), ref_Devval);
+                for (int i = 0; i < ref_Devval; i++)
+                {
+                    send += " " + ref_val;
+                }
+                BK_CmdSend.EnQueue(send);
+            }
+
+        }
+
+        private  void Dowork_CmdSend()
+        {
+            while (true)
+            {
+                string[] str = BK_CmdSend.DeQueue(System.Threading.Timeout.Infinite).Split(',');
+
+                if (Sk_PLCCmd.tcpclt.Connected && Sk_PLCCmd.tcpclt.GetStream().CanWrite)
+                {
+                    if (str[0] != All_Device.PLCInterface.ToString()) 
+                    {
+                        string [] plcsplite=str[1].Split(' ');
+                        UI.Log(NormalStatic.PLC, NormalStatic.PLC, SystemList.DeviceSend, string.Format("Device:{0}\tPLC:{1}\tValue:{2}", str[0], plcsplite[1], plcsplite[2]));
+                    }
+                    string temp = str[1];
+                    byte[] tmpByte = System.Text.Encoding.UTF8.GetBytes(temp);
+                    byte[] msgByte = new byte[tmpByte.Length + 1];
+                    for (int i = 0; i < tmpByte.Length; i++)
+                    {
+                        msgByte[i] = tmpByte[i];
+                    }
+                    msgByte[tmpByte.Length] = CR;
+                    Enum.TryParse(str[0], out PLC_CmdDev);
+                    Sk_PLCCmd.tcpclt.Client.Send(msgByte);
+                    PLC_CmdNextStep = true;
+                }
+                else
+                {
+                    //UI.Alarm(Sk_Device.PLC_RT.ToString(), ErrorList.ConnectionError, "PLC DisConnection");
+                    PLC_CmdNextStep = false;
+                }
+
+
+                while (PLC_CmdNextStep)
+                {
+                    string Cmd_Recv = BK_CmdRecv.DeQueue(30000);
+                    if (Cmd_Recv == null)
+                    {
+                        CmdRecv("Error", PLC_CmdDev);
+                        break;
+                    }
+
+                    //Wayne Test8/5
+                    if (PLC_CmdDev != All_Device.PLCInterface)
+                    {
+                        UI.Log(NormalStatic.PLC, NormalStatic.PLC, SystemList.DeviceReceive, string.Format("Device:{0}\tRecv:{1}", PLC_CmdDev, Cmd_Recv));
+                    }
+                    if (PLC_CmdDev == All_Device.PLCInterface)
+                    {
+                        InterRecv = true;
+                        InterfaceRecvstr = Cmd_Recv;
+                        break;
+                    }
+                    if (PLC_CmdDev == All_Device.PLCAlarmReset)
+                    {
+                        AlarmResetRecv = true;
+                        AlarmRecvstr = Cmd_Recv;
+                        break;
+                    }
+                    if (PLC_CmdDev == All_Device.PLCInitial)
+                    {
+                        InitialRecv = true;
+                        InitialRecvstr = Cmd_Recv;
+                        break;
+                    }
+
+                    CmdRecv(Cmd_Recv, PLC_CmdDev);
+                    PLC_CmdNextStep = false;
+                }
+            }
+        }
+
+        private void Plc_CmdRecv(string str)
+        {
+            BK_CmdRecv.EnQueue(str);
+        }
+        
+        //PLC Interface BG BK DoWork
+        private void Dowork_Interface() 
+        {
+            int interfacestep = 0;
+
+            while (true) 
+            {
+                SpinWait.SpinUntil(()=>false,500);
+                switch (interfacestep) 
+                {
+                    case 0:
+                        if (B[0] == true)
+                        {
+                            interfacestep++;
+                        }
+                        else
+                        {
+                            Plc_CmdSend(All_Device.PLCInterface, PLC_Device.B, (int)PLC_B.InterfaceRequest, 1);
+                        }
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        Plc_CmdSend(All_Device.PLCInterface, PLC_Device.B, (int)PLC_B.InterfaceRequest, 0);
+                        break;
+                    case 3:
+                        break;
+                }
+
+                DateTime InterFaceTime = DateTime.Now;
+                InterfaceNextStep = false;
+
+                while (!InterfaceNextStep) 
+                {
+                    SpinWait.SpinUntil(() => false, 100);
+                    switch (interfacestep) 
+                    {
+                        case 0:
+                            if ((DateTime.Now - InterFaceTime).Seconds > 7)
+                            {
+                                //UI.Error(NormalStatic.PLC, ErrorList.PLCCmdRecvError, "PLC Interface"); 
+                                interfacestep = 0;
+                                InterfaceNextStep = true;
+                            }
+                            else
+                            {
+                                if (InterRecv)
+                                {
+                                    interfacestep++;
+                                    InterfaceNextStep = true;
+                                    InterRecv = false;
+                                }
+                            }
+                            break;
+                        case 1:
+                            if ((DateTime.Now - InterFaceTime).Seconds > 7)
+                            {
+                                //UI.Error(NormalStatic.PLC, ErrorList.PLCCmdRecvError, "PLC Interface");
+                                interfacestep = 0;
+                                InterfaceNextStep = true;
+                            }
+                            else
+                            {
+                                if (B[(int)PLC_B.InterfaceRqply] == true)
+                                {
+                                    interfacestep++;
+                                    InterfaceNextStep = true;
+                                }
+                            }
+                            break;
+                        case 2:
+                            if ((DateTime.Now - InterFaceTime).Seconds > 7)
+                            {
+                                UI.Alarm(NormalStatic.PLC, ErrorList.PLCCmdRecvError, "PLC Interface"); 
+                                interfacestep = 0;
+                                InterfaceNextStep = true;
+                            }
+                            else
+                            {
+                                if (InterRecv)
+                                {
+                                    interfacestep++;
+                                    InterfaceNextStep = true;
+                                    InterRecv = false;
+                                }
+                            }
+                            break;
+                        case 3:
+                            if ((DateTime.Now - InterFaceTime).Seconds > 7)
+                            {
+                                UI.Alarm(NormalStatic.PLC, ErrorList.PLCCmdRecvError, "PLC Interface"); 
+                                interfacestep = 0;
+                                InterfaceNextStep = true;
+                            }
+                            else
+                            {
+                                if (B[(int)PLC_B.InterfaceRqply] == false)
+                                {
+                                    interfacestep = 0;
+                                    InterfaceNextStep = true;
+                                }
+                            }
+                            break;
+                    }
+                }
+
+            }
+        }
+
+        //PLC Alarm
+        //Wayne 20190927
+        public static bool InitialCommand() 
+        {
+            if (Initialing) 
+            {
+                UI.Log(NormalStatic.System, NormalStatic.PLC, SystemList.CommandStart, "Initialing Cant do command");
+                return false;
+            }
+            InitialReset(true);
+            Task.Run(() => InitialRun());
+            return true;
+        }
+        private static void InitialRun() 
+        {            
+            UI.Log(NormalStatic.PLC, NormalStatic.PLC, SystemList.CommandStart, "Initial Command Start");
+
+            bool nextstep = false;
+            while (true)
+            {
+                SpinWait.SpinUntil(() => false, 100);
+
+                if (InitialStepNo == -1)
+                {
+                    UI.Log(NormalStatic.PLC, NormalStatic.PLC, SystemList.CommandStart, "Initial Command Fail");
+                    InitialReset(false);
+                    break;
+                }
+
+                if (InitialStep_List[InitialStepNo] == InitialStep.Max)
+                {
+                    UI.Log(NormalStatic.PLC, NormalStatic.PLC, SystemList.CommandComplete, "Initial Command Fninsh");
+                    if (HT.EFEM.PLC_EFEM_Status[(int)EFEM_DI.InitialBusy] == false)
+                    {
+                        InitialReset(false);
+                        break;
+                    }
+                    else
+                        continue;
+                }
+
+                switch (InitialStep_List[InitialStepNo])
+                {
+                    #region Initial Step
+                    case InitialStep.InitialRequestOn:
+                        Plc_CmdSend(All_Device.PLCInitial, PLC_Device.B, (int)PLC_B.InitialCommand, 1);
+                        break;
+                    case InitialStep.WaitReplyOn:
+                        break;
+                    case InitialStep.InitialRequestOff:
+                        Plc_CmdSend(All_Device.PLCInitial, PLC_Device.B, (int)PLC_B.InitialCommand, 0);
+                        break;
+                    case InitialStep.WaitReplyOff:
+                        break;
+                    case InitialStep.WaitBusyOff:
+                        break; 
+                    #endregion
+                    #region Clear Bit/Word
+                    case InitialStep.ClearCommand:
+                        PLC.Plc_CmdSend_multi(All_Device.PLCInitial, PLC_Device.B, (int)PLC_W.CstCommandNoStart, 45, 0);
+                        break;
+                    case InitialStep.ClearInvasion:
+                        PLC.Plc_CmdSend_multi(All_Device.PLCInitial, PLC_Device.B, (int)PLC_B.CSTInvasionStart, 24, 1);
+                        break;
+                    case InitialStep.ClearRequest:
+                        PLC.Plc_CmdSend_multi(All_Device.PLCInitial, PLC_Device.B, (int)PLC_B.CSTInvasionStart, 24, 0);
+                        break; 
+                    #endregion
+                    case InitialStep.AlarmSetCommand:
+                        PLC.Plc_CmdSend(All_Device.PLCInitial, PLC_Device.W, (int)PLC_W.AlarmReset, 0);
+                        break;
+                    case InitialStep.AlarmRequestOn:
+                        PLC.Plc_CmdSend(All_Device.PLCInitial, PLC_Device.B, (int)PLC_B.AlarmResetCommand, 1);
+                        break;
+                    case InitialStep.AlarmReplyOn:
+                    case InitialStep.CheckAlarm:
+                    case InitialStep.AlarmReplyOff:
+                        break;
+                    case InitialStep.AlarmRequestOff:
+                        PLC.Plc_CmdSend(All_Device.PLCInitial, PLC_Device.B, (int)PLC_B.AlarmResetCommand, 0);
+                        break;
+                }
+
+                nextstep = false;
+                InitialRecv = false;
+                InitialRecvstr = "";
+                DateTime CmdSendTime = DateTime.Now;
+
+                while (!nextstep)
+                {
+                    SpinWait.SpinUntil(() => false, 100);
+                    switch (InitialStep_List[InitialStepNo])
+                    {
+                        case InitialStep.InitialRequestOn:
+                        case InitialStep.ClearInvasion:
+                        case InitialStep.ClearRequest:
+                        case InitialStep.ClearCommand:
+                        case InitialStep.InitialRequestOff:
+                        case InitialStep.AlarmRequestOn:
+                        case InitialStep.AlarmRequestOff:
+                        case InitialStep.AlarmSetCommand:
+                            if ((DateTime.Now - CmdSendTime).Seconds > 10)
+                            {
+                                InitialStepNo = -1;
+                                UI.Alarm(NormalStatic.PLC, ErrorList.T0TimeOut_1011, InitialStep_List[InitialStepNo].ToString());
+                                nextstep = true;
+                            }
+                            else if (InitialRecv)
+                            {
+                                if (InitialRecvstr == "OK")
+                                {
+                                    UI.Log(NormalStatic.PLC, NormalStatic.PLC, SystemList.DeviceReceive, string.Format("InitialStep:{0} OK", InitialStep_List[InitialStepNo]));
+                                    InitialStepNo++;
+                                }
+                                else
+                                {
+                                    InitialStepNo = -1;
+                                    UI.Alarm(NormalStatic.PLC, ErrorList.PLCCmdRecvError, "");
+                                }
+                                nextstep = true;
+                            }
+                            break;
+
+                        case InitialStep.WaitReplyOn:
+                            {
+                                if ((DateTime.Now - CmdSendTime).Seconds > 10)
+                                {
+                                    InitialStepNo = -1;
+                                    UI.Alarm(NormalStatic.PLC, ErrorList.T1TimeOut_1012, InitialStep_List[InitialStepNo].ToString());
+                                    nextstep = true;
+                                }
+                                else if (B[(int)PLC_B.InitialReply] == true)
+                                {
+                                    UI.Log(NormalStatic.PLC, NormalStatic.PLC, SystemList.DeviceReceive, "Initial Reply On");
+                                    UI.Log(NormalStatic.PLC, NormalStatic.PLC, SystemList.DeviceReceive, string.Format("Initial Reply Result:{0}", W[(int)PLC_W.InitialCommandResult]));
+                                    if (W[(int)PLC_W.InitialCommandResult] == 0)
+                                    {
+                                        InitialStepNo++;
+                                    }
+                                    else
+                                    {
+                                        InitialStepNo = -1;
+                                        UI.Alarm(NormalStatic.PLC, ErrorList.PLCCmdRecvError, W[(int)PLC_W.InitialCommandResult].ToString());
+                                    }
+
+                                    nextstep = true;
+                                }
+                            }
+                            break;
+
+                        case InitialStep.WaitReplyOff:
+                            {
+                                if ((DateTime.Now - CmdSendTime).Seconds > 10)
+                                {
+                                    InitialStepNo = -1;
+                                    UI.Alarm(NormalStatic.PLC, ErrorList.T3TimeOut_1014, InitialStep_List[InitialStepNo].ToString());
+                                    nextstep = true;
+                                }
+                                else if (B[(int)PLC_B.InitialReply] == false)
+                                {
+                                    UI.Log(NormalStatic.PLC, NormalStatic.PLC, SystemList.DeviceReceive, string.Format("Initial Reply Off"));
+                                    InitialStepNo++;
+                                    nextstep = true;
+                                }
+                            }
+                            break;
+
+                        case InitialStep.WaitBusyOff:
+                            {
+                                if ((DateTime.Now - CmdSendTime).Seconds > 60)
+                                {
+                                    InitialStepNo = -1;
+                                    UI.Alarm(NormalStatic.PLC, ErrorList.T2TimeOut_1013, InitialStep_List[InitialStepNo].ToString());
+                                    nextstep = true;
+                                }
+                                if (HT.EFEM.PLC_EFEM_Status[(int)EFEM_DI.Busy] == false)
+                                {
+                                    UI.Log(NormalStatic.PLC, NormalStatic.PLC, SystemList.DeviceReceive, string.Format("Initial Busy Off"));
+                                    InitialStepNo++;
+                                    nextstep = true;
+                                }
+                            }
+                            break;
+                        case InitialStep.AlarmReplyOn:
+                            if ((DateTime.Now - CmdSendTime).Seconds > 10)
+                            {
+                                UI.Error(NormalStatic.PLC, ErrorList.PLCCmdRecvError, InitialStep_List[InitialStepNo].ToString());
+                                InitialStepNo = -1;
+                                nextstep = true;
+                            }
+                            else
+                            {
+                                if (B[(int)PLC_B.AlarmResetReply] == true)
+                                {
+                                    UI.Log(NormalStatic.PLC, NormalStatic.PLC, SystemList.DeviceReceive, string.Format("Initial AlarmReset Reply On"));
+                                    InitialStepNo++;
+                                    nextstep = true;
+                                }
+                            }
+                            break;
+                        case InitialStep.AlarmReplyOff:
+                             if ((DateTime.Now - CmdSendTime).Seconds > 10)
+                            {
+                                UI.Error(NormalStatic.PLC, ErrorList.PLCCmdRecvError, InitialStep_List[InitialStepNo].ToString());
+                                InitialStepNo = -1;
+                                nextstep = true;
+                            }
+                            else
+                            {
+                                if (B[(int)PLC_B.AlarmResetReply] == false)
+                                {
+                                    UI.Log(NormalStatic.PLC, NormalStatic.PLC, SystemList.DeviceReceive, string.Format("Initial AlarmReset Reply Off"));
+                                    InitialStepNo++;
+                                    nextstep = true;
+                                }
+                            }
+                            break;
+                        case InitialStep.CheckAlarm:
+                             if ((DateTime.Now - CmdSendTime).Seconds > 10)
+                            {
+                                UI.Error(NormalStatic.PLC, ErrorList.PLCCmdRecvError, InitialStep_List[InitialStepNo].ToString());
+                                InitialStepNo = -1;
+                                nextstep = true;
+                            }
+                            else
+                            {
+                                if (HT.EFEM.PLC_EFEM_Status[(int)EFEM_DI.Alarm] == false)
+                                {
+                                    UI.Log(NormalStatic.PLC, NormalStatic.PLC, SystemList.DeviceReceive, string.Format("Initial Alarm Check Off"));
+                                    InitialStepNo++;
+                                    nextstep = true;
+                                }
+                            }
+                            break;
+                    }
+                }
+            }
+        }
+        private static void InitialReset(bool status) 
+        {
+            if (status)
+            {
+                AlarmReseting = true;
+                Initialing = true;
+            }
+            else 
+            {
+                AlarmReseting = false;
+                Initialing = false;
+            }
+            InitialStepNo = 0;
+        }
+        private static void InitialStepadd() 
+        {
+            InitialStep_List.Add(InitialStep.AlarmSetCommand);
+            InitialStep_List.Add(InitialStep.AlarmRequestOn);
+            InitialStep_List.Add(InitialStep.AlarmReplyOn);
+            InitialStep_List.Add(InitialStep.AlarmRequestOff);
+            InitialStep_List.Add(InitialStep.AlarmReplyOff);
+            InitialStep_List.Add(InitialStep.CheckAlarm);
+            InitialStep_List.Add(InitialStep.ClearCommand);
+            InitialStep_List.Add(InitialStep.ClearRequest);
+            InitialStep_List.Add(InitialStep.ClearInvasion);
+            InitialStep_List.Add(InitialStep.InitialRequestOn);
+            InitialStep_List.Add(InitialStep.WaitReplyOn);
+            InitialStep_List.Add(InitialStep.InitialRequestOff);
+            InitialStep_List.Add(InitialStep.WaitReplyOff);
+            InitialStep_List.Add(InitialStep.WaitBusyOff);
+            InitialStep_List.Add(InitialStep.Max);
+        }
+        public static void AlarmResetCommand() 
+        {
+            AlarmReseting = true;
+            Task.Run(() => Action_IFAlarm());
+        }
+        private static void Action_IFAlarm()
+        {
+            int step = 0;
+
+            while (true)
+            {
+                if (step == 4)
+                {
+                    step = 0;
+                    AlarmReseting = false;
+                    //UI.Log(NormalStatic.PLC, "AlarmReset", SystemList.CommandComplete, "Fninsh");
+                    break;
+                }
+                switch (step)
+                {
+                    case 0:
+                        Plc_CmdSend(All_Device.PLCAlarmReset, PLC_Device.B, (int)PLC_B.AlarmResetCommand, 1);
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        Plc_CmdSend(All_Device.PLCAlarmReset, PLC_Device.B, (int)PLC_B.AlarmResetCommand, 0);
+                        break;
+                    case 3:
+                        break;
+                }
+
+
+                DateTime AlarmResetTime = DateTime.Now;
+                AlarmResetNextStep = false;
+
+                while (!AlarmResetNextStep)
+                {
+                    switch (step)
+                    {
+                        case 0:
+                        case 2:
+                            if ((DateTime.Now - AlarmResetTime).Seconds > 7)
+                            {
+                                UI.Alarm(NormalStatic.PLC, ErrorList.PLCCmdRecvError, "PLC Interface");
+                                step = 0;
+                                AlarmResetNextStep = true;
+                            }
+                            else
+                            {
+                                if (AlarmResetRecv)
+                                {
+                                    step++;
+                                    AlarmResetNextStep = true;
+                                    AlarmResetRecv = false;
+                                }
+                            }
+                            break;
+                        case 1:
+                            if ((DateTime.Now - AlarmResetTime).Seconds > 60)
+                            {
+                                UI.Alarm(NormalStatic.PLC, ErrorList.PLCCmdRecvError, "PLC Interface");
+                                step = 0;
+                                AlarmResetNextStep = true;
+                            }
+                            else
+                            {
+                                if (B[(int)PLC_B.AlarmResetReply] == true)
+                                {
+                                    step++;
+                                    AlarmResetNextStep = true;
+                                    AlarmResetRecv = false;
+                                }
+                            }
+                            break;
+                        case 3:
+                            if ((DateTime.Now - AlarmResetTime).Seconds > 60)
+                            {
+                                UI.Alarm(NormalStatic.PLC, ErrorList.PLCCmdRecvError, "PLC Interface");
+                                step = 0;
+                                AlarmResetNextStep = true;
+                            }
+                            else
+                            {
+                                if (B[(int)PLC_B.AlarmResetReply] == true)
+                                {
+                                    step++;
+                                    AlarmResetNextStep = true;
+                                    AlarmResetRecv = false;
+                                }
+                            }
+                            break;
+                    }
+                }
+            }
+        }
+        private void Action_Alarm() 
+        {
+            int Alarm_Start=(int)PLC_B.AlarmCodeStart;
+            bool[] AlarmTemp = new bool[1600];
+            while (true) 
+            {
+                SpinWait.SpinUntil(() => false,1000);
+
+                for (int i = 0; i < 1600; i++) 
+                {
+                    if (B[Alarm_Start + i] == true)
+                    {
+                        if (AlarmTemp[i] != B[Alarm_Start + i])
+                        {
+                            AlarmTemp[i] = B[Alarm_Start + i];
+                            Alarm_Flag = ST_AlarmFlag = true;
+                            UI.Alarm(NormalStatic.PLC, string.Format("B{0}", Convert.ToString(((int)PLC_B.AlarmCodeStart+i), 16)), i);
+                        }
+                    }
+                    else
+                    {
+                        AlarmTemp[i] = B[Alarm_Start + i];
+                    }
+                }
+            }
+        }
+
+        //UI Create
+        private void UIB_Create() 
+        {
+            tp_B = new TabPage();
+            tp_B.Text = "B";
+            tp_B.Dock = DockStyle.Fill;
+
+            tb_B = new TextBox();
+            tb_B.Location = new Point(0, 0);
+            tb_B.Size = new System.Drawing.Size(100, 10);
+            tp_B.Controls.Add(tb_B);
+
+            btn_B = new Button();
+            btn_B.Size = new System.Drawing.Size(100, 30);
+            btn_B.Text = "Search";
+            btn_B.Click += new EventHandler(btn_B_Click);
+            btn_B.Location = new Point(tb_B.Right, 0);
+            tp_B.Controls.Add(btn_B);
+
+            btn_B_Stop = new Button();
+            btn_B_Stop.Size = new System.Drawing.Size(100, 30);
+            btn_B_Stop.Text = "Stop";
+            btn_B_Stop.Click += new EventHandler(btn_B_Stop_Click);
+            btn_B_Stop.Location = new Point(btn_B.Right+10, 0);
+            btn_B_Stop.Enabled = false;
+            tp_B.Controls.Add(btn_B);
+            tp_B.Controls.Add(btn_B_Stop);
+
+            pl_b = new Panel();
+            pl_b.Location = new Point(0, 30);
+            tp_B.Controls.Add(pl_b);
+
+            dgv_B = new DataGridView();
+            dgv_B.Columns.Add("N0", "N0");
+            dgv_B.Columns.Add("Bit", "Bit");
+            dgv_B.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgv_B.ReadOnly = true;
+
+            for (int i = 0; i < 100; i++)
+            {
+                dgv_B.Rows.Add();
+                dgv_B.Rows[i].Cells[0].Value = string.Format("B{0}", Convert.ToString(Statr + i, 16).PadLeft(5, '0'));
+                dgv_B.Rows[i].Cells[1].Value = "-1";
+            }
+            tc_PLC.TabPages.Add(tp_B);
+        }
+        private void UIW_Create()
+        {
+            tp_W = new TabPage();
+            tp_W.Text = "W";
+            tp_W.Dock = DockStyle.Fill;
+
+            pl_W = new Panel();
+            pl_W.Location = new Point(0, 30);
+            tp_W.Controls.Add(pl_W);
+
+            tb_W = new TextBox();
+            tb_W.Location = new Point(0, 0);
+            tb_W.Size = new System.Drawing.Size(100, 10);
+            tp_W.Controls.Add(tb_W);
+
+            btn_W = new Button();
+            btn_W.Text = "Search";
+            btn_W.Click += new EventHandler(btn_W_Click);
+            btn_W.Location = new Point(tb_W.Right, 0);
+            btn_W_Stop = new Button();
+            btn_W_Stop.Size = new System.Drawing.Size(100, 30);
+            btn_W_Stop.Text = "Stop";
+            btn_W_Stop.Click += new EventHandler(btn_W_Stop_Click);
+            btn_W_Stop.Location = new Point(btn_W.Right + 10, 0);
+            btn_W_Stop.Enabled = false;
+            tp_W.Controls.Add(btn_W);
+            tp_W.Controls.Add(btn_W_Stop);
+
+            dgv_W = new DataGridView();
+            dgv_W.Columns.Add("N0", "N0");
+            dgv_W.Columns.Add("Bit", "Bit");
+            dgv_W.Columns.Add("Hex", "Hex");
+            
+            for (int i = 0; i < 100; i++)
+            {
+                dgv_W.Rows.Add();
+                dgv_W.Rows[i].Cells[0].Value = string.Format("W{0}", Convert.ToString(Statr + i, 16).PadLeft(4, '0'));
+                dgv_W.Rows[i].Cells[1].Value = "-1";
+            }
+
+            dgv_W.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgv_W.ReadOnly = true;
+            tp_W.Controls.Add(pl_W);
+            tc_PLC.TabPages.Add(tp_W);
+        }
+        private void UILR_Create()
+        {
+            tp_LR = new TabPage();
+            tp_LR.Text = "LR";
+            tp_LR.Dock = DockStyle.Fill;
+
+            tb_LR = new TextBox();
+            tb_LR.Location = new Point(0, 0);
+            tb_LR.Size = new System.Drawing.Size(100, 10);
+            tp_LR.Controls.Add(tb_LR);
+
+            Button btn_LR = new Button();
+            btn_LR.Size = new System.Drawing.Size(100, 30);
+            btn_LR.Text = "Search";
+            btn_LR.Click += new EventHandler(btn_LR_Click);
+            btn_LR.Location = new Point(tb_B.Right, 0);
+            //tp_LR.Controls.Add(btn_LR);
+
+            pl_LR = new Panel();
+            pl_LR.Location = new Point(0, 30);
+            tp_LR.Controls.Add(pl_LR);
+
+            dgv_LR = new DataGridView();
+            dgv_LR.Columns.Add("N0", "N0");
+            dgv_LR.Columns.Add("Bit", "Bit");
+            dgv_LR.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgv_LR.ReadOnly = true;
+
+            for (int i = 0; i < 100; i++)
+            {
+                dgv_LR.Rows.Add();
+                dgv_LR.Rows[i].Cells[0].Value = string.Format("LR{0}", Convert.ToString(Statr + i, 16).PadLeft(5, '0'));
+                dgv_LR.Rows[i].Cells[1].Value = "-1";
+            }
+            tc_PLC.TabPages.Add(tp_LR);
+        }
+        private void TraceIO_Create() 
+        {
+            tp_Trace = new TabPage();
+            tp_Trace.Text = "Trace";
+            tp_Trace.Dock = DockStyle.Fill;
+
+            cmb_PLCDevice = new ComboBox();
+            cmb_PLCDevice.Location = new Point(0, 0);
+            for (int i = 0; i < (int)PLC_Device.Fn; i++) 
+            {
+                cmb_PLCDevice.Items.Add((PLC_Device)i);
+            }
+
+            tb_PLCPosition = new TextBox();
+            tb_PLCPosition.Location = new Point(cmb_PLCDevice.Right + 10, 0);
+            tb_PLCPosition.Text = "";
+            btn_TraceAdd = new Button();
+            btn_TraceAdd.Text = "Add";
+            btn_TraceAdd.Location = new Point(tb_PLCPosition.Right + 10, 0);
+            btn_TraceAdd.Click += new EventHandler(btn_TraceAdd_Click);
+            btn_TraceDelete = new Button();
+            btn_TraceDelete.Text = "Delete";
+            btn_TraceDelete.Location = new Point(btn_TraceAdd.Right + 10, 0);
+            btn_TraceDelete.Click += new EventHandler(btn_TraceDelete_Click);
+            btn_TraceStart = new Button();
+            btn_TraceStart.Text = "Start";
+            btn_TraceStart.Location = new Point(btn_TraceDelete.Right + 10, 0);
+            btn_TraceStart.Click += new EventHandler(btn_TraceStart_Click);
+            btn_TraceStop = new Button();
+            btn_TraceStop.Text = "Stop";
+            btn_TraceStop.Location = new Point(btn_TraceStart.Right + 10, 0);
+            btn_TraceStop.Click += new EventHandler(btn_TraceStop_Click);
+            btn_TraceStop.Enabled = false;
+
+            pl_Trace = new Panel();
+            pl_Trace.Location = new Point(0, cmb_PLCDevice.Bottom + 10);
+            dgv_Trace = new DataGridView();
+            dgv_Trace.Dock = DockStyle.Fill;
+
+            tp_Trace.Controls.Add(cmb_PLCDevice);
+            tp_Trace.Controls.Add(tb_PLCPosition);
+            tp_Trace.Controls.Add(btn_TraceAdd);
+            tp_Trace.Controls.Add(btn_TraceDelete);
+            tp_Trace.Controls.Add(btn_TraceStart);
+            tp_Trace.Controls.Add(btn_TraceStop);
+            tp_Trace.Controls.Add(pl_Trace);
+            pl_Trace.Controls.Add(dgv_Trace);
+
+            tc_PLC.TabPages.Add(tp_Trace);
+        }
+        private void TraceRead_Create() 
+        {
+            tp_TraceRead = new TabPage();
+            tp_TraceRead.Text = "TraceRead";
+            tp_TraceRead.Dock = DockStyle.Fill;
+            tp_TraceRead.Location = new Point(0, 0);
+
+            btn_TraceRead = new Button();
+            btn_TraceRead.Location = new Point(0, 0);
+            btn_TraceRead.Text = "Read";
+            btn_TraceRead.Click += new EventHandler(btn_TraceRead_Click);
+
+            pgb_TraceRead = new ProgressBar();
+            pgb_TraceRead.Location = new Point(btn_TraceRead.Right + 10, 0);
+            pgb_TraceRead.BackColor = Color.Blue;
+         
+            pgb_TraceRead.Minimum = 0;
+            pgb_TraceRead.Maximum = 100;
+            pgb_TraceRead.Step = 1;
+
+            dgv_TraceRead = new DataGridView();
+            dgv_TraceRead.Dock = DockStyle.Fill;
+
+            pl_TraceRead = new Panel();
+            pl_TraceRead.Location = new Point(0,btn_TraceRead.Bottom + 10);
+            pl_TraceRead.Controls.Add(dgv_TraceRead);
+            tp_TraceRead.Controls.Add(btn_TraceRead);
+            tp_TraceRead.Controls.Add(pgb_TraceRead);
+            tp_TraceRead.Controls.Add(pl_TraceRead);
+            tc_PLC.TabPages.Add(tp_TraceRead);
+        }
+
+        //UI Event
+        private void tc_PLCIdxChange(object obj, EventArgs e) 
+        {
+            switch (tc_PLC.SelectedIndex) 
+            {
+                case 0:
+                    Statr = -1;
+                    Range = -1;
+                    break;
+                case 1:
+                    Statr = -1;
+                    Range = -1;
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    dgv_Trace.DataSource = SQLite.ReadDataTable(SQLTable.PLC_Trace, "1=1");
+                    break;
+            }
+        }
+        private void btn_B_Click(object obj, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(tb_B.Text))
+            {
+                MessageBox.Show("沒有輸入資料");
+                tb_B.Text = "";
+                return;
+            }
+
+            if (tb_B.Text.Length > 5) 
+            {
+                MessageBox.Show("輸入格式錯誤");
+                tb_B.Text = "";
+                return;
+            }
+
+            tb_B.Text=tb_B.Text.ToUpper();
+
+            for (int i = 0; i < tb_B.Text.Length; i++) 
+            {
+                bool check = false;
+                switch (tb_B.Text.Substring(i, 1)) 
+                {
+                    case "0":
+                    case "1":
+                    case "2":
+                    case "3":
+                    case "4":
+                    case "5":
+                    case "6":
+                    case "7":
+                    case "8":
+                    case "9":
+                    case "A":
+                    case "B":
+                    case "C":
+                    case "D":
+                    case "E":
+                    case "F":
+                        break;
+                    default:
+                        check = true;
+                        break;
+                }
+                if (check) 
+                {
+                    MessageBox.Show("輸入格式錯誤");
+                    tb_B.Text = "";
+                    return;
+                }
+            }
+            int tempStatr = Convert.ToInt32(tb_B.Text, 16);
+            if (tempStatr >= B_Total)
+            {
+                MessageBox.Show("數字過大");
+                tb_B.Text = "";
+                return;
+            }
+            Statr = tempStatr;
+
+            if (B_Total - Statr > 100) 
+            {
+                Range = 100;
+            }
+            else 
+            {
+                Range = B_Total - Statr;
+            }
+            pl_b.Controls.Clear();
+
+            for (int i = 0; i < Range; i++)
+            {
+                dgv_B.Rows[i].Cells[0].Value = string.Format("B{0}", Convert.ToString(Statr + i, 16).PadLeft(5, '0'));
+            }
+            dgv_B.FirstDisplayedScrollingRowIndex = 0;
+            dgv_B.Location = new Point(0, 0);
+            dgv_B.Size = new System.Drawing.Size(pl_b.Width, (pl_b.Height-30));
+            pl_b.Controls.Add(dgv_B);
+
+            btn_B_Stop.Enabled = true;
+            btn_B.Enabled = false;
+            btn_W.Enabled = false;
+            btn_W_Stop.Enabled = true;
+
+            if (!BG_UIUpdate.IsBusy)
+            {
+                BG_UIUpdate.RunWorkerAsync();
+            }
+        }
+        private void btn_B_Stop_Click(object obj, EventArgs e)
+        {
+            BG_UIUpdate.CancelAsync();
+        }
+        private void btn_W_Click(object obj, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(tb_W.Text))
+            {
+                MessageBox.Show("沒有輸入資料");
+                tb_W.Text = "";
+                return;
+            }
+
+            if (tb_W.Text.Length > 5)
+            {
+                MessageBox.Show("輸入格式錯誤");
+                tb_W.Text = "";
+                return;
+            }
+
+            tb_W.Text = tb_W.Text.ToUpper();
+
+            for (int i = 0; i < tb_W.Text.Length; i++)
+            {
+                bool check = false;
+                switch (tb_W.Text.Substring(i, 1))
+                {
+                    case "0":
+                    case "1":
+                    case "2":
+                    case "3":
+                    case "4":
+                    case "5":
+                    case "6":
+                    case "7":
+                    case "8":
+                    case "9":
+                    case "A":
+                    case "B":
+                    case "C":
+                    case "D":
+                    case "E":
+                    case "F":
+                        break;
+                    default:
+                        check = true;
+                        break;
+                }
+                if (check)
+                {
+                    MessageBox.Show("輸入格式錯誤");
+                    tb_W.Text = "";
+                    return;
+                }
+            }
+            int tempStatr = Convert.ToInt32(tb_W.Text, 16);
+            if (tempStatr >= Range_W * (W_TotalTimes + 1))
+            {
+                MessageBox.Show("數字過大");
+                tb_W.Text = "";
+                return;
+            }
+            Statr = tempStatr;
+
+            if (Range_W * (W_TotalTimes + 1) - Statr > 100)
+            {
+                Range = 100;
+            }
+            else
+            {
+                Range = Range_W - Statr;
+            }
+
+            pl_W.Controls.Clear();
+
+            for (int i = 0; i < Range; i++)
+            {
+                dgv_W.Rows[i].Cells[0].Value = string.Format("W{0}", Convert.ToString(Statr + i, 16).PadLeft(4, '0'));
+            }
+            dgv_W.Rows[0].Selected = true;
+            dgv_W.Size = new System.Drawing.Size(pl_W.Width, (pl_W.Height - 30));
+            pl_W.Controls.Add(dgv_W);
+
+            btn_B_Stop.Enabled = true;
+            btn_B.Enabled = false;
+            btn_W.Enabled = false;
+            btn_W_Stop.Enabled = true;
+
+            if (!BG_UIUpdate.IsBusy)
+            {
+                BG_UIUpdate.RunWorkerAsync();
+            }
+        }
+        private void btn_W_Stop_Click(object obj, EventArgs e)
+        {
+            BG_UIUpdate.CancelAsync();
+        }
+
+        private void btn_LR_Click(object obj, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(tb_LR.Text))
+            {
+                MessageBox.Show("沒有輸入資料");
+                tb_LR.Text = "";
+                return;
+            }
+
+            for (int i = 0; i < tb_LR.Text.Length; i++)
+            {
+                bool check = false;
+                switch (tb_LR.Text.Substring(i, 1))
+                {
+                    case "0":
+                    case "1":
+                    case "2":
+                    case "3":
+                    case "4":
+                    case "5":
+                    case "6":
+                    case "7":
+                    case "8":
+                    case "9":
+                        break;
+                    default:
+                        check = true;
+                        break;
+                }
+                if (check)
+                {
+                    MessageBox.Show("輸入格式錯誤");
+                    tb_LR.Text = "";
+                    return;
+                }
+            }
+            int tempStatr = Convert.ToInt32(tb_LR.Text);
+
+            if (Int32.TryParse(tb_LR.Text, out tempStatr)) 
+            {
+                if (tempStatr * 16 > LR_Total) 
+                {
+                    MessageBox.Show("數字過大");
+                    tb_LR.Text = "";
+                    return;
+                }
+            }
+            else 
+            {
+                MessageBox.Show("輸入格式錯誤");
+                tb_LR.Text = "";
+                return;
+            }
+
+            Statr = tempStatr*16;
+
+            if (LR_Total - Statr > 100)
+            {
+                Range = 100;
+            }
+            else
+            {
+                Range = LR_Total - Statr;
+            }
+
+            pl_LR.Controls.Clear();
+
+            int a = 0;
+            for (int i = 0; i < Range; i++)
+            {
+                dgv_LR.Rows[i].Cells[0].Value = string.Format("LR{0}{1}", tempStatr, Convert.ToString(a).PadLeft(2, '0'));
+                a++;
+                if (a == 16) 
+                {
+                    tempStatr++;
+                    a = 0;
+                }              
+            }
+            dgv_LR.FirstDisplayedScrollingRowIndex = 0;
+            dgv_LR.Location = new Point(0, 0);
+            dgv_LR.Size = new System.Drawing.Size(pl_LR.Width, (pl_LR.Height - 30));
+            pl_LR.Controls.Add(dgv_LR);
+
+            if (!BG_UIUpdate.IsBusy)
+            {
+                BG_UIUpdate.RunWorkerAsync();
+            }
+        }
+        private void btn_TraceAdd_Click(object obj, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(cmb_PLCDevice.Text) || string.IsNullOrEmpty(tb_PLCPosition.Text)) 
+            {
+                MessageBox.Show("Device parameter Error,Please Enter");
+                return;
+            }
+
+            DialogResult Result = MessageBox.Show(
+                                  string.Format("Confirm Do you want add device:{0} position:{1}", 
+                                  cmb_PLCDevice.Text,tb_PLCPosition.Text),
+                                  "Add", 
+                                  MessageBoxButtons.YesNo);
+
+            if (Result == DialogResult.Yes) 
+            {
+                SQLite.Insert(SQLTable.PLC_Trace, string.Format("('{0}','{1}')", cmb_PLCDevice.Text, tb_PLCPosition.Text));
+
+                dgv_Trace.DataSource = SQLite.ReadDataTable(SQLTable.PLC_Trace, "1=1");
+            }
+            else 
+            {
+                return;
+            }
+        }
+        private void btn_TraceDelete_Click(object obj, EventArgs e)
+        {
+            if (dgv_Trace.CurrentRow == null)
+            {
+                MessageBox.Show("Not selected row,please selected");
+                return;
+            }
+            if (dgv_Trace.CurrentRow.Index == -1) 
+            {
+                MessageBox.Show("Not selected row,please selected");
+                return;
+            }
+
+            int rowidx = dgv_Trace.CurrentRow.Index;
+            DialogResult Result = MessageBox.Show(
+                                  string.Format("Confirm Do you want delete device:{0} position:{1}",
+                                  dgv_Trace.Rows[rowidx].Cells[0].Value.ToString(), dgv_Trace.Rows[rowidx].Cells[1].Value.ToString()),
+                                  "Delete",
+                                  MessageBoxButtons.YesNo);
+            if (Result == DialogResult.Yes) 
+            {
+                SQLite.Delete(SQLTable.PLC_Trace, string.Format("Device='{0}' and Position='{1}'",
+                              dgv_Trace.Rows[rowidx].Cells[0].Value.ToString(),
+                              dgv_Trace.Rows[rowidx].Cells[1].Value.ToString()));
+
+                dgv_Trace.DataSource = SQLite.ReadDataTable(SQLTable.PLC_Trace, "1=1");
+            }
+            else 
+            {
+
+            }
+        }
+        private void btn_TraceStart_Click(object obj, EventArgs e)
+        {
+            cmb_PLCDevice.Enabled = false;
+            tb_PLCPosition.Enabled = false;
+            btn_TraceAdd.Enabled = false;
+            btn_TraceDelete.Enabled = false;
+            btn_TraceStart.Enabled = false;
+            btn_TraceStop.Enabled = true;
+            Dt_trace = SQLite.ReadDataTable(SQLTable.PLC_Trace, "1=1");
+            dgv_Trace.DataSource = Dt_trace;
+            TracePLC_Start = true;
+            TD_TracePLC = new Thread(Dowork_Trace);
+            TD_TracePLC.Start();
+        }
+        private void btn_TraceStop_Click(object obj, EventArgs e)
+        {
+            cmb_PLCDevice.Enabled = true;
+            tb_PLCPosition.Enabled = true;
+            btn_TraceAdd.Enabled = true;
+            btn_TraceDelete.Enabled = true;
+            btn_TraceStart.Enabled = true;
+            btn_TraceStop.Enabled = false;
+            TracePLC_Start = false;
+        }
+        private void btn_TraceRead_Click(object obj, EventArgs e) 
+        {
+            if (BG_TraceRead.IsBusy) 
+            {
+                MessageBox.Show("處理中");
+                return;
+            }
+
+            OpenFileDialog file = new OpenFileDialog();
+            file.Title = "Selcet PLC Trace Log";
+            file.InitialDirectory = string.Format(Application.StartupPath + @"\TracePLC\");
+            file.Filter = "txt files (*.*)|*.txt";
+
+            if (file.ShowDialog() == DialogResult.OK) 
+            {
+                FileStream fs = new FileStream(file.FileName, FileMode.Open);
+                smr_TraceRead = new StreamReader(fs);
+                BG_TraceRead.RunWorkerAsync();
+            }
+        }
+
+        //UI Update
+        private void Dowork_UIUpdate(object obj, DoWorkEventArgs e)
+        {
+            while (true)
+            {
+                SpinWait.SpinUntil(() => false, 300);
+                if (BG_UIUpdate.CancellationPending) 
+                {
+                    BG_UIUpdate.ReportProgress(-1);
+                    e.Cancel = true;
+                    break;
+                }
+                int selc = -1;
+                Invoke(new MethodInvoker(delegate { selc = tc_PLC.SelectedIndex; }));
+
+                BG_UIUpdate.ReportProgress(selc);
+            }
+        }
+        private void PG_UIUpdate(object obj, ProgressChangedEventArgs e) 
+        {
+            switch (e.ProgressPercentage) 
+            {
+                case 0:
+                    for (int i = 0; i < Range; i++)
+                    {
+                        dgv_B.Rows[i].Cells[1].Value = B[(Statr + i)] == true ? "1 " : "0 ";
+                    }
+                    break;
+                case 1:
+                    for (int i = 0; i < Range; i++)
+                    {
+                        string temp = Convert.ToString(W[(Statr + i)], 2).PadLeft(16, '0');
+                        temp = temp.Insert(12, " ");
+                        temp = temp.Insert(8, " ");
+                        temp = temp.Insert(4, " ");
+                        dgv_W.Rows[i].Cells[1].Value = temp;
+                        dgv_W.Rows[i].Cells[2].Value = W[(Statr + i)];
+                    }
+                    break;
+                case 2:
+                    for (int i = 0; i < Range; i++)
+                    {
+                        dgv_LR.Rows[i].Cells[1].Value = LR[(Statr + i)] == true ? "1 " : "0 ";
+                    }
+                    break;
+                case -1:
+                    btn_B_Stop.Enabled = false;
+                    btn_B.Enabled = true;
+                    btn_W_Stop.Enabled = false;
+                    btn_W.Enabled = true;
+                    break;
+            }
+        }
+        private void UI_Status(string ref_str)
+        {
+            string[] spref = ref_str.Split(',');
+            UIChange temp = UIChange.Null;
+            Enum.TryParse(spref[0], out temp);
+            switch (temp)
+            {
+                case UIChange.PLC_RTStatus:
+                    Color tempcolor = Color.Gray;
+                    string stsstr = "";
+                    switch (spref[1])
+                    {
+                        case NormalStatic.True:
+                            {
+                                plc_RTSend(string.Format("RDS {0}0000.U {1},{2}", PLC_Device.B, Range_B, PLC_RTDevice.B1));
+                                stsstr = Sk_Connstr.Connect.ToString();
+                                tempcolor = Color.Green;
+                                Connection = ST_Conn = true;
+                            }
+                            break;
+
+                        case NormalStatic.False:
+                            {
+                                if (stslb_PLCConn.Text == Sk_Connstr.Connect.ToString())
+                                {
+                                    UI.Alarm(NormalStatic.PLC, ErrorList.AP_SocketError_0382);
+                                }
+                                stsstr = Sk_Connstr.DisConnect.ToString();
+                                tempcolor = Color.Red;
+                                Connection = ST_Conn = true;
+                            }
+                            break;
+
+                        default:
+                            {
+                                stsstr = Sk_Connstr.Unknow.ToString();
+                                tempcolor = Color.Red;
+                                Connection = false;
+                            }
+                            break;
+                    }
+                    if (InvokeRequired)
+                    {
+                        Invoke(new MethodInvoker(delegate { stslb_PLCConn.BackColor = tempcolor; }));
+                        Invoke(new MethodInvoker(delegate { stslb_PLCConn.Text = stsstr; }));
+                    }
+                    else
+                    {
+                        stslb_PLCConn.BackColor = tempcolor;
+                        stslb_PLCConn.Text = stsstr;
+                    }
+                    break;
+            }
+        }
+        
+        private void Dowork_Trace() 
+        {
+            FileStream fs;
+            string date = "";
+            string tracePath = "";
+            List<Trace_list> list_trace = new List<Trace_list>();
+            for (int i = 0; i < Dt_trace.Rows.Count; i++)
+            { 
+                list_trace.Add(new Trace_list
+                {
+                    dev=Dt_trace.Rows[i][0].ToString(),
+                    value="-1"
+                });
+            }
+
+            if (!Directory.Exists(Application.StartupPath + @"/TracePLC/"))
+            {
+                Directory.CreateDirectory(Application.StartupPath + @"/TracePLC/");
+            }
+
+            if (date != DateTime.Now.ToString("yyyyMMdd"))
+            {
+                date = DateTime.Now.ToString("yyyyMMdd");
+                if (!Directory.Exists(Application.StartupPath + @"/TracePLC/" + date))
+                {
+                    Directory.CreateDirectory(Application.StartupPath + @"/TracePLC/" + date);
+                }
+                tracePath = Application.StartupPath + @"/TracePLC/" + date + "/" + DateTime.Now.ToString("yyyyMMdd_HHmmss_fff") + ".txt";
+                fs = new FileStream(tracePath, FileMode.Create);
+                fs.Close();
+            }
+
+            StreamReader smR = new StreamReader(tracePath, true);
+            string str_all = smR.ReadToEnd();
+            string[] splite = str_all.Split('\n');
+            smR.Close();
+            if (splite.Length > 10000)
+            {
+                tracePath = Application.StartupPath + @"/TracePLC/" + date + "/" + DateTime.Now.ToString("yyyyMMdd_HHmmss_fff") + ".txt";
+                fs = new FileStream(tracePath, FileMode.Create);
+                fs.Close();
+            }
+
+            while (TracePLC_Start)
+            {
+                SpinWait.SpinUntil(() => false, 1);
+                string Trace_str = "";
+                bool change = false;
+
+                for (int rowidx = 0; rowidx < Dt_trace.Rows.Count; rowidx++)
+                {                   
+                    string PLC_Dev = Dt_trace.Rows[rowidx][0].ToString();
+                    string PLC_Pos = Dt_trace.Rows[rowidx][1].ToString();
+                    PLC_Device Dev = PLC_Device.Fn;
+                    Enum.TryParse(PLC_Dev, out Dev);
+                    string tempval = "";
+                    switch (Dev)
+                    {
+                        case PLC_Device.B:
+                            tempval=PLC.B[Convert.ToInt64(PLC_Pos, 16)].ToString();
+                            if (list_trace[rowidx].value != tempval) 
+                            {
+                                list_trace[rowidx].dev = PLC_Dev + PLC_Pos;
+                                list_trace[rowidx].value = tempval;
+                                change = true;
+                            }
+
+                            break;
+                        case PLC_Device.W:
+                            tempval = PLC.W[Convert.ToInt64(PLC_Pos, 16)].ToString();
+                            if (list_trace[rowidx].value != tempval)
+                            {
+                                list_trace[rowidx].dev = PLC_Dev + PLC_Pos;
+                                list_trace[rowidx].value = tempval;
+                                change = true;
+                            }
+                            break;
+                        case PLC_Device.LR:
+                            break;
+                        case PLC_Device.DM:
+                            break;
+                    }
+                }
+
+                if (!change) 
+                {
+                    continue;
+                }
+
+                for (int i = 0; i < list_trace.Count; i++)
+                {
+                    Trace_str += string.Format("{0}={1}", list_trace[i].dev, list_trace[i].value);
+                    if (i != list_trace.Count - 1)
+                    {
+                        Trace_str += ",";
+                    }
+                }
+
+                StreamWriter smW = new StreamWriter(tracePath, true);
+                smW.WriteLine(string.Format("{0},{1}", DateTime.Now.ToString("HH-mm-ss_fff"), Trace_str));
+                smW.Close();
+            }
+        }
+        private void Dowork_TraceRead(object obj, DoWorkEventArgs e) 
+        {
+            string[] spliteTraceRead = smr_TraceRead.ReadToEnd().Split(new[] { "\r\n" }, StringSplitOptions.None);
+            smr_TraceRead.Close();
+            string[] LineStr = spliteTraceRead[0].Split(',');
+            int length = spliteTraceRead.Length;
+            DataTable tempdt = new DataTable();
+            
+            for (int colidx = 0; colidx < LineStr.Length; colidx++) 
+            {
+                if (colidx == 0) 
+                {
+                    tempdt.Columns.Add("Time");
+                    continue;
+                }
+                tempdt.Columns.Add(LineStr[colidx].Split('=')[0].ToString());
+            }
+
+            for (int idx = 0; idx < spliteTraceRead.Length; idx++)
+            {
+                int p = (int)(((decimal)idx / (decimal)length) * 100);
+                BG_TraceRead.ReportProgress(p);
+                LineStr = spliteTraceRead[idx].Split(',');
+
+                DataRow dr = tempdt.NewRow();
+
+                for (int col = 0; col < LineStr.Length; col++) 
+                {
+                    if (col == 0) 
+                    {
+                        dr[col] = LineStr[col].ToString();
+                        continue;
+                    }
+                    string []tempval = LineStr[col].Split('=');
+                    dr[col] = tempval[1].ToString();
+                }
+                tempdt.Rows.Add(dr);
+                sw.Stop();
+            }
+            Invoke(new MethodInvoker(delegate { dgv_TraceRead.DataSource = tempdt; }));
+
+        }
+        private void PG_TraceRead(object obj, ProgressChangedEventArgs e) 
+        {
+             pgb_TraceRead.Value = e.ProgressPercentage;
+        }
+
+        private class Trace_list 
+        {
+            public string dev;
+            public string value;
+        }
+    }
+}

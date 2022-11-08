@@ -1,0 +1,1179 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Threading;
+using NPOI.XSSF.UserModel;
+using System.IO;
+
+namespace HirataMainControl
+{
+    public partial class HCT_MagazinePort : UserControl
+    {
+
+        #region Event/Delegate
+
+        //Wayne 20190730
+        //public delegate void Evt_PLC_SetValue(All_Device ref_ADev,PLC_Device ref_dev, int Devno, int val);
+        //public event Evt_PLC_SetValue PLC_SetValue;
+
+        //public delegate int Evt_PLC_GetValue(PLC_Device ref_dev, int Devno);
+        //public event Evt_PLC_GetValue PLC_GetValue;
+
+        #endregion
+
+        #region BG/Queue
+
+        private BlockQueue<string> PLC_Receive = new BlockQueue<string>();
+
+
+        #endregion
+
+        #region List
+
+        private List<IOLPStep> IOLP_StepArray = new List<IOLPStep>();
+
+        #endregion
+
+        #region public_Variable
+
+        public string DeviceName;
+        public bool NeedMapping = true;
+        public bool PLC_Busy;
+
+        #endregion
+
+        #region UI
+
+        private SocketCommand MainCmd = SocketCommand.MaxCnt;
+        private int DeviceNumber;
+        private All_Device DeviceNameEnum = All_Device.Fn;
+        private int NowStepCnt = 0;
+
+        private IOLPDoor OutDoor = IOLPDoor.Unknown;
+        private IOLPDoor InDoor = IOLPDoor.Unknown;
+        private bool Ready = false;
+        private bool Busy = false;
+        private bool Gratina = false;
+        private bool Alarm = false;
+        private bool Invasion = false;
+        private ErrorList NowErrorList = ErrorList.MaxCnt;
+        private string NowErrorMsg = "";
+        //public MagazinePortType PortType = MagazinePortType.Real;
+
+        //Joanne 20200624 Add
+        private bool Process = false;
+        #endregion
+
+        #region PLC
+
+        private bool NextStepFlag = false;
+        private IOLPStep MarcoCommand;
+        private int T0 = 30;
+        private int T1 = 50;
+        private int T2 = 70;
+        private int T3 = 90;
+        private int PLC_StartIdx;
+
+        #endregion
+
+        #region Slot
+
+        private bool Protrude = false;
+        //private bool Presence = false;
+        private int[] SlotInfo;
+        private string Barcode;
+
+        #endregion
+
+        #region Slot UI
+
+        private Label[] labSlot = new Label[12];
+        private Label[] labSlotNumber = new Label[2];
+
+        #endregion
+
+        #region Initial
+
+        public HCT_MagazinePort()
+        {
+            InitializeComponent();
+        }
+
+        public void Initial(int number)
+        {
+            DeviceNumber = number;
+            DeviceName = string.Format("{0}{1}", NormalStatic.MagazinePort, number + 1);
+            HT.MagazineData[DeviceNumber].PortType = (MagazinePortType)Enum.Parse(typeof(MagazinePortType), AppSetting.LoadSetting(string.Format("{0}{1}", DeviceName, "_Type"), "Real"));
+
+            gbxMP.Text = string.Format("{0}_{1}", DeviceName, HT.MagazineData[DeviceNumber].PortType);
+            DeviceNameEnum = (All_Device)Enum.Parse(typeof(All_Device), string.Format("{0}{1}", NormalStatic.MagazinePort, number + 1));
+            Ui_Presence = false;
+            //PLC_StatusBG.RunWorkerAsync();
+        } 
+
+        #endregion
+
+        #region BG
+
+        private async void Command_DoWork()
+        {
+            var ok = await Task.Run(() =>
+            {
+                NowStepCnt = 0;
+
+                while (true)
+                {
+                    if (NowStepCnt == -1)
+                    {
+                        UI.Alarm(DeviceName, NowErrorList, NowErrorMsg);
+                        return false;
+                    }
+
+                    MarcoCommand = IOLP_StepArray[NowStepCnt];
+
+                    if (IOLP_StepArray[NowStepCnt] == IOLPStep.MaxCnt)
+                    {
+                        Ui_Busy = false;
+                        UI.Log(NormalStatic.System, DeviceName, SystemList.CommandComplete, MainCmd.ToString());
+                        UI.Log(NormalStatic.MagazinePort, DeviceName, SystemList.CommandComplete, MainCmd.ToString());
+
+                        switch (MainCmd)
+                        {
+                            case SocketCommand.Unload:
+                                {
+                                    //Joanne 20200630 Add
+                                    PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.B, (int)PLC_B.MagProcess + (DeviceNumber * 1), 0);
+
+                                    UserSECS.SendEvent(StreamNo.S6, FunctionNo.F11, CEID_Item.ReadyToUnload, (DeviceNumber + 1 + HCT_EFEM.CassetteCount).ToString());
+                                }
+                                break;
+                        }
+
+                        return true;
+                    }
+
+                    PLC_Receive.Clear();
+
+                    switch (IOLP_StepArray[NowStepCnt])
+                    {
+                        #region Set Command
+
+                        case IOLPStep.StartAlarmReset:
+                            {
+                                PLC.AlarmResetCommand();
+                            }
+                            break;
+
+                        case IOLPStep.WaitAlarmReset:
+                            break;
+
+                        case IOLPStep.SetHomeCmd:
+                            {
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.W, (int)PLC_W.MagCommandTypeStart + (DeviceNumber * 2), 1);
+                            }
+                            break;
+
+                        case IOLPStep.SetLoadCmd:
+                            {
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.W, (int)PLC_W.MagCommandTypeStart + (DeviceNumber * 2), 4);
+                            }
+                            break;
+
+                        case IOLPStep.SetUnLoadCmd:
+                            {
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.W, (int)PLC_W.MagCommandTypeStart + (DeviceNumber * 2), 5);
+                            }
+                            break;
+
+                        case IOLPStep.OutDoorOpen:
+                            {
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.W, (int)PLC_W.MagCommandTypeStart + (DeviceNumber * 2), 2);
+                            }
+                            break;
+
+                        case IOLPStep.OutDoorClose:
+                            {
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.W, (int)PLC_W.MagCommandTypeStart + (DeviceNumber * 2), 3);
+                            }
+                            break;
+
+                        case IOLPStep.SetReloadingCmd: // 20201109 Walson 用SECS指令來觸發Magazine Load動作
+                            {
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.W, (int)PLC_W.MagCommandTypeStart + (DeviceNumber * 2), 7);
+                            }
+                            break;
+
+                        #endregion
+
+                        #region Interface
+
+                        case IOLPStep.RequestOn:
+                            {
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.B, (int)PLC_B.MagCommaneStart + (DeviceNumber * 1), 1);
+                            }
+                            break;
+
+                        case IOLPStep.WaitReplyOn:
+                            break;
+
+                        case IOLPStep.RequestOff:
+                            {
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.B, (int)PLC_B.MagCommaneStart + (DeviceNumber * 1), 0);
+                            }
+                            break;
+
+                        case IOLPStep.ClearCmd:
+                            {
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.W, (int)PLC_W.MagCommandTypeStart + (DeviceNumber * 2), 0);
+                            }
+                            break;
+
+                        case IOLPStep.WaitReplyOff:
+                            break;
+
+                        case IOLPStep.WaitFinish:
+                            break;
+
+                        case IOLPStep.CompleteRequestOn:
+                            break;
+
+                        case IOLPStep.CompleteReplyOn:
+                            {
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.B, PLC_StartIdx, 1);
+                            }
+                            break;
+
+                        case IOLPStep.CompleteRequestOff:
+                            break;
+
+                        case IOLPStep.CompleteReplyOff:
+                            {
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.B, PLC_StartIdx, 0);
+                            }
+                            break; 
+
+                        #endregion
+                    }
+
+                    NextStepFlag = false;
+                    string Recv = "";
+                    DateTime CmdTime = DateTime.Now;
+
+                    while (!NextStepFlag)
+                    {
+                        SpinWait.SpinUntil(() => false, 100);
+                        switch (MarcoCommand)
+                        {
+                            case IOLPStep.StartAlarmReset:
+                                {
+                                    StepParm(true);
+                                }
+                                break;
+
+                            case IOLPStep.WaitAlarmReset:
+                                {
+                                    if ((DateTime.Now - CmdTime).Seconds > 60)
+                                    {
+                                        StepParm(false);
+                                        NowErrorList = ErrorList.T2TimeOut_1013;
+                                    }
+                                    else if (PLC.AlarmReseting == false)
+                                    {
+                                        StepParm(true);
+                                    }
+                                }
+                                break;
+
+                            case IOLPStep.SetLoadCmd:
+                            case IOLPStep.SetUnLoadCmd:
+                            case IOLPStep.SetHomeCmd:
+                            case IOLPStep.OutDoorOpen:
+                            case IOLPStep.OutDoorClose:
+                            case IOLPStep.SetReloadingCmd:  // 20201109 Walson 用SECS指令來觸發Magazine Load動作
+                                {
+                                    #region SetCmd
+                                    //Wayne 20190816
+                                    Recv = PLC_Receive.DeQueue(T0);
+
+                                    if (Recv == null)
+                                    {
+                                        StepParm(false);
+                                        NowErrorList = ErrorList.T0TimeOut_1011;
+                                    }
+                                    else
+                                    {
+                                        if (Recv == EQ_Static.OK)
+                                        {
+                                            UI.Log(NormalStatic.MagazinePort, DeviceName, SystemList.DeviceReceive, string.Format("{0} Set OK",MainCmd));
+                                            StepParm(true);
+                                        }
+                                        else
+                                        {
+                                            StepParm(false);
+                                            NowErrorList = ErrorList.PLCCmdRecvError;
+                                            NowErrorMsg = Recv;
+                                        }
+                                    }
+                                    #endregion
+                                }
+                                break;
+
+                            case IOLPStep.RequestOn:
+                                {
+                                    #region Request
+                                    //Wayne 20190816
+                                    Recv = PLC_Receive.DeQueue(T1);
+
+                                    if (Recv == null)
+                                    {
+                                        StepParm(false);
+                                        NowErrorList = ErrorList.T1TimeOut_1012;
+                                    }
+                                    else
+                                    {
+                                        if (Recv == EQ_Static.OK)
+                                        {
+                                            UI.Log(NormalStatic.MagazinePort, DeviceName, SystemList.DeviceReceive, string.Format("{0} Request On", MainCmd));
+                                            StepParm(true);
+                                        }
+                                        else
+                                        {
+                                            StepParm(false);
+                                            NowErrorList = ErrorList.PLCCmdRecvError;
+                                            NowErrorMsg = Recv;
+                                        }
+                                    }
+
+                                    #endregion
+                                }
+                                break;
+
+                            case IOLPStep.WaitReplyOn:
+                                {
+                                    if ((DateTime.Now - CmdTime).Seconds > T2)
+                                    {
+                                        StepParm(false);
+                                        NowErrorList = ErrorList.T2TimeOut_1013;
+                                    }
+                                    else
+                                    {
+                                    
+                                        if (PLC.B[(int)PLC_B.MagReplyStart + (DeviceNumber * 1)] == true)
+                                        {
+                                            int relay = PLC.W[(int)PLC_W.MapCommandResultStart + (DeviceNumber * 1)];
+                                            UI.Log(NormalStatic.MagazinePort, DeviceName, SystemList.DeviceReceive, string.Format("{0} Reply On", MainCmd));
+                                            UI.Log(NormalStatic.MagazinePort, DeviceName, SystemList.DeviceReceive, string.Format("{0} Reply Result :{1}", MainCmd, relay));
+                                            if (relay == 0 || relay == 1 || relay == 2 || relay == 4 || relay == 6)
+                                            {
+                                                StepParm(true);
+                                            }
+                                            else
+                                            {
+                                                StepParm(false);
+                                                NowErrorList = ErrorList.PLCCmdRecvError;
+                                                NowErrorMsg = relay.ToString();
+                                            }
+                                        }
+                                    }
+                                }
+                                break;
+
+                            case IOLPStep.RequestOff:
+                                {
+                                    #region RequestOff
+
+                                    Recv = PLC_Receive.DeQueue(T3);
+
+                                    if (Recv == null)
+                                    {
+                                        StepParm(false);
+                                        NowErrorList = ErrorList.T3TimeOut_1014;
+                                    }
+                                    else
+                                    {
+                                        if (Recv == EQ_Static.OK)
+                                        {
+                                            UI.Log(NormalStatic.MagazinePort, DeviceName, SystemList.DeviceReceive, string.Format("{0} Request Off", MainCmd));
+                                            StepParm(true);
+                                        }
+                                        else
+                                        {
+                                            StepParm(false);
+                                            NowErrorList = ErrorList.PLCCmdRecvError;
+                                            NowErrorMsg = Recv;
+                                        }
+                                    }
+
+                                    #endregion
+                                }
+                                break;
+
+                            case IOLPStep.ClearCmd:
+                                {
+                                    #region ClearCmd
+
+                                    Recv = PLC_Receive.DeQueue(T3);
+
+                                    if (Recv == null)
+                                    {
+                                        StepParm(false);
+                                        NowErrorList = ErrorList.T3TimeOut_1014;
+                                    }
+                                    else
+                                    {
+                                        if (Recv == EQ_Static.OK)
+                                        {
+                                            UI.Log(NormalStatic.MagazinePort, DeviceName, SystemList.DeviceReceive, string.Format("{0} Command Clear", MainCmd));
+                                            StepParm(true);
+                                        }
+                                        else
+                                        {
+                                            StepParm(false);
+                                            NowErrorList = ErrorList.PLCCmdRecvError;
+                                            NowErrorMsg = Recv;
+                                        }
+                                    }
+
+                                    #endregion
+                                }
+                                break;
+
+                            case IOLPStep.WaitReplyOff:
+                                {
+                                    if ((DateTime.Now - CmdTime).Seconds > T3)
+                                    {
+                                        StepParm(false);
+                                    NowErrorList = ErrorList.T3TimeOut_1014;
+                                    }
+                                    else
+                                    {
+                                        if (PLC.B[(int)PLC_B.MagReplyStart + (DeviceNumber * 1)] == false)
+                                        {
+                                            UI.Log(NormalStatic.MagazinePort, DeviceName, SystemList.DeviceReceive, string.Format("{0} Reply Off", MainCmd));
+                                            StepParm(true);
+                                        }
+                                    }
+                                }
+                                break;
+
+                            case IOLPStep.WaitFinish:
+                                {
+                                    if ((DateTime.Now - CmdTime).Seconds > 60)
+                                    {
+                                        StepParm(false);
+                                        NowErrorList = ErrorList.T3TimeOut_1014;
+                                    }
+                                    else if (PLC_Busy == false)
+                                    {
+                                        UI.Log(NormalStatic.MagazinePort, DeviceName, SystemList.DeviceReceive, string.Format("{0} PLCBusy Off", MainCmd));
+                                        StepParm(true);
+                                    }
+                                }
+                                break;
+
+                            case IOLPStep.CompleteRequestOn:
+                                break;
+
+                            case IOLPStep.CompleteReplyOn:
+
+                                break;
+
+                            case IOLPStep.CompleteRequestOff:
+
+                                break;
+
+                            case IOLPStep.CompleteReplyOff:
+
+                                break;
+                        }
+                    }
+                }
+            });
+        }
+
+        private void StepParm(bool result)
+        {
+            if (result)
+            {
+                NowStepCnt++;
+                PLC_Receive.Clear();
+                NextStepFlag = true;
+            }
+            else
+            {
+                JobFail();
+            }
+        }
+        //Wayne 20190816
+        public void PLCRecv_EnQueue(string ref_Recv)
+        {
+            PLC_Receive.EnQueue(ref_Recv);
+        }
+
+        private void Reset_PLCStatus()
+        {
+            IOLP_StepArray.Clear();
+            PLC_Receive.Clear();
+            NowStepCnt = -1;
+            NextStepFlag = true;
+        }
+
+        private void JobFail()
+        {
+            Reset_PLCStatus();
+        }
+
+        public void Close()
+        {
+            JobFail();
+            NowStepCnt = 0;
+            //PLC_Step.EnQueue(new IOLPStep[] { IOLPStep.End });
+        }
+
+        #endregion
+
+        #region Command
+
+        public void Cmd_EnQueue(SocketCommand cmd)
+        {
+            UI.Log(NormalStatic.MagazinePort, DeviceName, SystemList.CommandStart, cmd.ToString());
+            UI.Log(NormalStatic.System, DeviceName, SystemList.CommandStart, cmd.ToString());
+
+            Ui_Busy = true;
+            Reset_PLCStatus();
+            NowStepCnt = 0;
+            MainCmd = cmd;
+            NowErrorList = ErrorList.MaxCnt;
+            NowErrorMsg = "";
+
+            switch (cmd)
+            {
+                case SocketCommand.Home:
+                    {
+                        IOLP_StepArray.Add(IOLPStep.SetHomeCmd);
+                    }
+                    break;
+
+                case SocketCommand.InDoorOpen:
+                case SocketCommand.Load:
+                    {
+                        IOLP_StepArray.Add(IOLPStep.SetLoadCmd);
+                    }
+                    break;
+
+                case SocketCommand.Unload:
+                    {
+                        IOLP_StepArray.Add(IOLPStep.SetUnLoadCmd);
+                    }
+                    break;
+
+                case SocketCommand.OutDoorClose:
+                    {
+                        IOLP_StepArray.Add(IOLPStep.OutDoorClose);
+                    }
+                    break;
+
+                case SocketCommand.OutDoorOpen:
+                    {
+                        IOLP_StepArray.Add(IOLPStep.OutDoorOpen);
+                    }
+                    break;
+
+                case SocketCommand.Reloading: // 20201109 Walson 用SECS指令來觸發Magazine Load動作
+                    {
+                        IOLP_StepArray.Add(IOLPStep.SetReloadingCmd);
+                    }
+                    break;
+
+                case SocketCommand.ResetError:
+                    {
+                        //IOLP_StepArray.Add(IOLPStep.ResetError);
+                    }
+                    break;
+
+            }
+
+            if (cmd == SocketCommand.ResetError)
+            {
+                IOLP_StepArray.Add(IOLPStep.ClearCmd);
+                IOLP_StepArray.Add(IOLPStep.RequestOff);
+                IOLP_StepArray.Add(IOLPStep.StartAlarmReset);
+                IOLP_StepArray.Add(IOLPStep.WaitAlarmReset);
+            }
+            else
+            {
+                IOLP_StepArray.Add(IOLPStep.RequestOn);
+                IOLP_StepArray.Add(IOLPStep.WaitReplyOn);
+                IOLP_StepArray.Add(IOLPStep.RequestOff);
+                IOLP_StepArray.Add(IOLPStep.ClearCmd);
+                IOLP_StepArray.Add(IOLPStep.WaitReplyOff);
+                IOLP_StepArray.Add(IOLPStep.WaitFinish);
+                //IOLP_StepArray.Add(IOLPStep.CompleteRequestOn);
+                //IOLP_StepArray.Add(IOLPStep.CompleteReplyOn);
+                //IOLP_StepArray.Add(IOLPStep.CompleteRequestOff);
+                //IOLP_StepArray.Add(IOLPStep.CompleteReplyOff);
+                
+            }
+            IOLP_StepArray.Add(IOLPStep.MaxCnt);
+            Command_DoWork();
+        }
+
+        #endregion
+
+        #region UI_Slot
+
+        public bool CheckFullSlot()
+        {                  
+            for(int i = 0; i < SlotData.Length ; i++)
+            {
+                if(SlotData[i] == 0)
+                    return false;
+            }
+            return true;
+        }
+
+        public bool CheckNullSlot()
+        {
+            for (int i = 0; i <SlotData.Length; i++)
+            {
+                if (SlotData[i] != 0)
+                    return false;
+            }
+            return true;
+        }
+
+        private void UI_Update_LabSlot(int SlotCount)
+        {
+
+            if (labSlot[0] == null)
+            {
+                UI_Create_LabSlot(SlotCount);
+                return;
+            }
+
+            SlotInfo = new int[SlotCount];
+
+            for (int i = 0; i < SlotCount; i++)
+            {
+                SlotInfo[i] = (int)WaferStatus.Unknown;
+
+                //Joanne 20201012 Add Start
+                HT.MagazineData[DeviceNumber].Carrier[i].Status = WaferStatus.Unknown;
+                HT.MagazineData[DeviceNumber].SetCarrierData(DeviceNumber, i); 
+                //Joanne 20201012 Add End
+                
+                labSlot[i].BackColor = Color.Gray;
+                labSlot[i].Text = "";
+            }
+        }
+
+        private void UI_Create_LabSlot(int SlotCount) 
+        {
+            splMainSlot.Panel1.Controls.Clear();
+            SlotInfo = new int[SlotCount];
+            int x_size = 90;
+            int y_size = 18;
+            int x_location = 20;
+            int y_location = 215;
+
+            for (int i = 0; i < SlotCount; i++)
+            {
+                SlotInfo[i] = (int)WaferStatus.Unknown;
+                labSlot[i] = new System.Windows.Forms.Label();
+                labSlot[i].BackColor = Color.Gray;
+                labSlot[i].BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;           
+                labSlot[i].Location = new System.Drawing.Point(x_location, y_location);
+                labSlot[i].Size = new System.Drawing.Size(x_size, y_size);
+                splMainSlot.Panel1.Controls.Add(labSlot[i]);
+
+                // Joanne 20200623 Add
+                labSlot[i].Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                labSlot[i].TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                labSlot[i].Text = "";
+
+                if( (i+1)%5 == 0 )
+                {
+                    labSlotNumber[i / 5] = new System.Windows.Forms.Label();
+                    labSlotNumber[i / 5].Location = new System.Drawing.Point(0, y_location);
+                    labSlotNumber[i / 5].Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    labSlotNumber[i / 5].Size = new System.Drawing.Size( 30, 30);
+                    labSlotNumber[i / 5].Text = string.Format("{0}", i + 1);
+                    labSlotNumber[i / 5].TextAlign = System.Drawing.ContentAlignment.TopLeft;
+                    y_location -= 6;
+                    splMainSlot.Panel1.Controls.Add(labSlotNumber[i / 5]);
+                }
+                y_location -= y_size;
+            }
+        }
+
+        #endregion
+
+        #region Get/Set
+
+        public MagazinePortType Ui_PortType
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_PortType = value; }));
+                    return;
+                }
+                gbxMP.Text = string.Format("{0}_{1}", DeviceName, value);
+                if (HT.MagazineData !=null)
+                    HT.MagazineData[DeviceNumber].PortType = value;
+            }
+            get { return HT.MagazineData[DeviceNumber].PortType; }
+        }
+
+        public bool Ui_Busy
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_Busy = value; }));
+                    return;
+                }
+
+                // Joanne 20200623 Edit
+                //labBusy.BackColor = value ? Color.Yellow : Color.LightGreen;
+                labBusy.BackColor = value ? Color.Yellow : System.Drawing.SystemColors.ControlLight;
+                labBusy.Text = value ? "Busy": "Idle";
+                Busy = value;
+            }
+            get { return Busy; }
+        }
+
+        public bool Ui_Gratina
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_Gratina = value; }));
+                    return;
+                }
+
+                labGratina.Visible = value;
+                Gratina = value;
+            }
+            get { return Gratina; }
+        }
+
+        public bool Ui_Ready
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_Ready = value; }));
+                    return;
+                }
+
+                labReady.Visible = value;
+                Ready = value;
+            }
+            get { return Ready; }
+        }
+
+        public bool Ui_Invasion
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_Invasion = value; }));
+                    return;
+                }
+
+                //labInvasion.Visible = !value;
+                Invasion = value;
+            }
+            get { return Invasion; }
+        }
+
+        public bool Ui_Alarm
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_Alarm = value; }));
+                    return;
+                }
+
+                labAlarm.Visible = value;
+                Alarm = value;
+            }
+            get { return Alarm; }
+        }
+
+        public IOLPDoor Ui_OutDoor
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_OutDoor = value; }));
+                    return;
+                }
+             
+                switch (value)
+                {
+                    case IOLPDoor.Close:
+                        {
+                            labOutDoor.Text = "OutClose";
+                            labOutDoor.BackColor = Color.Yellow;
+
+                            //if (Ui_Barcode != "" && Ui_Presence == true)
+                            if (Ui_Presence == true)
+                            {
+                                UserSECS.SendEvent(StreamNo.S6, FunctionNo.F11, CEID_Item.CarrierIDRead_WaitingForHost, string.Format("{0},{1}", DeviceNumber+1+HCT_EFEM.CassetteCount, Barcode));
+                            }
+                        }
+                        break;
+
+                    case IOLPDoor.Open:
+                        {
+                            if (Ui_Presence == true)
+                            {
+                                NeedMapping = true;
+                                UI_Update_LabSlot(12);
+                            }
+                            labOutDoor.Text = "OutOpen";
+
+                            // Joanne 20200623 Edit
+                            //labOutDoor.BackColor = Color.LightGreen;
+                            labOutDoor.BackColor = System.Drawing.SystemColors.ControlLight;
+                        }
+                        break;
+
+                    default:
+                        {
+                            labOutDoor.Text = "OutUnknown";
+                            labOutDoor.BackColor = Color.Red;
+                        }
+                        break;
+                }
+                OutDoor = value;
+            }
+            get { return OutDoor; }
+           
+        }
+
+        public IOLPDoor Ui_InDoor
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_InDoor = value; }));
+                    return;
+                }
+             
+                switch (value)
+                {
+                    case IOLPDoor.Close:
+                        {
+                            labInDoor.Text = "InClose";
+
+                            // Joanne 20200623 Edit
+                            //labInDoor.BackColor = Color.LightGreen;
+                            labInDoor.BackColor = System.Drawing.SystemColors.ControlLight;
+                        }
+                        break;
+
+                    case IOLPDoor.Open:
+                        {
+                            labInDoor.Text = "InOpen";
+                            labInDoor.BackColor = Color.Yellow;
+                        }
+                        break;
+
+                    default:
+                        {
+                            labInDoor.Text = "InUnknown";
+                            labInDoor.BackColor = Color.Red;
+                        }
+                        break;
+                }
+                InDoor = value;
+            }
+            get { return InDoor; }
+        } 
+  
+        public bool Ui_Protrude
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_Protrude = value; }));
+                    return;
+                }
+
+                labProtrude.Visible = value;
+                Protrude = value;
+            }
+            get { return Protrude; }
+        }
+
+        public bool Ui_Presence
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_Presence = value; }));
+                    return;
+                }
+
+                switch (value)
+                {
+
+                    case true:
+                        {
+                  
+                            labPresent.BackColor = Color.Yellow;
+                            labPresent.Text = "Present";
+                            NeedMapping = true;
+                            UserSECS.SendEvent(StreamNo.S6, FunctionNo.F11, CEID_Item.LoadComplete, (DeviceNumber + 1 + HCT_EFEM.CassetteCount).ToString());
+                            if (OutDoor == IOLPDoor.Open)
+                            {
+                                UI_Update_LabSlot(12);
+                            }
+                        }
+                        break;
+
+                    case false:
+                        {
+                            UI_Update_LabSlot(12);
+                            //Joanne 20200623 Edit
+                            //labPresent.BackColor = Color.LightGreen;
+                            labPresent.BackColor = System.Drawing.SystemColors.ControlLight;
+                            labPresent.Text = "None Foup";
+                            UserSECS.SendEvent(StreamNo.S6, FunctionNo.F11, CEID_Item.UnloadComplete, (DeviceNumber + 1 + HCT_EFEM.CassetteCount).ToString());
+                            UserSECS.SendEvent(StreamNo.S6, FunctionNo.F11, CEID_Item.ReadyToLoad, (DeviceNumber + 1 + HCT_EFEM.CassetteCount).ToString());
+                        }
+                        break;
+                }
+
+                if (HT.MagazineData != null)
+                    HT.MagazineData[DeviceNumber].Presence = value;
+            }
+            get { return HT.MagazineData[DeviceNumber].Presence; }
+        }
+
+        public string Ui_Barcode
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_Barcode = value; }));
+                    return;
+                }
+
+                txtID.Text = value;
+                Barcode = value;
+
+                //if (Barcode != "")
+                //{
+                //    UserSECS.SendEvent(StreamNo.S6, FunctionNo.F11, CEID_Item.CID_WaitForHost, string.Format("{0}{1}", DeviceName, Barcode));
+                //}
+            }
+            get { return Barcode; }
+        }
+
+        //Joanne 20200624 Add
+        public bool Ui_Process
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate () { Ui_Process = value; }));
+                    return;
+                }
+
+                labProcess.BackColor = value ? Color.Yellow : System.Drawing.SystemColors.ControlLight;
+                labProcess.Text = value ? "Process" : "None";
+                Process = value;
+            }
+            get { return Process; }
+        }
+
+        public int[] SlotData
+        {
+            get { return SlotInfo; }
+        }
+
+        #endregion
+
+        #region Slot
+        public int[] GetSlotData
+        {
+            get { return SlotInfo; }
+        }
+
+        public void SetSlotData(int SlotData, int slot)
+        {
+            SlotInfo[slot] = SlotData;
+            UpdataSlotUi(slot, SlotData);
+        }
+
+        public void SetSlotData(int[] SlotData, int start, int end)
+        {
+            for (int i = start, j = 0; i < end; i++, j++)
+            {
+                SlotInfo[i] = SlotData[j];
+                UpdataSlotUi(i, SlotInfo[i]);
+            }
+        }
+
+        private void UpdataSlotUi(int Solt, int SoltData)
+        {
+            if (InvokeRequired)
+            {
+                this.Invoke(new MethodInvoker(delegate() { UpdataSlotUi(Solt, SoltData); }));
+                return;
+            }
+     
+            Color tempcolor = Color.Red;
+
+            switch (SoltData)
+            {
+                case (int)WaferStatus.WithOut:
+                    tempcolor = Color.WhiteSmoke;
+                    labSlot[Solt].Text = "";
+                    break;
+
+                case (int)WaferStatus.With:
+                    tempcolor = Color.LightGreen;
+                    labSlot[Solt].Text = "";
+                    break;
+
+                case (int)WaferStatus.Thickness:
+                case (int)WaferStatus.Thiness:
+                case (int)WaferStatus.Position:
+                    tempcolor = Color.Red;
+                    break;
+
+                case (int)WaferStatus.Unknown:
+                    tempcolor = Color.Gray;
+                    labSlot[Solt].Text = "";
+                    break;
+            }
+
+            labSlot[Solt].BackColor = tempcolor;          
+        }
+
+        // Joanne 20201011 Add Start
+        public void SetSlotInfo(int SlotStatus, int PortIdx, int SlotIdx)
+        {
+            RefreshSlotUI(PortIdx, SlotIdx, SlotStatus);
+        }
+
+        private void RefreshSlotUI(int PortIdx, int SlotIdx, int SlotStatus)
+        {
+            if (InvokeRequired)
+            {
+                this.Invoke(new MethodInvoker(delegate() { RefreshSlotUI(PortIdx, SlotIdx, SlotStatus); }));
+                return;
+            }
+
+            Color TempColor = Color.Red;
+            string TempText = "";
+
+            switch (SlotStatus)
+            {
+                case (int)WaferStatus.WithOut:
+                    TempColor = Color.WhiteSmoke;
+                    TempText = "";
+                    break;
+
+                case (int)WaferStatus.With: // Walson 20201117 修改
+                    if (HT.MagazineData[PortIdx].CarrierData[SlotIdx].IsTransferComplete) // Flow結束
+                    {
+                        if(HT.Recipe.AutoMode == PJ_Type.Unload)
+                        {
+                            if (HT.MagazineData[PortIdx].PortType == MagazinePortType.OMS_Out )
+                            {
+                                TempColor = Color.Green;
+                                TempText = string.Format("(OMS){0},{1}", HT.MagazineData[PortIdx].CarrierData[SlotIdx].DesPort, HT.MagazineData[PortIdx].CarrierData[SlotIdx].DesSlot);
+                            }
+                            else  // Real MP
+                            {
+                                TempColor = Color.Green;
+                                TempText = "";
+                            }
+                        }
+                        else 
+                        {
+                            TempColor = Color.Green;
+                            // Real MP
+                            if (SlotIdx == 0) 
+                                TempText = string.Format("(OMS){0},{1}", HT.MagazineData[PortIdx].CarrierData[SlotIdx].SocPort, HT.MagazineData[PortIdx].CarrierData[SlotIdx].SocSlot);
+                            else
+                                TempText = string.Format("{0},{1}", HT.MagazineData[PortIdx].CarrierData[SlotIdx].SocPort, HT.MagazineData[PortIdx].CarrierData[SlotIdx].SocSlot);
+                        }
+
+                        HT.MagazineData[PortIdx].CarrierData[SlotIdx].IsTransferComplete = false;
+                    }
+                    else  // Flow開始前
+                    {
+                        TempColor = Color.DeepSkyBlue;
+
+                        if (HT.Recipe.AutoMode == PJ_Type.Unload) // Real MP
+                        {
+                            if (SlotIdx == 0)
+                                TempText = string.Format("(OMS){0},{1}", HT.MagazineData[PortIdx].CarrierData[SlotIdx].SocPort, HT.MagazineData[PortIdx].CarrierData[SlotIdx].SocSlot);
+                            else
+                                TempText = string.Format("{0},{1}", HT.MagazineData[PortIdx].CarrierData[SlotIdx].SocPort, HT.MagazineData[PortIdx].CarrierData[SlotIdx].SocSlot);
+                        }
+                        else // OMS In
+                        {
+                            if (HT.MagazineData[PortIdx].PortType == MagazinePortType.OMS_In)
+                                TempText = string.Format("(OMS){0},{1}", HT.MagazineData[PortIdx].CarrierData[SlotIdx].DesPort, HT.MagazineData[PortIdx].CarrierData[SlotIdx].DesSlot);
+                        }
+                    }
+                    break;
+
+                case (int)WaferStatus.Thickness:
+                case (int)WaferStatus.Thiness:
+                case (int)WaferStatus.Position:
+                    TempColor = Color.Red;
+                    break;
+
+                case (int)WaferStatus.Unknown:
+                    TempColor = Color.Gray;
+                    TempText = "";
+                    break;
+            }
+
+            labSlot[SlotIdx].BackColor = TempColor;
+            labSlot[SlotIdx].Text = TempText;
+        }
+        //Joanne 20201011 Add End
+
+        public void EFEM_DoorOpen_CleanSlot()
+        {
+            if (InvokeRequired)
+            {
+                this.Invoke(new MethodInvoker(delegate() { EFEM_DoorOpen_CleanSlot(); }));
+                return;
+            }
+            UI_Update_LabSlot(12);
+        }
+
+        #endregion
+    }
+}
+        

@@ -1,0 +1,239 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using System.IO;
+using HirataMainControl;
+
+public static class HT
+{
+    #region Global Structures
+
+    static private PJ_Type Mode;
+    static private bool isAligner;
+    static private bool isOCR_Up;
+    static private bool isOCR_Down;
+    static private bool isOCR_Stage;
+    static private bool isUseStage1;
+    static private bool isUseStage2;
+    static private bool isUseLower;
+    static private bool isUseUpper;
+    static private bool isFlip;
+    static private float aligner_degree;
+    static private float ocr_degree;
+
+    public struct structEFEM
+    {
+        public bool IsInitialSuccess;
+        public AuthorityTable Authority;
+        public EFEMStatus Status;
+        public EFEMMode Mode;
+        public bool IsContinue;
+        public string FFU_value;
+        public double PSW_AIvalue;
+        public string EFEM_PSW_Pa;
+        public int Initial_Count;
+        public int Again_Count;
+        public int Close_Count;
+
+        //public bool[] PLC_EFEM_Status;
+        public bool[] FFUAlarm;
+        public bool DryRunMode;
+        public int DryRunTotalCount;
+        public int DryRunNowCount;
+      
+        public void Initial()
+        {
+            IsContinue = false;
+            FFU_value = "10";
+            Mode = EFEMMode.Local;
+
+            Initial_Count = HCT_EFEM.RobotCount +
+                            HCT_EFEM.AlignerCount +
+                            HCT_EFEM.OCRCount - 2 + // 不使用OCR1和OCR2
+                            HCT_EFEM.D900Count + 4; //PLC + System + Log  + EFEM
+
+            Again_Count = HCT_EFEM.RobotCount +
+                          HCT_EFEM.AlignerCount; //PLC
+
+            Close_Count = HT.EFEM.Initial_Count - 4;// 3;
+            Authority = AuthorityTable.Operator;
+            IsInitialSuccess = false;
+            Status = EFEMStatus.Unknown;
+            DryRunMode = false;
+            DryRunTotalCount = 0;
+            DryRunNowCount = 0;
+         
+        }
+    }
+
+    public struct structRecipe
+    {
+        public PJ_Type AutoMode
+        {
+            set
+            {
+                Mode = value;
+                AppSetting.SaveSetting("Recipe_Mode", value.ToString()) ;
+            }
+            get { return Mode; }
+
+        }
+
+        public bool IsAligner
+        {
+            set
+            {
+                isAligner = value;
+                AppSetting.SaveSetting("Recipe_IsAligner", value ? NormalStatic.True : NormalStatic.False);
+            }
+            get { return isAligner; }
+
+        }
+
+        public bool IsOCR_Up
+        {
+            set 
+            {
+                isOCR_Up = value;
+                AppSetting.SaveSetting("Recipe_IsOCR_Up", value ? NormalStatic.True : NormalStatic.False);
+            }
+            get { return isOCR_Up; }
+
+        }
+
+        public bool IsOCR_Down 
+        {
+            set 
+            {
+                isOCR_Down = value;
+                AppSetting.SaveSetting("Recipe_IsOCR_Down", value ? NormalStatic.True : NormalStatic.False);
+            }
+            get { return isOCR_Down; }
+
+        }
+
+        public bool IsOCR_Stage
+        {
+            set
+            {
+                isOCR_Stage = value;
+                AppSetting.SaveSetting("Recipe_IsOCR_Stage", value ? NormalStatic.True : NormalStatic.False);
+            }
+            get { return isOCR_Stage; }
+
+        }
+
+        public bool IsFlip
+        {
+            set
+            {
+                isFlip = value;
+                AppSetting.SaveSetting("Recipe_IsFlip", value ? NormalStatic.True : NormalStatic.False);
+            }
+            get { return isFlip; }
+
+        }
+
+        public float Aligner_Degree
+        {
+            set
+            {
+                aligner_degree = value;
+                AppSetting.SaveSetting("Recipe_Aligner_Degree", value.ToString());
+            }
+            get { return aligner_degree; }
+
+        }
+
+        public float OCR_Degree
+        {
+            set
+            {
+                ocr_degree = value;
+                AppSetting.SaveSetting("Recipe_OCR_Degree", value.ToString());
+            }
+            get { return ocr_degree; }
+
+        }
+
+        public bool IsUseStage1
+        {
+            set
+            {
+                isUseStage1 = value;
+                AppSetting.SaveSetting("Recipe_UseStage1", value ? NormalStatic.True : NormalStatic.False);
+            }
+            get { return isUseStage1; }
+        }
+
+        public bool IsUseStage2
+        {
+            set
+            {
+                isUseStage2 = value;
+                AppSetting.SaveSetting("Recipe_UseStage2", value ? NormalStatic.True : NormalStatic.False);
+            }
+            get { return isUseStage2; }
+        }
+
+        public bool IsUseLower
+        {
+            set
+            {
+                isUseLower = value;
+                AppSetting.SaveSetting("Recipe_UseLower", value ? NormalStatic.True : NormalStatic.False);
+            }
+            get { return isUseLower; }
+        }
+
+        public bool IsUseUpper
+        {
+            set
+            {
+                isUseUpper = value;
+                AppSetting.SaveSetting("Recipe_UseUpper", value ? NormalStatic.True : NormalStatic.False);
+            }
+            get { return isUseUpper; }
+        }
+    }
+
+    #endregion
+    #region Global Variables
+
+    public static structRecipe Recipe;
+    public static structEFEM EFEM;
+    public static LoadPortInfo[] LoadPortData;
+
+    public static void Converte(ref Waferinfo soc,  ref Waferinfo dest)
+    {
+        dest = soc;
+        soc.clear();
+    }
+
+    //Joanne 20201009 Add Start
+    public static void DataConverte(ref DataInfo soc, ref DataInfo dest)
+    {
+        dest = soc;
+        soc.Clear();
+    }
+    //Joanne 20201009 Add End
+    #endregion
+
+
+
+    public static bool JobEnd_MappingFlag = false;
+    public static bool JobEnd_MappingAlarm = false;
+    public static bool continueFlag = false; //Wayne 20210922
+
+    public static string[] LP_RFID = new string[2];
+    public static bool ReadBarcodeing = false;
+    public static DateTime EQ_BarcodeReadTime;
+    public static string EQ_Barcode = "";
+
+
+    public static int[] LP_CurrentSlot = new int[2];
+}
+

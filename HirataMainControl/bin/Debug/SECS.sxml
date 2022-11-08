@@ -1,0 +1,721 @@
+<SXML>
+    <DataDictionary>
+    </DataDictionary>
+    <MessageDictionary>
+        <Message Name="S1F1_Online Request" Description="">
+            <Stream>1</Stream>
+            <Function>1</Function>
+            <WBit>1</WBit>
+            <AutoReply>S1F2_On-line Reply</AutoReply>
+            <Structure>
+                <L>
+                    <A Name="MDLN">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <A Name="SOFTREV">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S1F2_On-line Reply" Description="">
+            <Stream>1</Stream>
+            <Function>2</Function>
+            <Structure/>
+        </Message>
+        <Message Name="S1F61_DCR Status Change Report" Description="">
+            <Stream>1</Stream>
+            <Function>61</Function>
+            <WBit>1</WBit>
+            <AutoReply>S1F62_DCR Status Change Report Reply</AutoReply>
+            <Structure>
+                <L>
+                    <L>
+                        <A Name="DCRNO">
+                            <Value></Value>
+                            <Maps Type="4096">
+                            </Maps>
+                        </A>
+                        <A Name="DCRSTUS">
+                            <Value></Value>
+                            <Maps Type="4096">
+                            </Maps>
+                        </A>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S1F62_DCR Status Change Report Reply" Description="">
+            <Stream>1</Stream>
+            <Function>62</Function>
+            <Structure>
+                <B Name="GRANT">
+                    <Value>00</Value>
+                    <Maps Type="1024">
+                    </Maps>
+                </B>
+            </Structure>
+        </Message>
+        <Message Name="S1F65_EQ Status Change Report" Description="">
+            <Stream>1</Stream>
+            <Function>65</Function>
+            <WBit>1</WBit>
+            <AutoReply>S1F66_EQ Status Change Report Reply</AutoReply>
+            <Structure>
+                <L>
+                    <B Name="UNITNO">
+                        <Value></Value>
+                        <Maps Type="1024">
+                        </Maps>
+                    </B>
+                    <A Name="RMSTUS">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <A Name="EQRUNMODE">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <A Name="EQSTUS">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <L>
+                        <A Name="EQSUBSTUS">
+                            <Value></Value>
+                            <Maps Type="4096">
+                            </Maps>
+                        </A>
+                        <B Name="PORTNO">
+                            <Value></Value>
+                            <Maps Type="1024">
+                            </Maps>
+                        </B>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S1F66_EQ Status Change Report Reply" Description="">
+            <Stream>1</Stream>
+            <Function>66</Function>
+            <Structure>
+                <B Name="GRANT">
+                    <Value>00</Value>
+                    <Maps Type="1024">
+                    </Maps>
+                </B>
+            </Structure>
+        </Message>
+        <Message Name="S1F67_CST Status Change Report" Description="">
+            <Stream>1</Stream>
+            <Function>67</Function>
+            <WBit>1</WBit>
+            <AutoReply>S1F68_CST Status Change Report Reply</AutoReply>
+            <Structure>
+                <L>
+                    <A Name="CSTID">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <B Name="PORTNO">
+                        <Value></Value>
+                        <Maps Type="1024">
+                        </Maps>
+                    </B>
+                    <A Name="CSTSTUS">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S1F68_CST Status Change Report Reply" Description="">
+            <Stream>1</Stream>
+            <Function>68</Function>
+            <Structure>
+                <B Name="GRANT">
+                    <Value>00</Value>
+                    <Maps Type="1024">
+                    </Maps>
+                </B>
+            </Structure>
+        </Message>
+        <Message Name="S1F69_Online Summary Status Report" Description="">
+            <Stream>1</Stream>
+            <Function>69</Function>
+            <WBit>1</WBit>
+            <AutoReply>S1F70_Online Summary Status Report Reply</AutoReply>
+            <Structure>
+                <L>
+                    <A Name="RMSTUS">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <A Name="ALSTUS">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <A Name="CPPID">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <L>
+                        <L>
+                            <B Name="UNITNO">
+                                <Value></Value>
+                                <Maps Type="1024">
+                                </Maps>
+                            </B>
+                            <A Name="EQSTUS">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                            <A Name="EQSUBSTUS">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                        </L>
+                    </L>
+                    <L>
+                        <L>
+                            <A Name="CSTID">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                            <B Name="PORTNO">
+                                <Value></Value>
+                                <Maps Type="1024">
+                                </Maps>
+                            </B>
+                        </L>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S1F70_Online Summary Status Report Reply" Description="">
+            <Stream>1</Stream>
+            <Function>70</Function>
+            <Structure>
+                <B Name="GRANT">
+                    <Value>00</Value>
+                    <Maps Type="1024">
+                    </Maps>
+                </B>
+            </Structure>
+        </Message>
+        <Message Name="S1F71_EQ RunMode Change Report" Description="">
+            <Stream>1</Stream>
+            <Function>71</Function>
+            <WBit>1</WBit>
+            <AutoReply>S1F72_EQ RunMode Change Report Reply</AutoReply>
+            <Structure>
+                <L>
+                    <A Name="EQRUNMODE">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S1F72_EQ RunMode Change Report Reply" Description="">
+            <Stream>1</Stream>
+            <Function>72</Function>
+            <Structure>
+                <B Name="GRANT">
+                    <Value>00</Value>
+                    <Maps Type="1024">
+                    </Maps>
+                </B>
+            </Structure>
+        </Message>
+        <Message Name="S1F73_CST Load Request / Complete Report" Description="">
+            <Stream>1</Stream>
+            <Function>73</Function>
+            <WBit>1</WBit>
+            <AutoReply>S1F74_CST Load Request / Complete Report Reply</AutoReply>
+            <Structure>
+                <L>
+                    <B Name="UNITNO">
+                        <Value></Value>
+                        <Maps Type="1024">
+                        </Maps>
+                    </B>
+                    <A Name="CSTID">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <A Name="LDMODE">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <A Name="LDSTA">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <B Name="PORTNO">
+                        <Value></Value>
+                        <Maps Type="1024">
+                        </Maps>
+                    </B>
+                    <A Name="CSTSETCD">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <L>
+                        <A Name="MTID">
+                            <Value></Value>
+                            <Maps Type="4096">
+                            </Maps>
+                        </A>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S1F74_CST Load Request / Complete Report Reply" Description="">
+            <Stream>1</Stream>
+            <Function>74</Function>
+            <Structure>
+                <B Name="ACKC1">
+                    <Value>00</Value>
+                    <Maps Type="1024">
+                    </Maps>
+                </B>
+            </Structure>
+        </Message>
+        <Message Name="S1F75_CST Unload Request / Complete Report" Description="">
+            <Stream>1</Stream>
+            <Function>75</Function>
+            <WBit>1</WBit>
+            <AutoReply>S1F76_CST Unload Request / Complete Report Reply</AutoReply>
+            <Structure>
+                <L>
+                    <B Name="UNITNO">
+                        <Value></Value>
+                        <Maps Type="1024">
+                        </Maps>
+                    </B>
+                    <A Name="CSTID">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <A Name="LDSTA">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <B Name="PORTNO">
+                        <Value></Value>
+                        <Maps Type="1024">
+                        </Maps>
+                    </B>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S1F76_CST Unload Request / Complete Report Reply" Description="">
+            <Stream>1</Stream>
+            <Function>76</Function>
+            <Structure>
+                <B Name="ACKC1">
+                    <Value>00</Value>
+                    <Maps Type="1024">
+                    </Maps>
+                </B>
+            </Structure>
+        </Message>
+        <Message Name="S5F65_EQ Alarm Occurred / Released Report" Description="">
+            <Stream>5</Stream>
+            <Function>65</Function>
+            <WBit>1</WBit>
+            <AutoReply>S5F66_Alarm Occurred / Removed Report Reply</AutoReply>
+            <Structure>
+                <L>
+                    <B Name="UNITNO">
+                        <Value></Value>
+                        <Maps Type="1024">
+                        </Maps>
+                    </B>
+                    <B Name="ALCD">
+                        <Value></Value>
+                        <Maps Type="1024">
+                        </Maps>
+                    </B>
+                    <A Name="ALID">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <A Name="ERRTYPE">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <A Name="ALTX">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S5F66_Alarm Occurred / Removed Report Reply" Description="">
+            <Stream>5</Stream>
+            <Function>66</Function>
+            <Structure>
+                <B Name="ACKC5">
+                    <Value>00</Value>
+                    <Maps Type="1024">
+                    </Maps>
+                </B>
+            </Structure>
+        </Message>
+        <Message Name="S6F63_Glass Run Data Report" Description="">
+            <Stream>6</Stream>
+            <Function>63</Function>
+            <WBit>1</WBit>
+            <AutoReply>S6F64_Glass Run Data Report Reply</AutoReply>
+            <Structure>
+                <L>
+                    <L>
+                        <L>
+                            <A Name="CSTID">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                            <A Name="LOTID">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                            <A Name="PRODUCTID">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                            <A Name="ROUTEID">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                            <A Name="STEPID">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                            <A Name="GLASSTYPE">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                            <A Name="OGLASSID">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                            <A Name="VGLASSID">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                        </L>
+                    </L>
+                    <L>
+                        <L>
+                            <B Name="UNITNO">
+                                <Value></Value>
+                                <Maps Type="1024">
+                                </Maps>
+                            </B>
+                            <A Name="PPID">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                            <A Name="PSTTIME">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                            <A Name="PCPTIME">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                        </L>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S6F64_Glass Run Data Report Reply" Description="">
+            <Stream>6</Stream>
+            <Function>64</Function>
+            <Structure>
+                <B Name="ACKC6">
+                    <Value>00</Value>
+                    <Maps Type="1024">
+                    </Maps>
+                </B>
+            </Structure>
+        </Message>
+        <Message Name="S6F73_DCR Glass ID Report" Description="">
+            <Stream>6</Stream>
+            <Function>73</Function>
+            <WBit>1</WBit>
+            <AutoReply>S6F74_DCR Glass ID Report Reply</AutoReply>
+            <Structure>
+                <L>
+                    <A Name="CSTID">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <B Name="PORTNO">
+                        <Value></Value>
+                        <Maps Type="1024">
+                        </Maps>
+                    </B>
+                    <A Name="OGLASSID">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <A Name="VGLASSID">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S6F74_DCR Glass ID Report Reply" Description="">
+            <Stream>6</Stream>
+            <Function>74</Function>
+            <Structure>
+                <I1 Name="ACKC6">
+                    <Value>0</Value>
+                    <Maps Type="1">
+                    </Maps>
+                </I1>
+            </Structure>
+        </Message>
+        <Message Name="S7F65_Lot Process Data Transfer" Description="">
+            <Stream>7</Stream>
+            <Function>65</Function>
+            <WBit>1</WBit>
+            <AutoReply>S7F66_Lot Process Data Transfer Reply</AutoReply>
+            <Structure>
+                <L>
+                    <A Name="PCODE">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <B Name="PORTNO">
+                        <Value></Value>
+                        <Maps Type="1024">
+                        </Maps>
+                    </B>
+                    <A Name="CSTID">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <A Name="PRODUCTID">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <A Name="ROUTEID">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <A Name="STEPID">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <A Name="GLASSLENGTH">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <A Name="GLASSWIDTH">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <A Name="GLASSTHICKNESS">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <A Name="GLASSDIAMETER">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <L>
+                        <L>
+                            <A Name="SLOTNO">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                            <A Name="LOTID">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                            <A Name="PPIDDT">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                            <A Name="PROCFLAG">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                            <A Name="GLASSTYPE">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                            <A Name="GLASSID">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                            <A Name="PPID">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                            <A Name="JUDGEINFO">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                        </L>
+                        <L>
+                            <A Name="SLOTNO">
+                                <Value></Value>
+                            </A>
+                            <A Name="LOTID">
+                                <Value></Value>
+                            </A>
+                            <A Name="PPIDDT">
+                                <Value></Value>
+                            </A>
+                            <A Name="PROCFLAG">
+                                <Value></Value>
+                            </A>
+                            <A Name="GLASSTYPE">
+                                <Value></Value>
+                            </A>
+                            <A Name="GLASSID">
+                                <Value></Value>
+                            </A>
+                            <A Name="PPID">
+                                <Value></Value>
+                            </A>
+                            <A Name="JUDGEINFO">
+                                <Value></Value>
+                            </A>
+                        </L>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S7F66_Lot Process Data Transfer Reply" Description="">
+            <Stream>7</Stream>
+            <Function>66</Function>
+            <Structure>
+                <L>
+                    <B Name="ACKC7">
+                        <Value></Value>
+                        <Maps Type="1024">
+                        </Maps>
+                    </B>
+                    <A Name="SLOTINFO">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <A Name="RTNMSG">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S7F73_Lot Cancel Request" Description="">
+            <Stream>7</Stream>
+            <Function>73</Function>
+            <WBit>1</WBit>
+            <AutoReply>S7F74_Lot Cancel Request Reply</AutoReply>
+            <Structure>
+                <L>
+                    <A Name="CSTID">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <B Name="PORTNO">
+                        <Value></Value>
+                        <Maps Type="1024">
+                        </Maps>
+                    </B>
+                    <L>
+                        <L>
+                            <A Name="SLOTNO">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                            <A Name="GLASSID">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                        </L>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S7F74_Lot Cancel Request Reply" Description="">
+            <Stream>7</Stream>
+            <Function>74</Function>
+            <Structure>
+                <B Name="GRANT">
+                    <Value></Value>
+                    <Maps Type="1024">
+                    </Maps>
+                </B>
+            </Structure>
+        </Message>
+    </MessageDictionary>
+</SXML>

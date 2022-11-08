@@ -1,0 +1,980 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Threading;
+using System.Net;
+
+namespace HirataMainControl
+{
+    public partial class HCT_Stage : UserControl
+    {
+        #region Delegate
+
+        public delegate void StageEvent(string PortName, SocketCommand command, bool Result);
+        public event StageEvent ActionComplete;
+
+        #endregion
+
+        #region BG & Queue
+
+        private BlockQueue<string> PLC_Receive = new BlockQueue<string>();
+
+        #endregion
+
+        #region List
+
+        private List<StageStep> Stage_StepArray = new List<StageStep>();
+
+        #endregion
+
+        #region Variable
+
+        #region UI
+
+        private bool Busy;
+        private bool Alarm;
+        private bool Ready;
+        public bool PLC_Busy;
+        private bool WaferSideInvade;
+        private bool CarrierSideInvade;
+        private bool WaferSideProtrude;
+        private bool CarrierSideProtrude;
+        private bool WaferAvailable;
+        private bool CarrierAvailable;
+        private StageStatus Status = StageStatus.Unknown;
+        private bool ConnectStatus;
+        public ErrorList NowErrorList = ErrorList.MaxCnt;
+        public string NowErrorMsg = "";
+        public string DeviceName;
+        private int DeviceNumber;
+        private WaferStatus WaferInfo;
+        private WaferStatus CarrierInfo;
+        private WaferStatus CarrierWaferInfo;
+        private WaferStatus RobotWaferInfo;
+        public CommandResult Result = CommandResult.Unknown;
+        private string WaferMessage = ",";
+        private string CarrierMessage = ",";
+
+        #endregion
+
+        #region Command
+
+        private SocketCommand MainCmd = SocketCommand.MaxCnt;
+        //private StageStep[] MarcoCommand;
+        private int NowStepCnt = 0;
+        private bool NextStepFlag = false;
+
+        private int T0 = 30;
+        private int T1 = 50;
+        private int T2 = 70;
+        private int T3 = 90;
+        private int TFinish = 60000;
+        private All_Device DeviceNameEnum = All_Device.Fn;
+        private int PLC_StartIdxB = -1;
+        private int PLC_StartIdxW = -1;
+        #endregion
+
+
+        #endregion
+
+        #region Initial
+
+        public HCT_Stage()
+        {
+            InitializeComponent();
+        }
+
+        public void Initial(int index)
+        {
+            DeviceNumber = index;
+            gbxStage.Text = DeviceName = string.Format("{0}{1}", NormalStatic.Stage, index + 1);
+            PLC_StartIdxB = index * 256;
+            PLC_StartIdxW = index * 256;
+
+            DeviceNameEnum = (All_Device)Enum.Parse(typeof(All_Device), DeviceName);
+
+            //AutoMoveBG.DoWork += new DoWorkEventHandler(this.AutoBG_DoWork);
+            //AutoMoveBG.RunWorkerAsync();
+
+        }
+
+        #endregion
+
+        //Wayne 20190812
+
+        private void Command_DoWork()
+        {
+            var ok = Task.Run(() =>
+            {
+                //MarcoCommand = AutoStepQueue.DeQueue();
+
+                while (NowStepCnt < Stage_StepArray.Count)
+                {
+                    if (NowStepCnt == -1)
+                    {
+                        ActionComplete(DeviceName, MainCmd, false);
+
+                        return false;
+                    }
+
+                    if (Stage_StepArray[NowStepCnt] == StageStep.MaxCnt)
+                    {
+                        if (Ui_Alarm == false)
+                        {
+                            Ui_Busy = false;
+                            ActionComplete(DeviceName, MainCmd, true);
+                        }
+                        else
+                            ActionComplete(DeviceName, MainCmd, false);
+
+                        return true;
+                    }
+
+                    PLC_Receive.Clear();
+
+                    switch (Stage_StepArray[NowStepCnt])
+                    {
+                        #region Set Command
+                        case StageStep.SetResetError:
+                            break;
+                        case StageStep.SetHome:
+                            {
+                                UI.Log(NormalStatic.Stage, DeviceName, SystemList.DeviceSend, "Set Home");
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.W, (int)PLC_W.Stage1CommandType + (DeviceNumber * 4), 1);
+                            }
+                            break;
+
+                        case StageStep.SetLoad:
+                            {
+                                UI.Log(NormalStatic.Stage, DeviceName, SystemList.DeviceSend, "Set Load");
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.W, (int)PLC_W.Stage1CommandType + (DeviceNumber * 4), 3);
+                            }
+                            break;
+
+                        case StageStep.SetUnload:
+                            {
+                                UI.Log(NormalStatic.Stage, DeviceName, SystemList.DeviceSend, "Set UnLoad");
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.W, (int)PLC_W.Stage1CommandType + (DeviceNumber * 4), 4);
+                            }
+                            break;
+
+                        case StageStep.SetClamp:
+                            {
+                                UI.Log(NormalStatic.Stage, DeviceName, SystemList.DeviceSend, "Set Clamp");
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.W, (int)PLC_W.Stage1CommandType + (DeviceNumber * 4), 2);
+                            }
+                            break;
+
+                        case StageStep.SetGetCWafer:
+                            {
+                                UI.Log(NormalStatic.Stage, DeviceName, SystemList.DeviceSend, "Set Clamp");
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.W, (int)PLC_W.Stage1CommandType + (DeviceNumber * 4), 5);
+                            }
+                            break;
+
+                        case StageStep.SetPutCWafer:
+                            {
+                                UI.Log(NormalStatic.Stage, DeviceName, SystemList.DeviceSend, "Set Clamp");
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.W, (int)PLC_W.Stage1CommandType + (DeviceNumber * 4), 6);
+                            }
+                            break;
+
+                        case StageStep.SetGetWWafer:
+                            {
+                                UI.Log(NormalStatic.Stage, DeviceName, SystemList.DeviceSend, "Set Clamp");
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.W, (int)PLC_W.Stage1CommandType + (DeviceNumber * 4), 7);
+                            }
+                            break;
+
+                        case StageStep.SetPutWWafer:
+                            {
+                                UI.Log(NormalStatic.Stage, DeviceName, SystemList.DeviceSend, "Set Clamp");
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.W, (int)PLC_W.Stage1CommandType + (DeviceNumber * 4), 8);
+                            }
+                            break; 
+                        #endregion
+
+                        #region InterFace
+                        case StageStep.StartAlarmReset:
+                            {
+                                PLC.AlarmResetCommand();
+                            }
+                            break;
+
+                        case StageStep.WaitAlarmReset:
+                            {
+
+                            }
+                            break;
+                        case StageStep.RequestOn:
+                            {
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.B, (int)PLC_B.Stage1Command + (DeviceNumber * 1), 1);
+                            }
+                            break;
+
+                        case StageStep.WaitReplyOn:
+                            break;
+
+                        case StageStep.RequestOff:
+                            {
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.B, (int)PLC_B.Stage1Command + (DeviceNumber * 1), 0);
+                            }
+                            break;
+
+                        case StageStep.ClearCmd:
+                            {
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.W, (int)PLC_W.Stage1CommandType + (DeviceNumber * 2), 0);
+                            }
+                            break;
+
+                        case StageStep.WaitReplyOff:
+                            break;
+
+                        case StageStep.WaitFinish:
+                            break;
+
+                        case StageStep.CheckPresence:
+                            break;
+
+                        case StageStep.CompleteRequestOn:
+                            break;
+
+                        case StageStep.CompleteReplyOn:
+                            {
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.B, PLC_StartIdxB, 1);
+                            }
+                            break;
+
+                        case StageStep.CompleteRequestOff:
+                            break;
+
+                        case StageStep.CompleteReplyOff:
+                            {
+                                PLC.Plc_CmdSend(DeviceNameEnum, PLC_Device.B, PLC_StartIdxB, 0);
+                            }
+                            break;
+
+                        #endregion
+                    }
+
+                    NextStepFlag = false;
+                    string Recv = "";
+                    DateTime CmdTime = DateTime.Now;
+
+                    while (!NextStepFlag)
+                    {
+                        SpinWait.SpinUntil(() => false, 100);
+                        switch (Stage_StepArray[NowStepCnt])
+                        {
+                            case StageStep.StartAlarmReset:
+                                {
+                                    StepParm(true);
+                                }
+                                break;
+
+                            case StageStep.WaitAlarmReset:
+                                {
+                                    if ((DateTime.Now - CmdTime).Seconds > 60)
+                                    {
+                                        StepParm(false);
+                                        NowErrorList = ErrorList.T2TimeOut_1013;
+                                    }
+                                    else if (PLC.AlarmReseting == false)
+                                    {
+                                        StepParm(true);
+                                    }
+                                }
+                                break;
+                            case StageStep.SetResetError:
+                                Ui_Busy = false;
+                                StepParm(true);
+                                break;
+
+                            case StageStep.SetHome:
+                            case StageStep.SetClamp:
+                            case StageStep.SetLoad:
+                            case StageStep.SetUnload:
+                            case StageStep.SetGetCWafer:
+                            case StageStep.SetPutCWafer:
+                            case StageStep.SetGetWWafer:
+                            case StageStep.SetPutWWafer:
+                                {
+                                    #region SetCmd
+                                    
+                                    Recv = PLC_Receive.DeQueue(T0);
+                                    if (Recv == null)
+                                    {
+                                        StepParm(false);
+                                        NowErrorList = ErrorList.T0TimeOut_1011;
+                                    }
+                                    else
+                                    {
+                                        if (Recv == EQ_Static.OK)
+                                        {
+                                            UI.Log(NormalStatic.Stage, DeviceName, SystemList.DeviceReceive, string.Format("{0} Set OK",MainCmd));
+                                            StepParm(true);
+                                        }
+                                        else
+                                        {
+                                            StepParm(false);
+                                            NowErrorList = ErrorList.PLCCmdRecvError;
+                                            NowErrorMsg = Recv;
+                                        }
+                                    }
+                                    #endregion
+                                }
+                                break;
+
+                            case StageStep.RequestOn:
+                                {
+                                    #region RequestOn
+
+                                    //Wayne 20190816
+
+                                    Recv = PLC_Receive.DeQueue(T1);
+                                    if (Recv == null)
+                                    {
+                                        StepParm(false);
+                                        NowErrorList = ErrorList.T1TimeOut_1012;
+                                    }
+                                    else
+                                    {
+                                        if (Recv == EQ_Static.OK)
+                                        {
+                                            UI.Log(NormalStatic.Stage, DeviceName, SystemList.DeviceReceive, string.Format("{0} Request On", MainCmd));
+                                            StepParm(true);
+                                        }
+                                        else
+                                        {
+                                            StepParm(false);
+                                            NowErrorList = ErrorList.PLCCmdRecvError;
+                                            NowErrorMsg = Recv;
+                                        }
+                                    }
+
+                                    #endregion
+                                }
+                                break;
+
+                            case StageStep.WaitReplyOn:
+                                {
+                                    if ((DateTime.Now - CmdTime).Seconds > T2)
+                                    {
+                                        StepParm(false);
+                                        NowErrorList = ErrorList.T2TimeOut_1013;
+                                    }
+                                    else
+                                    {
+                                        if (PLC.B[(int)PLC_B.Stage1Reply + (DeviceNumber * 1)] == true)
+                                        {
+                                            UI.Log(NormalStatic.Stage, DeviceName, SystemList.DeviceReceive, string.Format("{0} Reply On", MainCmd));
+                                            UI.Log(NormalStatic.Stage, DeviceName, SystemList.DeviceReceive, string.Format("{0} Reply Result:{1}", MainCmd,PLC.W[(int)PLC_W.Stage1CommandResult + (DeviceNumber * 1)]));
+                                            if (PLC.W[(int)PLC_W.Stage1CommandResult + (DeviceNumber * 1)] == 0)
+                                            {
+                                                StepParm(true);
+                                            }
+                                            else 
+                                            {
+                                                StepParm(false);
+                                                NowErrorList = ErrorList.PLCCmdRecvError; 
+                                            }
+                                        }
+                                    }
+                                    break;
+                                }
+                            case StageStep.RequestOff:
+                                {
+                                    #region RequestOff
+
+                                    Recv = PLC_Receive.DeQueue(T2);
+
+                                    if (Recv == null)
+                                    {
+                                        StepParm(false);
+                                        NowErrorList = ErrorList.T2TimeOut_1013;
+                                    }
+                                    else
+                                    {
+                                        if (Recv == EQ_Static.OK)
+                                        {
+                                            UI.Log(NormalStatic.Stage, DeviceName, SystemList.DeviceReceive, string.Format("{0} Request Off", MainCmd));
+                                            StepParm(true);
+                                        }
+                                        else
+                                        {
+                                            StepParm(false);
+                                            UI.Alarm(DeviceName, ErrorList.PLCCmdRecvError, Recv);
+                                        }
+                                    }
+
+                                    #endregion
+                                }
+                                break;
+
+                            case StageStep.ClearCmd:
+                                {
+                                    #region ClearCmd
+
+                                    Recv = PLC_Receive.DeQueue(T3);
+
+                                    if (Recv == null)
+                                    {
+                                        StepParm(false);
+                                        NowErrorList = ErrorList.T3TimeOut_1014;
+                                    }
+                                    else
+                                    {
+                                        if (Recv == EQ_Static.OK)
+                                        {
+                                            UI.Log(NormalStatic.Stage, DeviceName, SystemList.DeviceReceive, string.Format("{0} Command Clear", MainCmd));
+                                            StepParm(true);
+                                        }
+                                        else
+                                        {
+                                            StepParm(false);
+                                            NowErrorList = ErrorList.PLCCmdRecvError;
+                                            NowErrorMsg = Recv;
+                                        }
+                                    }
+
+                                    #endregion
+                                }
+                                break;
+
+                            case StageStep.WaitReplyOff:
+                                if ((DateTime.Now - CmdTime).TotalSeconds > 100)
+                                {
+                                    StepParm(false);
+                                    NowErrorList = ErrorList.Timeout_1010;
+                                    NowErrorMsg = string.Format(" ({0})", MainCmd.ToString());
+                                }
+                                else
+                                {
+                                    if (PLC.B[(int)PLC_B.Stage1Reply + (DeviceNumber * 1)] == false)
+                                    {
+                                        UI.Log(NormalStatic.Stage, DeviceName, SystemList.DeviceReceive, string.Format("{0} Reply Off", MainCmd));
+                                        StepParm(true);
+                                    }
+                                }
+                                break;
+
+                            case StageStep.WaitFinish:
+                                {
+                                    if ((DateTime.Now - CmdTime).Seconds > 50)
+                                    {
+                                        StepParm(false);
+                                        NowErrorList = ErrorList.T3TimeOut_1014;
+                                    }
+                                    else if (Ui_Alarm)
+                                    {
+                                        // Stage
+                                        NowErrorList = ErrorList.StageRetryFail_1015;
+                                        StepParm(false);
+                                    }
+                                    else if (Ui_StageBusy==false && Ui_Alarm == false )
+                                    {
+                                        UI.Log(NormalStatic.Stage, DeviceName, SystemList.DeviceReceive, string.Format("{0} PLCBusyOff", MainCmd));
+                                        StepParm(true);
+                                    }
+                                }
+                                break;
+
+                            case StageStep.CompleteRequestOn:
+                            case StageStep.CompleteRequestOff:
+                                {
+                                    if ((DateTime.Now - CmdTime).Seconds > 60)
+                                    {
+                                        StepParm(false);
+                                        NowErrorList = ErrorList.T2TimeOut_1013;
+                                    }
+                                    else
+                                    {
+                                        if (PLC.B[PLC_StartIdxB] == false)
+                                        {
+                                            StepParm(true);
+                                        }
+                                    }
+                                }
+                                break;
+
+                            case StageStep.CompleteReplyOn:
+                            case StageStep.CompleteReplyOff:
+                                {
+                                    Recv = PLC_Receive.DeQueue(T1);
+
+                                    if (Recv == null)
+                                    {
+                                        StepParm(false);
+                                        NowErrorList = ErrorList.T1TimeOut_1012;
+                                    }
+                                    else
+                                    {
+                                        if (Recv == EQ_Static.OK)
+                                        {
+                                            StepParm(true);
+                                        }
+                                        else
+                                        {
+                                            StepParm(false);
+                                            NowErrorList = ErrorList.PLCCmdRecvError;
+                                            NowErrorMsg = Recv;
+                                        }
+                                    }
+                                }
+                                break;
+
+                            case StageStep.CheckPresence:
+                                {
+                                    switch (MainCmd) 
+                                    {
+                                        case SocketCommand.Mix: 
+                                            {
+                                                if(Ui_WaferPresence == WaferStatus.WithOut && Ui_CarrierWaferPresence == WaferStatus.With) 
+                                                {
+                                                    StepParm(true);
+                                                }
+                                                else 
+                                                {
+                                                    StepParm(false);
+                                                    NowErrorList = ErrorList.PLCCmdRecvError;
+                                                    NowErrorMsg = "Wafer Presence Error";
+                                                }
+                                            }
+                                            break;
+
+                                        case SocketCommand.Separation:
+                                            {
+                                                if (Ui_WaferPresence == WaferStatus.With && Ui_CarrierWaferPresence == WaferStatus.WithOut)
+                                                {
+                                                    StepParm(true);
+                                                }
+                                                else
+                                                {
+                                                    StepParm(false);
+                                                    NowErrorList = ErrorList.PLCCmdRecvError;
+                                                    NowErrorMsg = "Wafer Presence Error";
+                                                }
+                                            }
+                                            break;
+                                        default:
+                                            StepParm(true);
+                                            break;
+
+                                    }                                    
+                                }
+                                break;
+                        }
+                    }
+                }
+                return false;
+            });
+        }
+
+        public void Close()
+        {
+            ResetAutoStepQueue();
+            NowStepCnt = 0;
+        }
+
+        #region Reset
+
+        private void ResetAutoStepQueue()
+        {
+            //AutoStepQueue.Clear();
+            NowStepCnt = -1;
+            NextStepFlag = true;
+        }
+
+        #endregion
+
+        public void Cmd_EnQueue(SocketCommand cmd)
+        {
+            UI.Log(NormalStatic.Stage, DeviceName, SystemList.CommandStart, cmd.ToString());
+            UI.Log(NormalStatic.System, DeviceName, SystemList.CommandStart, cmd.ToString());
+
+            MainCmd = cmd;
+            Stage_StepArray.Clear();
+            Ui_Busy = true;
+            ResetAutoStepQueue();
+            NowStepCnt = 0;
+            NowErrorList = ErrorList.MaxCnt;
+            NowErrorMsg = "";
+            Result = CommandResult.Unknown;
+            switch (cmd)
+            {
+                case SocketCommand.Home: 
+                    {
+                        Stage_StepArray.Add(StageStep.SetHome);
+                    }
+                    break;
+
+                case SocketCommand.Mix:
+                    {
+                        Stage_StepArray.Add(StageStep.SetLoad);
+                    }
+                    break;
+
+                case SocketCommand.Separation:
+                    {
+                        Stage_StepArray.Add(StageStep.SetUnload);
+                    }
+                    break;
+
+                case SocketCommand.Clamp:
+                    {
+                        Stage_StepArray.Add(StageStep.SetClamp);
+                    }
+                    break;
+                case SocketCommand.Get_Carrier_Wafer:
+                    Stage_StepArray.Add(StageStep.SetGetCWafer);
+                    break;
+                case SocketCommand.Put_Carrier_Wafer:
+                    Stage_StepArray.Add(StageStep.SetPutCWafer);
+                    break;
+                case SocketCommand.Get_Wafer_Wafer:
+                    Stage_StepArray.Add(StageStep.SetGetWWafer);
+                    break;
+                case SocketCommand.Put_Wafer_Wafer:
+                    Stage_StepArray.Add(StageStep.SetPutWWafer);
+                    break;
+            }
+
+            if (cmd == SocketCommand.ResetError)
+            {
+                //Stage_StepArray.Add(StageStep.SetResetError);
+                Stage_StepArray.Add(StageStep.RequestOff);
+                Stage_StepArray.Add(StageStep.ClearCmd);
+                Stage_StepArray.Add(StageStep.StartAlarmReset);
+                Stage_StepArray.Add(StageStep.WaitAlarmReset);
+                Stage_StepArray.Add(StageStep.WaitFinish);
+            }
+            else
+            {
+                Stage_StepArray.Add(StageStep.RequestOn);
+                Stage_StepArray.Add(StageStep.WaitReplyOn);
+                Stage_StepArray.Add(StageStep.RequestOff);
+                Stage_StepArray.Add(StageStep.ClearCmd);
+                Stage_StepArray.Add(StageStep.WaitReplyOff);
+                Stage_StepArray.Add(StageStep.WaitFinish);
+                Stage_StepArray.Add(StageStep.CheckPresence);
+            }
+
+            Stage_StepArray.Add(StageStep.MaxCnt);
+            Command_DoWork();
+        }
+
+        public void PLCRecv_EnQueue(string ref_Recv)
+        {
+            PLC_Receive.EnQueue(ref_Recv);
+        }
+
+        private void StepParm(bool ref_result)
+        {
+            if (ref_result)
+            {
+                NowStepCnt++;
+                PLC_Receive.Clear();
+                NextStepFlag = true;
+            }
+            else
+            {
+                NowStepCnt = -1;
+                PLC_Receive.Clear();
+                NextStepFlag = true;
+            }
+        }
+
+        #region Get/Set
+
+        public string Ui_CarrierInfo
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_CarrierInfo = value; }));
+                    return;
+                }
+                labCarrierInfo.Text = value;
+                CarrierMessage = value;
+            }
+            get { return CarrierMessage; }
+        }
+
+        public string Ui_WaferInfo
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_WaferInfo = value; }));
+                    return;
+                }
+                labWaferInfo.Text = value;
+                WaferMessage = value;
+            }
+            get { return WaferMessage; }
+        }
+
+        public WaferStatus Ui_WaferPresence
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_WaferPresence = value; }));
+                    return;
+                }
+
+                labWaferPresence.BackColor = value == WaferStatus.With ? Color.Yellow : Color.LightGreen;
+                labWaferPresence.Text = value == WaferStatus.With ? "Waf/Prese" : "Absent";
+                WaferInfo = value;
+
+            }
+            get { return WaferInfo; }
+        }
+
+        public WaferStatus Ui_CarrierWaferPresence
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_CarrierWaferPresence = value; }));
+                    return;
+                }
+
+                labCarrierWaferPresence.BackColor = value == WaferStatus.With ? Color.Yellow : Color.LightGreen;
+                labCarrierWaferPresence.Text = value == WaferStatus.With ? "Waf/Prese" : "Absent";
+                CarrierWaferInfo = value;
+
+            }
+            get { return CarrierWaferInfo; }
+        }
+
+        public WaferStatus Ui_CarrierPresence
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_CarrierPresence = value; }));
+                    return;
+                }
+               
+                labCarrierPresence.BackColor = value == WaferStatus.With ? Color.Yellow : Color.LightGreen;
+                labCarrierPresence.Text = value == WaferStatus.With ? "Car/Prese" : "Absent";
+                CarrierInfo = value;
+                
+            }
+            get { return CarrierInfo; }
+        }
+
+        public WaferStatus Ui_RobotWaferPresence
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_RobotWaferPresence = value; }));
+                    return;
+                }
+
+                labRobotWaferPresence.BackColor = value == WaferStatus.With ? Color.Yellow : Color.LightGreen;
+                labRobotWaferPresence.Text = value == WaferStatus.With ? "Waf/Prese" : "Absent";
+                RobotWaferInfo = value;
+
+            }
+            get { return RobotWaferInfo; }
+        }
+
+        public bool Ui_Busy
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_Busy = value; }));
+                    return;
+                }
+                labBusy.BackColor = value ? Color.Yellow : Color.LightGreen;
+                labBusy.Text = value ? "Busy" : "Idle";
+                Busy = value;
+            }
+            get { return Busy; }
+        }
+
+        public bool Ui_StageBusy
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_Busy = value; }));
+                    return;
+                }
+                labStageBusy.BackColor = value ? Color.Yellow : Color.LightGreen;
+                labStageBusy.Text = value ? "Busy" : "Idle";
+                PLC_Busy = value;
+            }
+            get { return PLC_Busy; }
+        }
+
+        public bool Ui_Ready
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_Ready = value; }));
+                    return;
+                }
+                labReady.BackColor = value ? Color.LightGreen : Color.Red;
+                labReady.Text = value ? "Ready" : "Not Ready";
+                Ready = value;
+            }
+            get { return Ready; }
+        }
+
+        public bool Ui_Alarm
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_Alarm = value; }));
+                    return;
+                }
+                labAlarm.Visible = value;
+                Alarm = value;
+            }
+            get { return Alarm; }
+        }
+
+        public bool Ui_WaferSideInvade
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_WaferSideInvade = value; }));
+                    return;
+                }
+                labWaferSideInvade.BackColor = value ? Color.LightGreen : Color.Red;
+                labWaferSideInvade.Text = value ? "No Invade" : "Waf/Invade";
+                WaferSideInvade = value;
+            }
+            get { return WaferSideInvade; }
+        }
+
+        public bool Ui_CarrierSideInvade
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_CarrierSideInvade = value; }));
+                    return;
+                }
+                labCarrierSideInvade.BackColor = value ? Color.LightGreen : Color.Red;
+                labCarrierSideInvade.Text = value ? "No Invade" : "Car/Invade";
+                CarrierSideInvade = value;
+            }
+            get { return CarrierSideInvade; }
+        }
+
+        public bool Ui_WaferSideProtrude
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_WaferSideProtrude = value; }));
+                    return;
+                }
+                labWafProtrude.Visible = value ? true : false;
+                labWafProtrude.BackColor = value ? Color.Red : Color.LightGreen;
+
+                WaferSideProtrude = value;
+            }
+            get { return WaferSideProtrude; }
+        }
+
+        public bool Ui_CarrieSideProtrude
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_CarrieSideProtrude = value; }));
+                    return;
+                }
+                labCarProtrude.Visible = value ? true : false;
+                labCarProtrude.BackColor = value ? Color.Red : Color.LightGreen;
+                CarrierSideProtrude = value;
+            }
+            get { return CarrierSideProtrude; }
+        }
+
+        public bool Ui_WaferAvailable
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_WaferAvailable = value; }));
+                    return;
+                }
+
+                //labWaferAvailable.Visible = value ? false : true;
+                //labWaferAvailable.BackColor = value ? Color.Red : Color.LightGreen;
+
+                WaferAvailable = value;
+            }
+            get { return WaferAvailable; }
+        }
+
+        public bool Ui_CarrieAvailable
+        {
+            set
+            {
+                if (InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { Ui_CarrieAvailable = value; }));
+                    return;
+                }
+
+                //labCarrierAvailable.Visible = value ? false : true;
+                //labCarrierAvailable.BackColor = value ? Color.Red : Color.LightGreen;
+                CarrierAvailable = value;
+            }
+            get { return CarrierAvailable; }
+        }
+
+        //public bool Ui_Connect
+        //{
+        //    set
+        //    {
+        //        if (InvokeRequired)
+        //        {
+        //            this.Invoke(new MethodInvoker(delegate() { Ui_Connect = value; }));
+        //            return;
+        //        }
+        //        labConnect.BackColor = (value ? Color.LightGreen : Color.Red);
+        //        labConnect.Text = (value ? "Con-C" : "Dis-C");
+
+        //        ConnectStatus = value;
+        //    }
+        //    get { return ConnectStatus; }
+        //}      
+
+        #endregion
+
+    }
+}

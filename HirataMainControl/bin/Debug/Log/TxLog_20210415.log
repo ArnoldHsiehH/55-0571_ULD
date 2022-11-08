@@ -1,0 +1,4 @@
+2021/04/15 18:56:41.788  Send Linktest.req [FF FF 00 00 00 05 00 00 08 8A]
+2021/04/15 18:56:41.788  Recv Linktest.req [FF FF 00 00 00 05 00 00 05 7D]
+2021/04/15 18:56:41.788  Send Linktest.res [FF FF 00 00 00 06 00 00 05 7D]
+2021/04/15 18:56:41.788  Recv Linktest.res [FF FF 00 00 00 06 00 00 08 8A]

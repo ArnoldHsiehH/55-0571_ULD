@@ -1,0 +1,562 @@
+<SXML>
+    <DataDictionary>
+    </DataDictionary>
+    <MessageDictionary>
+        <Message Name="S1F1_Are You There Request" Description="">
+            <Stream>1</Stream>
+            <Function>1</Function>
+            <WBit>1</WBit>
+            <AutoReply>S1F2_Online Data</AutoReply>
+            <Structure/>
+        </Message>
+        <Message Name="S1F2_Online Data" Description="">
+            <Stream>1</Stream>
+            <Function>2</Function>
+            <Structure>
+                <L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S1F3_Selected Equipment Status Request" Description="">
+            <Stream>1</Stream>
+            <Function>3</Function>
+            <WBit>1</WBit>
+            <AutoReply>S1F4_Selected Equipment Status Data</AutoReply>
+            <Structure>
+                <L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S1F4_Selected Equipment Status Data" Description="">
+            <Stream>1</Stream>
+            <Function>4</Function>
+            <Structure>
+                <L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S1F11" Description="">
+            <Stream>1</Stream>
+            <Function>11</Function>
+            <WBit>1</WBit>
+            <Structure>
+                <L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S1F12_Status Variable Namelist Reply" Description="">
+            <Stream>1</Stream>
+            <Function>12</Function>
+            <Structure>
+                <L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S1F13_Establish Communication Request" Description="">
+            <Stream>1</Stream>
+            <Function>13</Function>
+            <WBit>1</WBit>
+            <AutoReply>S1F14_Establish Communication Request Ack</AutoReply>
+            <Structure>
+                <L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S1F14_Establish Communication Request Ack" Description="">
+            <Stream>1</Stream>
+            <Function>14</Function>
+            <Structure>
+                <L>
+                    <B Name="COMMACK">
+                        <Value></Value>
+                        <Maps Type="1024">
+                        </Maps>
+                    </B>
+                    <L>
+                        <A Name="MDLN">
+                            <Value></Value>
+                            <Maps Type="4096">
+                            </Maps>
+                        </A>
+                        <A Name="SOFTREV">
+                            <Value></Value>
+                            <Maps Type="4096">
+                            </Maps>
+                        </A>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S1F17_Request ON-LINE" Description="">
+            <Stream>1</Stream>
+            <Function>17</Function>
+            <WBit>1</WBit>
+            <AutoReply>S1F18_ON-LINE Ack</AutoReply>
+            <Structure/>
+        </Message>
+        <Message Name="S1F18_ON-LINE Ack" Description="">
+            <Stream>1</Stream>
+            <Function>18</Function>
+            <Structure>
+                <B Name="ONLACK">
+                    <Value></Value>
+                    <Maps Type="1024">
+                    </Maps>
+                </B>
+            </Structure>
+        </Message>
+        <Message Name="S2F31_Date and Time Set Request" Description="">
+            <Stream>2</Stream>
+            <Function>31</Function>
+            <WBit>1</WBit>
+            <AutoReply>S2F32_Date and Time Set Ack</AutoReply>
+            <Structure>
+                <A Name="TIME">
+                    <Value></Value>
+                    <Maps Type="4096">
+                    </Maps>
+                </A>
+            </Structure>
+        </Message>
+        <Message Name="S2F32_Date and Time Set Ack" Description="">
+            <Stream>2</Stream>
+            <Function>32</Function>
+            <Structure>
+                <B Name="TIACK">
+                    <Value></Value>
+                    <Maps Type="1024">
+                    </Maps>
+                </B>
+            </Structure>
+        </Message>
+        <Message Name="S2F33_Define Report" Description="">
+            <Stream>2</Stream>
+            <Function>33</Function>
+            <WBit>1</WBit>
+            <AutoReply>S2F34_Define Report Ack</AutoReply>
+            <Structure>
+                <L>
+                    <U2 Name="DATAID">
+                        <Value></Value>
+                        <Maps Type="32">
+                        </Maps>
+                    </U2>
+                    <L>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S2F34_Define Report Ack" Description="">
+            <Stream>2</Stream>
+            <Function>34</Function>
+            <Structure>
+                <B Name="DRACK">
+                    <Value></Value>
+                    <Maps Type="1024">
+                    </Maps>
+                </B>
+            </Structure>
+        </Message>
+        <Message Name="S2F35_Link Event Report" Description="">
+            <Stream>2</Stream>
+            <Function>35</Function>
+            <WBit>1</WBit>
+            <AutoReply>S2F36_Link Event Report Ack</AutoReply>
+            <Structure>
+                <L>
+                    <U2 Name="DATAID">
+                        <Value></Value>
+                        <Maps Type="32">
+                        </Maps>
+                    </U2>
+                    <L>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S2F36_Link Event Report Ack" Description="">
+            <Stream>2</Stream>
+            <Function>36</Function>
+            <Structure>
+                <B Name="LRACK">
+                    <Value></Value>
+                    <Maps Type="1024">
+                    </Maps>
+                </B>
+            </Structure>
+        </Message>
+        <Message Name="S2F37_Enable/Disable Event Report" Description="">
+            <Stream>2</Stream>
+            <Function>37</Function>
+            <WBit>1</WBit>
+            <AutoReply>S2F38_Enable/Disable Event Report Ack</AutoReply>
+            <Structure>
+                <L>
+                    <Boolean Name="CEED">
+                        <Value>True</Value>
+                        <Maps Type="2048">
+                        </Maps>
+                    </Boolean>
+                    <L>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S2F38_Enable/Disable Event Report Ack" Description="">
+            <Stream>2</Stream>
+            <Function>38</Function>
+            <Structure>
+                <B Name="ERACK">
+                    <Value></Value>
+                    <Maps Type="1024">
+                    </Maps>
+                </B>
+            </Structure>
+        </Message>
+        <Message Name="S2F41_Host Command Send" Description="">
+            <Stream>2</Stream>
+            <Function>41</Function>
+            <WBit>1</WBit>
+            <AutoReply>S2F42_Host Command Ack</AutoReply>
+            <Structure>
+                <L>
+                    <A Name="RCMD">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <L>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S2F42_Host Command Ack" Description="">
+            <Stream>2</Stream>
+            <Function>42</Function>
+            <Structure>
+                <L>
+                    <B Name="HCACK">
+                        <Value></Value>
+                        <Maps Type="1024">
+                        </Maps>
+                    </B>
+                    <L>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S3F17_Carrier Action Request" Description="">
+            <Stream>3</Stream>
+            <Function>17</Function>
+            <WBit>1</WBit>
+            <AutoReply>S3F18_Carrier Action Ack</AutoReply>
+            <Structure>
+                <L>
+                    <U2 Name="DATAID">
+                        <Value>0</Value>
+                        <Maps Type="32">
+                        </Maps>
+                    </U2>
+                    <A Name="CARRIERACTION">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <A Name="CARRIERSPEC">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <U1 Name="PTN">
+                        <Value></Value>
+                        <Maps Type="16">
+                        </Maps>
+                    </U1>
+                    <L>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S3F18_Carrier Action Ack" Description="">
+            <Stream>3</Stream>
+            <Function>18</Function>
+            <Structure>
+                <L>
+                    <U1 Name="CAACK">
+                        <Value></Value>
+                        <Maps Type="16">
+                        </Maps>
+                    </U1>
+                    <L>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S5F1_Alarm Report Send" Description="">
+            <Stream>5</Stream>
+            <Function>1</Function>
+            <WBit>1</WBit>
+            <AutoReply>S5F2_Alarm Report Ack</AutoReply>
+            <Structure>
+                <L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S5F2_Alarm Report Ack" Description="">
+            <Stream>5</Stream>
+            <Function>2</Function>
+            <Structure/>
+        </Message>
+        <Message Name="S5F3_Enable/Disable Alarm Send" Description="">
+            <Stream>5</Stream>
+            <Function>3</Function>
+            <WBit>1</WBit>
+            <AutoReply>S5F4_Enable/Disable Alarm Ack</AutoReply>
+            <Structure>
+                <L>
+                    <B Name="ALED">
+                        <Value></Value>
+                        <Maps Type="1024">
+                        </Maps>
+                    </B>
+                    <U4 Name="ALID">
+                        <Value></Value>
+                        <Maps Type="64">
+                        </Maps>
+                    </U4>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S5F4_Enable/Disable Alarm Ack" Description="">
+            <Stream>5</Stream>
+            <Function>4</Function>
+            <Structure>
+                <B Name="ACKC5">
+                    <Value></Value>
+                    <Maps Type="1024">
+                    </Maps>
+                </B>
+            </Structure>
+        </Message>
+        <Message Name="S6F11_Event Report Send" Description="">
+            <Stream>6</Stream>
+            <Function>11</Function>
+            <WBit>1</WBit>
+            <AutoReply>S6F12_Event Report Ack</AutoReply>
+            <Structure>
+                <L>
+                    <U2 Name="DATAID">
+                        <Value></Value>
+                        <Maps Type="32">
+                        </Maps>
+                    </U2>
+                    <U2 Name="CEID">
+                        <Value></Value>
+                        <Maps Type="32">
+                        </Maps>
+                    </U2>
+                    <L>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S6F12_Event Report Ack" Description="">
+            <Stream>6</Stream>
+            <Function>12</Function>
+            <Structure>
+                <B Name="ACKC6">
+                    <Value>00</Value>
+                    <Maps Type="1024">
+                    </Maps>
+                </B>
+            </Structure>
+        </Message>
+        <Message Name="S14F9_Create Object Request" Description="">
+            <Stream>14</Stream>
+            <Function>9</Function>
+            <WBit>1</WBit>
+            <AutoReply>S14F10_Create Object Ack</AutoReply>
+            <Structure>
+                <L>
+                    <A Name="OBJSPEC">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <A Name="OBJTYPE">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <L>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S14F10_Create Object Ack" Description="">
+            <Stream>14</Stream>
+            <Function>10</Function>
+            <Structure>
+                <L>
+                    <A Name="OBJSPEC">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <L>
+                    </L>
+                    <L>
+                        <U1 Name="OBJACK">
+                            <Value></Value>
+                            <Maps Type="16">
+                            </Maps>
+                        </U1>
+                        <L>
+                        </L>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S16F11_PRJobCreateEnh" Description="">
+            <Stream>16</Stream>
+            <Function>11</Function>
+            <WBit>1</WBit>
+            <AutoReply>S16F12_PRJobCreateEnh Ack</AutoReply>
+            <Structure>
+                <L>
+                    <U2 Name="DATAID">
+                        <Value></Value>
+                        <Maps Type="32">
+                        </Maps>
+                    </U2>
+                    <A Name="PRJOBID">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <B Name="MF">
+                        <Value></Value>
+                        <Maps Type="1024">
+                        </Maps>
+                    </B>
+                    <L>
+                    </L>
+                    <L>
+                        <U1 Name="PRRECIPEMETHOD">
+                            <Value></Value>
+                            <Maps Type="16">
+                            </Maps>
+                        </U1>
+                        <A Name="RCPSPEC">
+                            <Value></Value>
+                            <Maps Type="4096">
+                            </Maps>
+                        </A>
+                        <L>
+                        </L>
+                    </L>
+                    <Boolean Name="PRPROCESSSTART">
+                        <Value></Value>
+                        <Maps Type="2048">
+                        </Maps>
+                    </Boolean>
+                    <L>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S16F12_PRJobCreateEnh Ack" Description="">
+            <Stream>16</Stream>
+            <Function>12</Function>
+            <Structure>
+                <L>
+                    <A Name="PRJOBID">
+                        <Value></Value>
+                        <Maps Type="4096">
+                        </Maps>
+                    </A>
+                    <L>
+                        <Boolean Name="ACKA">
+                            <Value></Value>
+                            <Maps Type="2048">
+                            </Maps>
+                        </Boolean>
+                        <L>
+                        </L>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S16F15_PRJob Multi Create" Description="">
+            <Stream>16</Stream>
+            <Function>15</Function>
+            <WBit>1</WBit>
+            <AutoReply>S16F16_PRJob Multi Create Ack</AutoReply>
+            <Structure>
+                <L>
+                    <U2 Name="DATAID">
+                        <Value></Value>
+                        <Maps Type="32">
+                        </Maps>
+                    </U2>
+                    <L>
+                        <L>
+                            <A Name="PRJOBID">
+                                <Value></Value>
+                                <Maps Type="4096">
+                                </Maps>
+                            </A>
+                            <B Name="MF">
+                                <Value></Value>
+                                <Maps Type="1024">
+                                </Maps>
+                            </B>
+                            <L>
+                            </L>
+                            <L>
+                                <U1>
+                                    <Value></Value>
+                                    <Maps Type="16">
+                                    </Maps>
+                                </U1>
+                                <A>
+                                    <Value></Value>
+                                    <Maps Type="4096">
+                                    </Maps>
+                                </A>
+                                <L>
+                                </L>
+                            </L>
+                            <Boolean Name="PRPROCESSSTART">
+                                <Value></Value>
+                                <Maps Type="2048">
+                                </Maps>
+                            </Boolean>
+                            <L>
+                            </L>
+                        </L>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+        <Message Name="S16F16_PRJob Multi Create Ack" Description="">
+            <Stream>16</Stream>
+            <Function>16</Function>
+            <Structure>
+                <L>
+                    <L>
+                    </L>
+                    <L>
+                        <Boolean Name="ACKA">
+                            <Value></Value>
+                            <Maps Type="2048">
+                            </Maps>
+                        </Boolean>
+                        <L>
+                        </L>
+                    </L>
+                </L>
+            </Structure>
+        </Message>
+    </MessageDictionary>
+</SXML>

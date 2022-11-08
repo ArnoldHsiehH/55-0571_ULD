@@ -1,0 +1,225 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Threading;
+using System.Net;
+using System.Net.Sockets;
+using System.Collections;
+using System.Windows.Forms;
+using System.Diagnostics;
+
+namespace HirataMainControl
+{
+    class SocketServer
+    {
+        bool ServerConn = false;
+        TcpListener tcpLis;
+
+        #region Event
+        public delegate void Evt_PLC_RTRecv(string recv_str);
+        public event Evt_PLC_RTRecv PLC_RTRecv;
+
+        public delegate void Evt_PLC_CmdRecv(string recv_str);
+        public event Evt_PLC_CmdRecv PLC_CmdRecv;
+
+        public delegate void evt_ccd_Recv(string recv_str);
+        public event evt_ccd_Recv ccd_Recv;
+
+        public delegate void evt_ccd_Send(string recv_str);
+        public event evt_ccd_Send ccd_Send;
+
+        public delegate void UI_Change(string recv_str);
+        public event UI_Change UI;
+
+        public delegate void evt_OCR_Recv(string recv_str);
+        public event evt_OCR_Recv OCR_RECV;
+
+        #endregion
+
+        private ManualResetEvent TimeoutEvent = new ManualResetEvent(false);
+
+        public TcpClient tcpclt;
+        public NetworkStream ns;
+
+        IPAddress ipa;
+        int port = -1;
+
+        Sk_Device Sk_Dev;
+        private bool Action = false;
+        Thread TD_Server;
+        public SocketServer()
+        {
+        }
+
+        public void Open(string ref_ip, int ref_port, Sk_Device ref_SK_Device)
+        {
+            Action = true;
+            TD_Server = new Thread(DoworkServer);
+            TD_Server.Start();
+            IPAddress.TryParse(ref_ip, out ipa);
+            Sk_Dev = ref_SK_Device;
+            port = ref_port;
+            tcpclt = new TcpClient();
+        }
+        public void Close()
+        {
+            Action = false;
+            TD_Server.Abort();
+            tcpLis.Stop();
+            tcpLis = null;
+            ServerConn = false;
+        }
+
+        private void DoworkServer()//object obj, DoWorkEventArgs e
+        {
+            while (Action)
+            {
+                try
+                {
+                    SpinWait.SpinUntil(() => false, 10);
+                    if (tcpclt == null || !ServerConn)
+                    {
+                        CheckConn();
+                        ConnChange();
+                    }
+
+                    if (tcpclt.Connected)
+                    {
+                        ns = tcpclt.GetStream();
+                        byte[] testbyte = new byte[0];
+                        tcpclt.Client.Send(testbyte, 0, 0);
+
+                        if (tcpclt.Connected && tcpclt.GetStream().CanRead && tcpclt.Available>0 &&tcpclt.GetStream().DataAvailable)//ns.CanRead && ns.DataAvailable
+                        {
+                            string received = "";
+                            bool RecvEnd = true; ;
+                            int endidx = -1;
+                            DateTime RecvTime = DateTime.Now;
+                            byte[] buff = new byte[tcpclt.ReceiveBufferSize];
+                            tcpclt.Client.Receive(buff, buff.Length, 0, SocketFlags.None);
+                            string temp = Encoding.ASCII.GetString(buff, 0, buff.Length).Trim((char)0);
+
+                            switch (Sk_Dev)
+                            {
+                                case Sk_Device.PLC_RT:
+                                    while (RecvEnd)
+                                    {
+                                        if ((DateTime.Now - RecvTime).Seconds > 3) 
+                                        {
+                                            
+                                        }
+                                        if (temp.IndexOf('\r') > -1)
+                                        {
+                                            received += temp;
+                                            RecvEnd = false;
+                                        }
+                                        else
+                                        {
+                                            received += temp;
+                                            buff = new byte[tcpclt.ReceiveBufferSize];
+                                            tcpclt.Client.Receive(buff, buff.Length, 0);
+                                            temp = Encoding.ASCII.GetString(buff, 0, buff.Length).Trim((char)0);
+                                            if (temp.IndexOf('\r') > -1)
+                                            {
+                                                received += temp;
+                                                RecvEnd = false;
+                                            }
+                                        }
+                                    }
+
+                                    endidx = received.IndexOf('\r');
+                                    received = received.Substring(0, endidx);
+                                    PLC_RTRecv(received);
+                                    break;
+                                case Sk_Device.PLC_Cmd:
+                                    while (RecvEnd)
+                                    {
+                                        if (temp.IndexOf('\r') > -1)
+                                        {
+                                            received = temp;
+                                        }
+                                        else
+                                        {
+                                            received += temp;
+                                            buff = new byte[tcpclt.ReceiveBufferSize];
+                                            tcpclt.Client.Receive(buff, buff.Length, 0);
+                                            temp = Encoding.ASCII.GetString(buff, 0, buff.Length).Trim((char)0);
+                                            if (temp.IndexOf('\r') > -1)
+                                            {
+                                                received += temp;
+                                                RecvEnd = false;
+                                            }
+                                        }
+                                    }
+                                    endidx = received.IndexOf('\r');
+                                    received = received.Substring(0, endidx);
+                                    PLC_CmdRecv(received);
+                                    break;
+                                case Sk_Device.OCR:
+                                    OCR_RECV(received);
+                                    break;
+                                case Sk_Device.CCDAL_RT:
+                                    int idx2 = received.IndexOf('\r');
+                                    received = received.Substring(0, idx2);
+                                    ccd_Recv(received);
+                                    break;
+                                case Sk_Device.CCDAL_Cmd:
+                                    int idx4 = received.IndexOf('\r');
+                                    received = received.Substring(0, idx4);
+                                    ccd_Send(received);
+                                    break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        CheckConn();
+                        ConnChange();
+                    }
+                }
+                catch
+                {
+                    CheckConn();
+                    ConnChange();
+                }
+            }
+        }
+
+        private void CheckConn() 
+        {
+            tcpclt = new TcpClient();
+            tcpclt.ReceiveTimeout = 1000;
+            tcpclt.SendTimeout = 1000;
+            var result = tcpclt.BeginConnect(ipa, port, null, null);
+            ServerConn = result.AsyncWaitHandle.WaitOne(1000, true);
+
+            if (ServerConn && tcpclt.Connected)
+            {
+                ServerConn = true;
+            }
+            else 
+            {
+                ServerConn = false;
+            }
+        }
+
+        private void ConnChange() 
+        {
+            switch (Sk_Dev)
+            {
+                case Sk_Device.PLC_RT:
+                    UI(string.Format("{0},{1}", UIChange.PLC_RTStatus, ServerConn));
+                    break;
+                case Sk_Device.PLC_Cmd:
+                    UI(string.Format("{0},{1}", UIChange.PLC_CmdStatus, ServerConn));
+                    break;
+                case Sk_Device.OCR:
+                    UI(string.Format("{0},{1}", UIChange.OCRStatus, ServerConn));
+                    break;
+            }
+        }
+    }
+}

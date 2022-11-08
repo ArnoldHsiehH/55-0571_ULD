@@ -1,0 +1,889 @@
+﻿namespace HirataMainControl
+{
+    partial class HCT_EFEM
+    {
+        /// <summary> 
+        /// 設計工具所需的變數。
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// 清除任何使用中的資源。
+        /// </summary>
+        /// <param name="disposing">如果應該處置 Managed 資源則為 true，否則為 false。</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region 元件設計工具產生的程式碼
+
+        /// <summary> 
+        /// 此為設計工具支援所需的方法 - 請勿使用程式碼編輯器
+        /// 修改這個方法的內容。
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HCT_EFEM));
+            this.tapgEFEM = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.GbxRecipe = new System.Windows.Forms.GroupBox();
+            this.labCurrentRecipe = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Buffer1 = new HirataMainControl.CarrierBuffer();
+            this.OCR4 = new HirataMainControl.IO_OCR();
+            this.OCR3 = new HirataMainControl.IO_OCR();
+            this.OCR2 = new HirataMainControl.IO_OCR();
+            this.OCR1 = new HirataMainControl.IO_OCR();
+            this.MP8 = new HirataMainControl.HCT_MagazinePort();
+            this.MP7 = new HirataMainControl.HCT_MagazinePort();
+            this.MP6 = new HirataMainControl.HCT_MagazinePort();
+            this.MP5 = new HirataMainControl.HCT_MagazinePort();
+            this.MP4 = new HirataMainControl.HCT_MagazinePort();
+            this.MP3 = new HirataMainControl.HCT_MagazinePort();
+            this.MP2 = new HirataMainControl.HCT_MagazinePort();
+            this.MP1 = new HirataMainControl.HCT_MagazinePort();
+            this.Stage2 = new HirataMainControl.HCT_Stage();
+            this.Stage1 = new HirataMainControl.HCT_Stage();
+            this.CP10 = new HirataMainControl.HCT_CassettePort();
+            this.CP9 = new HirataMainControl.HCT_CassettePort();
+            this.CP8 = new HirataMainControl.HCT_CassettePort();
+            this.CP7 = new HirataMainControl.HCT_CassettePort();
+            this.Robot2 = new HirataMainControl.HCT_RB();
+            this.Robot1 = new HirataMainControl.HCT_RB();
+            this.CP6 = new HirataMainControl.HCT_CassettePort();
+            this.Aligner1 = new HirataMainControl.HCT_Aligner();
+            this.CP5 = new HirataMainControl.HCT_CassettePort();
+            this.CP4 = new HirataMainControl.HCT_CassettePort();
+            this.gbxButton = new System.Windows.Forms.GroupBox();
+            this.pnlButton = new System.Windows.Forms.Panel();
+            this.CP3 = new HirataMainControl.HCT_CassettePort();
+            this.CP2 = new HirataMainControl.HCT_CassettePort();
+            this.CP1 = new HirataMainControl.HCT_CassettePort();
+            this.tctlEFEM = new System.Windows.Forms.TabControl();
+            this.tapgAdam = new System.Windows.Forms.TabPage();
+            this.IO_Monitor = new HirataMainControl.IO_EFEM();
+            this.D9001 = new HirataMainControl.HCT_D900();
+            this.D9002 = new HirataMainControl.HCT_D900();
+            this.tapgEFEM.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.GbxRecipe.SuspendLayout();
+            this.gbxButton.SuspendLayout();
+            this.tctlEFEM.SuspendLayout();
+            this.tapgAdam.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // tapgEFEM
+            // 
+            this.tapgEFEM.BackColor = System.Drawing.SystemColors.Control;
+            this.tapgEFEM.Controls.Add(this.D9002);
+            this.tapgEFEM.Controls.Add(this.D9001);
+            this.tapgEFEM.Controls.Add(this.groupBox1);
+            this.tapgEFEM.Controls.Add(this.GbxRecipe);
+            this.tapgEFEM.Controls.Add(this.Buffer1);
+            this.tapgEFEM.Controls.Add(this.OCR4);
+            this.tapgEFEM.Controls.Add(this.OCR3);
+            this.tapgEFEM.Controls.Add(this.OCR2);
+            this.tapgEFEM.Controls.Add(this.OCR1);
+            this.tapgEFEM.Controls.Add(this.MP8);
+            this.tapgEFEM.Controls.Add(this.MP7);
+            this.tapgEFEM.Controls.Add(this.MP6);
+            this.tapgEFEM.Controls.Add(this.MP5);
+            this.tapgEFEM.Controls.Add(this.MP4);
+            this.tapgEFEM.Controls.Add(this.MP3);
+            this.tapgEFEM.Controls.Add(this.MP2);
+            this.tapgEFEM.Controls.Add(this.MP1);
+            this.tapgEFEM.Controls.Add(this.Stage2);
+            this.tapgEFEM.Controls.Add(this.Stage1);
+            this.tapgEFEM.Controls.Add(this.CP10);
+            this.tapgEFEM.Controls.Add(this.CP9);
+            this.tapgEFEM.Controls.Add(this.CP8);
+            this.tapgEFEM.Controls.Add(this.CP7);
+            this.tapgEFEM.Controls.Add(this.Robot2);
+            this.tapgEFEM.Controls.Add(this.Robot1);
+            this.tapgEFEM.Controls.Add(this.CP6);
+            this.tapgEFEM.Controls.Add(this.Aligner1);
+            this.tapgEFEM.Controls.Add(this.CP5);
+            this.tapgEFEM.Controls.Add(this.CP4);
+            this.tapgEFEM.Controls.Add(this.gbxButton);
+            this.tapgEFEM.Controls.Add(this.CP3);
+            this.tapgEFEM.Controls.Add(this.CP2);
+            this.tapgEFEM.Controls.Add(this.CP1);
+            this.tapgEFEM.Location = new System.Drawing.Point(4, 5);
+            this.tapgEFEM.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tapgEFEM.Name = "tapgEFEM";
+            this.tapgEFEM.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tapgEFEM.Size = new System.Drawing.Size(2292, 941);
+            this.tapgEFEM.TabIndex = 0;
+            this.tapgEFEM.Text = "EFEM";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Location = new System.Drawing.Point(137, 97);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(177, 180);
+            this.groupBox1.TabIndex = 45;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Description";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(9, 134);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(126, 14);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "(DesPort,DesSlot)";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(8, 64);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(126, 14);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "(SocPort,SocSlot)";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(63, 104);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(91, 14);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Not Complete";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(63, 36);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 14);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Complete";
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.label3.Location = new System.Drawing.Point(11, 104);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 20);
+            this.label3.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Green;
+            this.label2.Location = new System.Drawing.Point(11, 34);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 20);
+            this.label2.TabIndex = 0;
+            // 
+            // GbxRecipe
+            // 
+            this.GbxRecipe.Controls.Add(this.labCurrentRecipe);
+            this.GbxRecipe.Controls.Add(this.label1);
+            this.GbxRecipe.Location = new System.Drawing.Point(137, 4);
+            this.GbxRecipe.Name = "GbxRecipe";
+            this.GbxRecipe.Size = new System.Drawing.Size(177, 86);
+            this.GbxRecipe.TabIndex = 44;
+            this.GbxRecipe.TabStop = false;
+            // 
+            // labCurrentRecipe
+            // 
+            this.labCurrentRecipe.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.labCurrentRecipe.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labCurrentRecipe.Location = new System.Drawing.Point(28, 47);
+            this.labCurrentRecipe.Name = "labCurrentRecipe";
+            this.labCurrentRecipe.Size = new System.Drawing.Size(112, 25);
+            this.labCurrentRecipe.TabIndex = 1;
+            this.labCurrentRecipe.Text = "CP -> MP";
+            this.labCurrentRecipe.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(11, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(120, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Current Recipe：";
+            // 
+            // Buffer1
+            // 
+            this.Buffer1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
+            this.Buffer1.Location = new System.Drawing.Point(2127, 394);
+            this.Buffer1.Name = "Buffer1";
+            this.Buffer1.Size = new System.Drawing.Size(130, 145);
+            this.Buffer1.TabIndex = 43;
+            this.Buffer1.Ui_Protrude = false;
+            // 
+            // OCR4
+            // 
+            this.OCR4.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OCR4.Location = new System.Drawing.Point(728, 479);
+            this.OCR4.Name = "OCR4";
+            this.OCR4.Size = new System.Drawing.Size(230, 60);
+            this.OCR4.TabIndex = 42;
+            this.OCR4.Ui_Busy = false;
+            this.OCR4.Ui_Connect = false;
+            this.OCR4.Ui_ID = "";
+            // 
+            // OCR3
+            // 
+            this.OCR3.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OCR3.Location = new System.Drawing.Point(728, 391);
+            this.OCR3.Name = "OCR3";
+            this.OCR3.Size = new System.Drawing.Size(230, 60);
+            this.OCR3.TabIndex = 41;
+            this.OCR3.Ui_Busy = false;
+            this.OCR3.Ui_Connect = false;
+            this.OCR3.Ui_ID = "";
+            // 
+            // OCR2
+            // 
+            this.OCR2.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OCR2.Location = new System.Drawing.Point(1862, 391);
+            this.OCR2.Name = "OCR2";
+            this.OCR2.Size = new System.Drawing.Size(230, 60);
+            this.OCR2.TabIndex = 40;
+            this.OCR2.Ui_Busy = false;
+            this.OCR2.Ui_Connect = false;
+            this.OCR2.Ui_ID = "";
+            this.OCR2.Visible = false;
+            // 
+            // OCR1
+            // 
+            this.OCR1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OCR1.Location = new System.Drawing.Point(6, 391);
+            this.OCR1.Name = "OCR1";
+            this.OCR1.Size = new System.Drawing.Size(230, 60);
+            this.OCR1.TabIndex = 39;
+            this.OCR1.Ui_Busy = false;
+            this.OCR1.Ui_Connect = false;
+            this.OCR1.Ui_ID = "";
+            this.OCR1.Visible = false;
+            // 
+            // MP8
+            // 
+            this.MP8.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
+            this.MP8.Location = new System.Drawing.Point(334, 7);
+            this.MP8.Name = "MP8";
+            this.MP8.Size = new System.Drawing.Size(200, 280);
+            this.MP8.TabIndex = 38;
+            this.MP8.Ui_Alarm = false;
+            this.MP8.Ui_Barcode = "";
+            this.MP8.Ui_Busy = false;
+            this.MP8.Ui_Gratina = false;
+            this.MP8.Ui_InDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.MP8.Ui_Invasion = false;
+            this.MP8.Ui_OutDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.MP8.Ui_Process = false;
+            this.MP8.Ui_Protrude = false;
+            this.MP8.Ui_Ready = false;
+            // 
+            // MP7
+            // 
+            this.MP7.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
+            this.MP7.Location = new System.Drawing.Point(540, 7);
+            this.MP7.Name = "MP7";
+            this.MP7.Size = new System.Drawing.Size(200, 280);
+            this.MP7.TabIndex = 37;
+            this.MP7.Ui_Alarm = false;
+            this.MP7.Ui_Barcode = "";
+            this.MP7.Ui_Busy = false;
+            this.MP7.Ui_Gratina = false;
+            this.MP7.Ui_InDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.MP7.Ui_Invasion = false;
+            this.MP7.Ui_OutDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.MP7.Ui_Process = false;
+            this.MP7.Ui_Protrude = false;
+            this.MP7.Ui_Ready = false;
+            // 
+            // MP6
+            // 
+            this.MP6.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
+            this.MP6.Location = new System.Drawing.Point(746, 7);
+            this.MP6.Name = "MP6";
+            this.MP6.Size = new System.Drawing.Size(200, 280);
+            this.MP6.TabIndex = 36;
+            this.MP6.Ui_Alarm = false;
+            this.MP6.Ui_Barcode = "";
+            this.MP6.Ui_Busy = false;
+            this.MP6.Ui_Gratina = false;
+            this.MP6.Ui_InDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.MP6.Ui_Invasion = false;
+            this.MP6.Ui_OutDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.MP6.Ui_Process = false;
+            this.MP6.Ui_Protrude = false;
+            this.MP6.Ui_Ready = false;
+            // 
+            // MP5
+            // 
+            this.MP5.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
+            this.MP5.Location = new System.Drawing.Point(951, 7);
+            this.MP5.Name = "MP5";
+            this.MP5.Size = new System.Drawing.Size(200, 280);
+            this.MP5.TabIndex = 35;
+            this.MP5.Ui_Alarm = false;
+            this.MP5.Ui_Barcode = "";
+            this.MP5.Ui_Busy = false;
+            this.MP5.Ui_Gratina = false;
+            this.MP5.Ui_InDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.MP5.Ui_Invasion = false;
+            this.MP5.Ui_OutDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.MP5.Ui_Process = false;
+            this.MP5.Ui_Protrude = false;
+            this.MP5.Ui_Ready = false;
+            // 
+            // MP4
+            // 
+            this.MP4.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
+            this.MP4.Location = new System.Drawing.Point(1157, 7);
+            this.MP4.Name = "MP4";
+            this.MP4.Size = new System.Drawing.Size(200, 280);
+            this.MP4.TabIndex = 34;
+            this.MP4.Ui_Alarm = false;
+            this.MP4.Ui_Barcode = "";
+            this.MP4.Ui_Busy = false;
+            this.MP4.Ui_Gratina = false;
+            this.MP4.Ui_InDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.MP4.Ui_Invasion = false;
+            this.MP4.Ui_OutDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.MP4.Ui_Process = false;
+            this.MP4.Ui_Protrude = false;
+            this.MP4.Ui_Ready = false;
+            // 
+            // MP3
+            // 
+            this.MP3.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
+            this.MP3.Location = new System.Drawing.Point(1363, 7);
+            this.MP3.Name = "MP3";
+            this.MP3.Size = new System.Drawing.Size(200, 280);
+            this.MP3.TabIndex = 33;
+            this.MP3.Ui_Alarm = false;
+            this.MP3.Ui_Barcode = "";
+            this.MP3.Ui_Busy = false;
+            this.MP3.Ui_Gratina = false;
+            this.MP3.Ui_InDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.MP3.Ui_Invasion = false;
+            this.MP3.Ui_OutDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.MP3.Ui_Process = false;
+            this.MP3.Ui_Protrude = false;
+            this.MP3.Ui_Ready = false;
+            // 
+            // MP2
+            // 
+            this.MP2.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
+            this.MP2.Location = new System.Drawing.Point(1569, 7);
+            this.MP2.Name = "MP2";
+            this.MP2.Size = new System.Drawing.Size(200, 280);
+            this.MP2.TabIndex = 32;
+            this.MP2.Ui_Alarm = false;
+            this.MP2.Ui_Barcode = "";
+            this.MP2.Ui_Busy = false;
+            this.MP2.Ui_Gratina = false;
+            this.MP2.Ui_InDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.MP2.Ui_Invasion = false;
+            this.MP2.Ui_OutDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.MP2.Ui_Process = false;
+            this.MP2.Ui_Protrude = false;
+            this.MP2.Ui_Ready = false;
+            // 
+            // MP1
+            // 
+            this.MP1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
+            this.MP1.Location = new System.Drawing.Point(1775, 7);
+            this.MP1.Name = "MP1";
+            this.MP1.Size = new System.Drawing.Size(200, 280);
+            this.MP1.TabIndex = 31;
+            this.MP1.Ui_Alarm = false;
+            this.MP1.Ui_Barcode = "";
+            this.MP1.Ui_Busy = false;
+            this.MP1.Ui_Gratina = false;
+            this.MP1.Ui_InDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.MP1.Ui_Invasion = false;
+            this.MP1.Ui_OutDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.MP1.Ui_Process = false;
+            this.MP1.Ui_Protrude = false;
+            this.MP1.Ui_Ready = false;
+            // 
+            // Stage2
+            // 
+            this.Stage2.BackColor = System.Drawing.SystemColors.Control;
+            this.Stage2.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Stage2.Location = new System.Drawing.Point(1376, 391);
+            this.Stage2.Name = "Stage2";
+            this.Stage2.Size = new System.Drawing.Size(480, 143);
+            this.Stage2.TabIndex = 30;
+            this.Stage2.Ui_Alarm = false;
+            this.Stage2.Ui_Busy = false;
+            this.Stage2.Ui_CarrieAvailable = false;
+            this.Stage2.Ui_CarrierInfo = "";
+            this.Stage2.Ui_CarrierPresence = HirataMainControl.WaferStatus.WithOut;
+            this.Stage2.Ui_CarrierSideInvade = false;
+            this.Stage2.Ui_CarrierWaferPresence = HirataMainControl.WaferStatus.WithOut;
+            this.Stage2.Ui_CarrieSideProtrude = false;
+            this.Stage2.Ui_Ready = false;
+            this.Stage2.Ui_RobotWaferPresence = HirataMainControl.WaferStatus.WithOut;
+            this.Stage2.Ui_StageBusy = true;
+            this.Stage2.Ui_WaferAvailable = false;
+            this.Stage2.Ui_WaferInfo = "";
+            this.Stage2.Ui_WaferPresence = HirataMainControl.WaferStatus.WithOut;
+            this.Stage2.Ui_WaferSideInvade = false;
+            this.Stage2.Ui_WaferSideProtrude = false;
+            // 
+            // Stage1
+            // 
+            this.Stage1.BackColor = System.Drawing.SystemColors.Control;
+            this.Stage1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Stage1.Location = new System.Drawing.Point(242, 391);
+            this.Stage1.Name = "Stage1";
+            this.Stage1.Size = new System.Drawing.Size(480, 143);
+            this.Stage1.TabIndex = 29;
+            this.Stage1.Ui_Alarm = false;
+            this.Stage1.Ui_Busy = false;
+            this.Stage1.Ui_CarrieAvailable = false;
+            this.Stage1.Ui_CarrierInfo = "";
+            this.Stage1.Ui_CarrierPresence = HirataMainControl.WaferStatus.WithOut;
+            this.Stage1.Ui_CarrierSideInvade = false;
+            this.Stage1.Ui_CarrierWaferPresence = HirataMainControl.WaferStatus.WithOut;
+            this.Stage1.Ui_CarrieSideProtrude = false;
+            this.Stage1.Ui_Ready = false;
+            this.Stage1.Ui_RobotWaferPresence = HirataMainControl.WaferStatus.WithOut;
+            this.Stage1.Ui_StageBusy = true;
+            this.Stage1.Ui_WaferAvailable = false;
+            this.Stage1.Ui_WaferInfo = "";
+            this.Stage1.Ui_WaferPresence = HirataMainControl.WaferStatus.WithOut;
+            this.Stage1.Ui_WaferSideInvade = false;
+            this.Stage1.Ui_WaferSideProtrude = false;
+            // 
+            // CP10
+            // 
+            this.CP10.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CP10.Location = new System.Drawing.Point(1981, 649);
+            this.CP10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CP10.Name = "CP10";
+            this.CP10.Size = new System.Drawing.Size(200, 280);
+            this.CP10.TabIndex = 27;
+            this.CP10.Ui_Alarm = false;
+            this.CP10.Ui_Barcode = null;
+            this.CP10.Ui_Busy = false;
+            this.CP10.Ui_Gratina = false;
+            this.CP10.Ui_InDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.CP10.Ui_Invasion = false;
+            this.CP10.Ui_OutDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.CP10.Ui_Process = false;
+            this.CP10.Ui_Protrude = false;
+            this.CP10.Ui_Ready = false;
+            // 
+            // CP9
+            // 
+            this.CP9.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CP9.Location = new System.Drawing.Point(1775, 649);
+            this.CP9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CP9.Name = "CP9";
+            this.CP9.Size = new System.Drawing.Size(200, 280);
+            this.CP9.TabIndex = 26;
+            this.CP9.Ui_Alarm = false;
+            this.CP9.Ui_Barcode = null;
+            this.CP9.Ui_Busy = false;
+            this.CP9.Ui_Gratina = false;
+            this.CP9.Ui_InDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.CP9.Ui_Invasion = false;
+            this.CP9.Ui_OutDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.CP9.Ui_Process = false;
+            this.CP9.Ui_Protrude = false;
+            this.CP9.Ui_Ready = false;
+            // 
+            // CP8
+            // 
+            this.CP8.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CP8.Location = new System.Drawing.Point(1569, 649);
+            this.CP8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CP8.Name = "CP8";
+            this.CP8.Size = new System.Drawing.Size(200, 280);
+            this.CP8.TabIndex = 25;
+            this.CP8.Ui_Alarm = false;
+            this.CP8.Ui_Barcode = null;
+            this.CP8.Ui_Busy = false;
+            this.CP8.Ui_Gratina = false;
+            this.CP8.Ui_InDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.CP8.Ui_Invasion = false;
+            this.CP8.Ui_OutDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.CP8.Ui_Process = false;
+            this.CP8.Ui_Protrude = false;
+            this.CP8.Ui_Ready = false;
+            // 
+            // CP7
+            // 
+            this.CP7.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CP7.Location = new System.Drawing.Point(1363, 649);
+            this.CP7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CP7.Name = "CP7";
+            this.CP7.Size = new System.Drawing.Size(200, 280);
+            this.CP7.TabIndex = 24;
+            this.CP7.Ui_Alarm = false;
+            this.CP7.Ui_Barcode = null;
+            this.CP7.Ui_Busy = false;
+            this.CP7.Ui_Gratina = false;
+            this.CP7.Ui_InDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.CP7.Ui_Invasion = false;
+            this.CP7.Ui_OutDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.CP7.Ui_Process = false;
+            this.CP7.Ui_Protrude = false;
+            this.CP7.Ui_Ready = false;
+            // 
+            // Robot2
+            // 
+            this.Robot2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Robot2.BackgroundImage")));
+            this.Robot2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Robot2.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Robot2.Location = new System.Drawing.Point(8, 289);
+            this.Robot2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Robot2.Name = "Robot2";
+            this.Robot2.Size = new System.Drawing.Size(2285, 100);
+            this.Robot2.TabIndex = 23;
+            this.Robot2.Ui_ArmStatusR = HirataMainControl.ArmStatus.Arm_Home;
+            this.Robot2.Ui_ArmStatusX = HirataMainControl.ArmStatus.Arm_Home;
+            this.Robot2.Ui_ArmStatusY = HirataMainControl.ArmStatus.Arm_Home;
+            this.Robot2.Ui_Busy = false;
+            this.Robot2.Ui_Connect = false;
+            this.Robot2.Ui_LowerWaferInfo = null;
+            this.Robot2.Ui_LowerWaferPresent = HirataMainControl.WaferStatus.Unknown;
+            this.Robot2.Ui_Remote = false;
+            this.Robot2.Ui_RobotPos = HirataMainControl.RobotPosition.Home;
+            this.Robot2.Ui_Status = null;
+            this.Robot2.Ui_UpperWaferInfo = null;
+            this.Robot2.Ui_UpperWaferPresent = HirataMainControl.WaferStatus.Unknown;
+            // 
+            // Robot1
+            // 
+            this.Robot1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Robot1.BackgroundImage")));
+            this.Robot1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Robot1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
+            this.Robot1.Location = new System.Drawing.Point(6, 541);
+            this.Robot1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Robot1.Name = "Robot1";
+            this.Robot1.Size = new System.Drawing.Size(2280, 100);
+            this.Robot1.TabIndex = 21;
+            this.Robot1.Ui_ArmStatusR = HirataMainControl.ArmStatus.Arm_Home;
+            this.Robot1.Ui_ArmStatusX = HirataMainControl.ArmStatus.Arm_Home;
+            this.Robot1.Ui_ArmStatusY = HirataMainControl.ArmStatus.Arm_Home;
+            this.Robot1.Ui_Busy = false;
+            this.Robot1.Ui_Connect = false;
+            this.Robot1.Ui_LowerWaferInfo = null;
+            this.Robot1.Ui_LowerWaferPresent = HirataMainControl.WaferStatus.Unknown;
+            this.Robot1.Ui_Remote = false;
+            this.Robot1.Ui_RobotPos = HirataMainControl.RobotPosition.Home;
+            this.Robot1.Ui_Status = null;
+            this.Robot1.Ui_UpperWaferInfo = null;
+            this.Robot1.Ui_UpperWaferPresent = HirataMainControl.WaferStatus.Unknown;
+            // 
+            // CP6
+            // 
+            this.CP6.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CP6.Location = new System.Drawing.Point(1157, 649);
+            this.CP6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CP6.Name = "CP6";
+            this.CP6.Size = new System.Drawing.Size(200, 280);
+            this.CP6.TabIndex = 11;
+            this.CP6.Ui_Alarm = false;
+            this.CP6.Ui_Barcode = null;
+            this.CP6.Ui_Busy = false;
+            this.CP6.Ui_Gratina = false;
+            this.CP6.Ui_InDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.CP6.Ui_Invasion = false;
+            this.CP6.Ui_OutDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.CP6.Ui_Process = false;
+            this.CP6.Ui_Protrude = false;
+            this.CP6.Ui_Ready = false;
+            // 
+            // Aligner1
+            // 
+            this.Aligner1.BackColor = System.Drawing.SystemColors.Control;
+            this.Aligner1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Aligner1.Location = new System.Drawing.Point(964, 391);
+            this.Aligner1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Aligner1.Name = "Aligner1";
+            this.Aligner1.Size = new System.Drawing.Size(400, 145);
+            this.Aligner1.TabIndex = 12;
+            this.Aligner1.Ui_Alarm = "Error";
+            this.Aligner1.Ui_Busy = false;
+            this.Aligner1.Ui_Connect = false;
+            this.Aligner1.Ui_LiftPin = HirataMainControl.LiftPinEnum.Unknown;
+            this.Aligner1.Ui_Mode = null;
+            this.Aligner1.Ui_NotchAngle = "0";
+            this.Aligner1.Ui_Presence = HirataMainControl.WaferStatus.WithOut;
+            this.Aligner1.Ui_Status = HirataMainControl.AlignerStatus.Unknown;
+            this.Aligner1.Ui_ToAngle = "0";
+            this.Aligner1.Ui_Type = null;
+            this.Aligner1.Ui_Vac = false;
+            this.Aligner1.Ui_WaferInfo = "";
+            this.Aligner1.Ui_WaferProtrude = false;
+            // 
+            // CP5
+            // 
+            this.CP5.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CP5.Location = new System.Drawing.Point(952, 649);
+            this.CP5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CP5.Name = "CP5";
+            this.CP5.Size = new System.Drawing.Size(200, 280);
+            this.CP5.TabIndex = 10;
+            this.CP5.Ui_Alarm = false;
+            this.CP5.Ui_Barcode = null;
+            this.CP5.Ui_Busy = false;
+            this.CP5.Ui_Gratina = false;
+            this.CP5.Ui_InDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.CP5.Ui_Invasion = false;
+            this.CP5.Ui_OutDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.CP5.Ui_Process = false;
+            this.CP5.Ui_Protrude = false;
+            this.CP5.Ui_Ready = false;
+            // 
+            // CP4
+            // 
+            this.CP4.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CP4.Location = new System.Drawing.Point(746, 649);
+            this.CP4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CP4.Name = "CP4";
+            this.CP4.Size = new System.Drawing.Size(200, 280);
+            this.CP4.TabIndex = 9;
+            this.CP4.Ui_Alarm = false;
+            this.CP4.Ui_Barcode = null;
+            this.CP4.Ui_Busy = false;
+            this.CP4.Ui_Gratina = false;
+            this.CP4.Ui_InDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.CP4.Ui_Invasion = false;
+            this.CP4.Ui_OutDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.CP4.Ui_Process = false;
+            this.CP4.Ui_Protrude = false;
+            this.CP4.Ui_Ready = false;
+            // 
+            // gbxButton
+            // 
+            this.gbxButton.Controls.Add(this.pnlButton);
+            this.gbxButton.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbxButton.ForeColor = System.Drawing.Color.Black;
+            this.gbxButton.Location = new System.Drawing.Point(6, 4);
+            this.gbxButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbxButton.Name = "gbxButton";
+            this.gbxButton.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbxButton.Size = new System.Drawing.Size(116, 277);
+            this.gbxButton.TabIndex = 3;
+            this.gbxButton.TabStop = false;
+            this.gbxButton.Text = "Command";
+            // 
+            // pnlButton
+            // 
+            this.pnlButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlButton.Location = new System.Drawing.Point(3, 23);
+            this.pnlButton.Name = "pnlButton";
+            this.pnlButton.Size = new System.Drawing.Size(110, 250);
+            this.pnlButton.TabIndex = 25;
+            // 
+            // CP3
+            // 
+            this.CP3.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CP3.Location = new System.Drawing.Point(540, 649);
+            this.CP3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CP3.Name = "CP3";
+            this.CP3.Size = new System.Drawing.Size(200, 280);
+            this.CP3.TabIndex = 8;
+            this.CP3.Ui_Alarm = false;
+            this.CP3.Ui_Barcode = null;
+            this.CP3.Ui_Busy = false;
+            this.CP3.Ui_Gratina = false;
+            this.CP3.Ui_InDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.CP3.Ui_Invasion = false;
+            this.CP3.Ui_OutDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.CP3.Ui_Process = false;
+            this.CP3.Ui_Protrude = false;
+            this.CP3.Ui_Ready = false;
+            // 
+            // CP2
+            // 
+            this.CP2.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CP2.Location = new System.Drawing.Point(334, 649);
+            this.CP2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CP2.Name = "CP2";
+            this.CP2.Size = new System.Drawing.Size(200, 280);
+            this.CP2.TabIndex = 7;
+            this.CP2.Ui_Alarm = false;
+            this.CP2.Ui_Barcode = null;
+            this.CP2.Ui_Busy = false;
+            this.CP2.Ui_Gratina = false;
+            this.CP2.Ui_InDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.CP2.Ui_Invasion = false;
+            this.CP2.Ui_OutDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.CP2.Ui_Process = false;
+            this.CP2.Ui_Protrude = false;
+            this.CP2.Ui_Ready = false;
+            // 
+            // CP1
+            // 
+            this.CP1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CP1.Location = new System.Drawing.Point(128, 649);
+            this.CP1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CP1.Name = "CP1";
+            this.CP1.Size = new System.Drawing.Size(200, 280);
+            this.CP1.TabIndex = 6;
+            this.CP1.Ui_Alarm = false;
+            this.CP1.Ui_Barcode = null;
+            this.CP1.Ui_Busy = false;
+            this.CP1.Ui_Gratina = false;
+            this.CP1.Ui_InDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.CP1.Ui_Invasion = false;
+            this.CP1.Ui_OutDoor = HirataMainControl.IOLPDoor.Unknown;
+            this.CP1.Ui_Process = false;
+            this.CP1.Ui_Protrude = false;
+            this.CP1.Ui_Ready = false;
+            // 
+            // tctlEFEM
+            // 
+            this.tctlEFEM.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.tctlEFEM.Controls.Add(this.tapgEFEM);
+            this.tctlEFEM.Controls.Add(this.tapgAdam);
+            this.tctlEFEM.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tctlEFEM.ItemSize = new System.Drawing.Size(0, 1);
+            this.tctlEFEM.Location = new System.Drawing.Point(0, 0);
+            this.tctlEFEM.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tctlEFEM.Name = "tctlEFEM";
+            this.tctlEFEM.SelectedIndex = 0;
+            this.tctlEFEM.Size = new System.Drawing.Size(2300, 950);
+            this.tctlEFEM.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tctlEFEM.TabIndex = 15;
+            // 
+            // tapgAdam
+            // 
+            this.tapgAdam.BackColor = System.Drawing.SystemColors.Control;
+            this.tapgAdam.Controls.Add(this.IO_Monitor);
+            this.tapgAdam.Location = new System.Drawing.Point(4, 5);
+            this.tapgAdam.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tapgAdam.Name = "tapgAdam";
+            this.tapgAdam.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tapgAdam.Size = new System.Drawing.Size(2292, 941);
+            this.tapgAdam.TabIndex = 1;
+            this.tapgAdam.Text = "Adam";
+            // 
+            // IO_Monitor
+            // 
+            this.IO_Monitor.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
+            this.IO_Monitor.Location = new System.Drawing.Point(0, 1);
+            this.IO_Monitor.Name = "IO_Monitor";
+            this.IO_Monitor.Size = new System.Drawing.Size(643, 937);
+            this.IO_Monitor.TabIndex = 4;
+            // 
+            // D9001
+            // 
+            this.D9001.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
+            this.D9001.Location = new System.Drawing.Point(9, 458);
+            this.D9001.Name = "D9001";
+            this.D9001.Size = new System.Drawing.Size(227, 61);
+            this.D9001.TabIndex = 46;
+            this.D9001.Ui_Busy = false;
+            this.D9001.Ui_Connect = false;
+            this.D9001.Ui_ID = "";
+            // 
+            // D9002
+            // 
+            this.D9002.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
+            this.D9002.Location = new System.Drawing.Point(1862, 457);
+            this.D9002.Name = "D9002";
+            this.D9002.Size = new System.Drawing.Size(227, 61);
+            this.D9002.TabIndex = 47;
+            this.D9002.Ui_Busy = false;
+            this.D9002.Ui_Connect = false;
+            this.D9002.Ui_ID = "";
+            // 
+            // HCT_EFEM
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tctlEFEM);
+            this.DoubleBuffered = true;
+            this.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "HCT_EFEM";
+            this.Size = new System.Drawing.Size(2300, 950);
+            this.tapgEFEM.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.GbxRecipe.ResumeLayout(false);
+            this.GbxRecipe.PerformLayout();
+            this.gbxButton.ResumeLayout(false);
+            this.tctlEFEM.ResumeLayout(false);
+            this.tapgAdam.ResumeLayout(false);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.TabPage tapgEFEM;
+        private CarrierBuffer Buffer1;
+        private IO_OCR OCR4;
+        private IO_OCR OCR3;
+        private IO_OCR OCR2;
+        private IO_OCR OCR1;
+        private HCT_MagazinePort MP8;
+        private HCT_MagazinePort MP7;
+        private HCT_MagazinePort MP6;
+        private HCT_MagazinePort MP5;
+        private HCT_MagazinePort MP4;
+        private HCT_MagazinePort MP3;
+        private HCT_MagazinePort MP2;
+        private HCT_MagazinePort MP1;
+        private HCT_Stage Stage2;
+        private HCT_Stage Stage1;
+        private HCT_CassettePort CP10;
+        private HCT_CassettePort CP9;
+        private HCT_CassettePort CP8;
+        private HCT_CassettePort CP7;
+        private HCT_RB Robot2;
+        private HCT_RB Robot1;
+        private HCT_CassettePort CP6;
+        private HCT_Aligner Aligner1;
+        private HCT_CassettePort CP5;
+        private HCT_CassettePort CP4;
+        private System.Windows.Forms.GroupBox gbxButton;
+        private System.Windows.Forms.Panel pnlButton;
+        private HCT_CassettePort CP3;
+        private HCT_CassettePort CP2;
+        private HCT_CassettePort CP1;
+        private System.Windows.Forms.TabControl tctlEFEM;
+        private System.Windows.Forms.TabPage tapgAdam;
+        private IO_EFEM IO_Monitor;
+        private System.Windows.Forms.GroupBox GbxRecipe;
+        private System.Windows.Forms.Label labCurrentRecipe;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private HCT_D900 D9002;
+        private HCT_D900 D9001;
+    }
+}

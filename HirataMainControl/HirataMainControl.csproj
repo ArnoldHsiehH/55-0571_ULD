@@ -1,0 +1,482 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BFE23F45-5E62-4258-9101-3AA2044FD33D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HirataMainControl</RootNamespace>
+    <AssemblyName>HirataMainControl</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Hirata_Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Advantech.Adam, Version=8.2.12.0, Culture=neutral, PublicKeyToken=c24039c75946be9c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Advantech.Adam.dll</HintPath>
+    </Reference>
+    <Reference Include="Advantech.Common, Version=8.2.12.0, Culture=neutral, PublicKeyToken=c24039c75946be9c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Advantech.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Advantech.Graph, Version=8.2.12.0, Culture=neutral, PublicKeyToken=c24039c75946be9c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Advantech.Graph.dll</HintPath>
+    </Reference>
+    <Reference Include="Advantech.Protocol, Version=8.2.12.0, Culture=neutral, PublicKeyToken=c24039c75946be9c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Advantech.Protocol.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetZip, Version=1.13.3.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DotNetZip.dll</HintPath>
+    </Reference>
+    <Reference Include="Impinj.OctaneSdk, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\RFID\ReaderConnectivity\bin\Debug\Impinj.OctaneSdk.dll</HintPath>
+    </Reference>
+    <Reference Include="KgsSecsWrapperDotNet, Version=2.0.0.13, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\KgsSecsWrapperDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="LLRP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\RFID\ReaderConnectivity\bin\Debug\LLRP.dll</HintPath>
+    </Reference>
+    <Reference Include="LLRP.Impinj, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\RFID\ReaderConnectivity\bin\Debug\LLRP.Impinj.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\..\..\..\Wayne\Wyane_LP_20190201\LoadPort_20190201\LoadPort\LoadPort\bin\Debug\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\..\..\..\Wayne\Wyane_LP_20190201\LoadPort_20190201\LoadPort\LoadPort\bin\Debug\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\..\..\..\Wayne\Wyane_LP_20190201\LoadPort_20190201\LoadPort\LoadPort\bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\..\..\..\Wayne\Wyane_LP_20190201\LoadPort_20190201\LoadPort\LoadPort\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2020.0.1.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2020.0.1\lib\net40\Renci.SshNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Wayne\Main_20190201_Wyne_01\HirataMainControl\HirataMainControl\bin\Debug\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="frm_BarcodeFail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_BarcodeFail.designer.cs">
+      <DependentUpon>frm_BarcodeFail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HCT_LoadPort.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HCT_LoadPort.designer.cs">
+      <DependentUpon>HCT_LoadPort.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hirata_Lib\AllDef.cs" />
+    <Compile Include="Hirata_Lib\HashTable.cs" />
+    <Compile Include="Hirata_Lib\Hirata.cs" />
+    <Compile Include="Hirata_Lib\INI.cs" />
+    <Compile Include="Hirata_Lib\SocketServer.cs" />
+    <Compile Include="Hirata_Lib\TCP_Server.cs" />
+    <Compile Include="Hirata_Lib\WT_Library.cs" />
+    <Compile Include="inpinjRFID.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="inpinjRFID.designer.cs">
+      <DependentUpon>inpinjRFID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IO_Adam6000.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IO_Adam6000.designer.cs">
+      <DependentUpon>IO_Adam6000.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IO_EFEM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IO_EFEM.designer.cs">
+      <DependentUpon>IO_EFEM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IO_OCR.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IO_OCR.Designer.cs">
+      <DependentUpon>IO_OCR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OMRON_RFID.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OMRON_RFID.designer.cs">
+      <DependentUpon>OMRON_RFID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForm\Form_Alarm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForm\Form_Alarm.designer.cs">
+      <DependentUpon>Form_Alarm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForm\Form_AutoJob.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForm\Form_AutoJob.Designer.cs">
+      <DependentUpon>Form_AutoJob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForm\Form_Initial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForm\Form_Initial.designer.cs">
+      <DependentUpon>Form_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForm\Form_CheckKey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForm\Form_CheckKey.designer.cs">
+      <DependentUpon>Form_CheckKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForm\Form_ProcessReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForm\Form_ProcessReport.designer.cs">
+      <DependentUpon>Form_ProcessReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForm\TS_HCTCassettePort .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForm\TS_HCTCassettePort .designer.cs">
+      <DependentUpon>TS_HCTCassettePort .cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForm\TS_HCTD900.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForm\TS_HCTD900.Designer.cs">
+      <DependentUpon>TS_HCTD900.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForm\TS_HCTLoadPort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForm\TS_HCTLoadPort.designer.cs">
+      <DependentUpon>TS_HCTLoadPort.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForm\TS_HCTOCR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForm\TS_HCTOCR.designer.cs">
+      <DependentUpon>TS_HCTOCR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForm\TS_HCTRFID.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForm\TS_HCTRFID.designer.cs">
+      <DependentUpon>TS_HCTRFID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hirata_Lib\SQLite.cs" />
+    <Compile Include="Hirata_Lib\SocketClient.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Hirata_Lib\SocketClient.Designer.cs">
+      <DependentUpon>SocketClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hirata_Lib\AppSetting.cs" />
+    <Compile Include="Hirata_Lib\BlockQueue.cs" />
+    <Compile Include="Hirata_Lib\HCT_Define.cs" />
+    <Compile Include="HCT_RB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HCT_RB.Designer.cs">
+      <DependentUpon>HCT_RB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForm\TS_HCTStage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForm\TS_HCTStage.Designer.cs">
+      <DependentUpon>TS_HCTStage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HCT_Aligner.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HCT_Aligner.designer.cs">
+      <DependentUpon>HCT_Aligner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ULD_TCP.cs" />
+    <Compile Include="UserLog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserLog.Designer.cs">
+      <DependentUpon>UserLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserCore.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserCore.Designer.cs">
+      <DependentUpon>UserCore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HCT_EFEM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HCT_EFEM.Designer.cs">
+      <DependentUpon>HCT_EFEM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hirata_Lib\Program.cs" />
+    <Compile Include="OtherForm\TS_HCTMagazinerPort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForm\TS_HCTMagazinerPort.designer.cs">
+      <DependentUpon>TS_HCTMagazinerPort.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForm\TS_HCTAligner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForm\TS_HCTAligner.designer.cs">
+      <DependentUpon>TS_HCTAligner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OtherForm\TS_HCTRobot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OtherForm\TS_HCTRobot.designer.cs">
+      <DependentUpon>TS_HCTRobot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Hirata_Lib\UI.cs" />
+    <Compile Include="UserUnloader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserUnloader.designer.cs">
+      <DependentUpon>UserUnloader.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="frm_BarcodeFail.resx">
+      <DependentUpon>frm_BarcodeFail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HCT_LoadPort.resx">
+      <DependentUpon>HCT_LoadPort.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hirata_Lib\SocketClient.resx">
+      <DependentUpon>SocketClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="inpinjRFID.resx">
+      <DependentUpon>inpinjRFID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IO_Adam6000.resx">
+      <DependentUpon>IO_Adam6000.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IO_EFEM.resx">
+      <DependentUpon>IO_EFEM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IO_OCR.resx">
+      <DependentUpon>IO_OCR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.zh-Hans.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OMRON_RFID.resx">
+      <DependentUpon>OMRON_RFID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForm\Form_Alarm.resx">
+      <DependentUpon>Form_Alarm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForm\Form_AutoJob.resx">
+      <DependentUpon>Form_AutoJob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForm\Form_Initial.resx">
+      <DependentUpon>Form_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForm\Form_CheckKey.resx">
+      <DependentUpon>Form_CheckKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForm\Form_ProcessReport.resx">
+      <DependentUpon>Form_ProcessReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForm\TS_HCTCassettePort .resx">
+      <DependentUpon>TS_HCTCassettePort .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForm\TS_HCTD900.resx">
+      <DependentUpon>TS_HCTD900.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForm\TS_HCTLoadPort.resx">
+      <DependentUpon>TS_HCTLoadPort.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForm\TS_HCTOCR.resx">
+      <DependentUpon>TS_HCTOCR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForm\TS_HCTRFID.resx">
+      <DependentUpon>TS_HCTRFID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForm\TS_HCTStage.resx">
+      <DependentUpon>TS_HCTStage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HCT_Aligner.resx">
+      <DependentUpon>HCT_Aligner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserCore.resx">
+      <DependentUpon>UserCore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HCT_EFEM.resx">
+      <DependentUpon>HCT_EFEM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HCT_RB.resx">
+      <DependentUpon>HCT_RB.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserLog.resx">
+      <DependentUpon>UserLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForm\TS_HCTMagazinerPort.resx">
+      <DependentUpon>TS_HCTMagazinerPort.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForm\TS_HCTAligner.resx">
+      <DependentUpon>TS_HCTAligner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OtherForm\TS_HCTRobot.resx">
+      <DependentUpon>TS_HCTRobot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserUnloader.resx">
+      <DependentUpon>UserUnloader.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Resources\Log_Hirata.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Hirata_Lib\App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SmallAlignment_WithOut.png" />
+    <None Include="Resources\SmallAlignment_With.png" />
+    <None Include="Resources\Stage_WithOut.png" />
+    <None Include="Resources\Stage_With.png" />
+    <None Include="Resources\UserEdit.png" />
+    <None Include="Resources\User.png" />
+    <None Include="Resources\Stop.png" />
+    <None Include="Resources\Exit.png" />
+    <None Include="Resources\Auto.png" />
+    <None Include="Resources\BuzzeOff.png" />
+    <None Include="Resources\initial.png" />
+    <None Include="Resources\Adam.png" />
+    <None Include="Resources\Alarm.png" />
+    <None Include="Resources\Aligner_WithOut.png" />
+    <None Include="Resources\Aligner_With.png" />
+    <None Include="Resources\Log.png" />
+    <None Include="Resources\Account.png" />
+    <None Include="Resources\Fan.png" />
+    <None Include="Resources\Form.png" />
+    <None Include="Resources\AccountIn.png" />
+    <None Include="Resources\AccountOut.png" />
+    <None Include="Resources\AccountAdd.png" />
+    <None Include="Resources\AccountDel.png" />
+    <None Include="Resources\AccountSeh.png" />
+    <None Include="Resources\EatherCat.png" />
+    <None Include="Resources\Admin.png" />
+    <None Include="Resources\Engineer.png" />
+    <None Include="Resources\About.png" />
+    <None Include="Resources\Manual.png" />
+    <None Include="Resources\BuzzerOff.png" />
+    <None Include="Resources\BigAlignment_With.png" />
+    <None Include="Resources\BigAlignment_WithOut.png" />
+    <None Include="Resources\EQSetting.png" />
+    <None Include="Resources\AccountSave.png" />
+    <None Include="Resources\History.png" />
+    <None Include="Resources\CarrierIn_WaferOut.png" />
+    <Content Include="Hirata_Logo.ico" />
+    <None Include="Resources\Continue.png" />
+    <Content Include="Resources\monitor.png" />
+    <Content Include="Resources\Operation.png" />
+    <Content Include="Resources\Pause.png" />
+    <None Include="Resources\Process.png" />
+    <None Include="Resources\Ready.png" />
+    <None Include="Resources\PLC.png" />
+    <None Include="Resources\Remote_Local.png" />
+    <Content Include="Resources\Robot_DWith.png" />
+    <Content Include="Resources\Robot_DWithOut.png" />
+    <Content Include="Resources\Robot_LWith.png" />
+    <None Include="Resources\Robot_Route.png" />
+    <Content Include="Resources\Robot_UWith.png" />
+    <Content Include="Resources\Setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\..\..\..\..\Program Files %28x86%29\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Windows.Forms.dll" />
+    <Analyzer Include="bin\Debug\Advantech.Adam.dll" />
+    <Analyzer Include="bin\Debug\AdvMotAPI.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

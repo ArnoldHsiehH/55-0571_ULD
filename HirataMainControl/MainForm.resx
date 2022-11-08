@@ -1,0 +1,4360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="splTopStatus.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="splTopStatus.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="splTopStatus.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 9pt, style=Bold</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="splTopStatus.IsSplitterFixed" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="splTopStatus.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="splTopStatus.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="labEFEMMode.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 11.25pt, style=Bold</value>
+  </data>
+  <data name="labEFEMMode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labEFEMMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>72, 13</value>
+  </data>
+  <data name="labEFEMMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 30</value>
+  </data>
+  <data name="labEFEMMode.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="labEFEMMode.Text" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="labEFEMMode.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;labEFEMMode.Name" xml:space="preserve">
+    <value>labEFEMMode</value>
+  </data>
+  <data name="&gt;&gt;labEFEMMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labEFEMMode.Parent" xml:space="preserve">
+    <value>splTopStatus.Panel1</value>
+  </data>
+  <data name="&gt;&gt;labEFEMMode.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="labSECS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="labSECS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="labSECS.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="&gt;&gt;labSECS.Name" xml:space="preserve">
+    <value>labSECS</value>
+  </data>
+  <data name="&gt;&gt;labSECS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labSECS.Parent" xml:space="preserve">
+    <value>splTopStatus.Panel1</value>
+  </data>
+  <data name="&gt;&gt;labSECS.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="labPSW.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 14.25pt, style=Bold</value>
+  </data>
+  <data name="labPSW.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labPSW.Location" type="System.Drawing.Point, System.Drawing">
+    <value>321, 83</value>
+  </data>
+  <data name="labPSW.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 25</value>
+  </data>
+  <data name="labPSW.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="labPSW.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="labPSW.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;labPSW.Name" xml:space="preserve">
+    <value>labPSW</value>
+  </data>
+  <data name="&gt;&gt;labPSW.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labPSW.Parent" xml:space="preserve">
+    <value>splTopStatus.Panel1</value>
+  </data>
+  <data name="&gt;&gt;labPSW.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="labUnknow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labUnknow.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 60</value>
+  </data>
+  <data name="labUnknow.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="labUnknow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 18</value>
+  </data>
+  <data name="labUnknow.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="labUnknow.Text" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="labUnknow.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;labUnknow.Name" xml:space="preserve">
+    <value>labUnknow</value>
+  </data>
+  <data name="&gt;&gt;labUnknow.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labUnknow.Parent" xml:space="preserve">
+    <value>gbxWaferInfo</value>
+  </data>
+  <data name="&gt;&gt;labUnknow.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="labUnknownWafer.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labUnknownWafer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 81</value>
+  </data>
+  <data name="labUnknownWafer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="labUnknownWafer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 18</value>
+  </data>
+  <data name="labUnknownWafer.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="labUnknownWafer.Text" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="labUnknownWafer.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;labUnknownWafer.Name" xml:space="preserve">
+    <value>labUnknownWafer</value>
+  </data>
+  <data name="&gt;&gt;labUnknownWafer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labUnknownWafer.Parent" xml:space="preserve">
+    <value>gbxWaferInfo</value>
+  </data>
+  <data name="&gt;&gt;labUnknownWafer.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="labHaveWafer.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labHaveWafer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 39</value>
+  </data>
+  <data name="labHaveWafer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="labHaveWafer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 18</value>
+  </data>
+  <data name="labHaveWafer.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="labHaveWafer.Text" xml:space="preserve">
+    <value>Have Wafer</value>
+  </data>
+  <data name="labHaveWafer.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;labHaveWafer.Name" xml:space="preserve">
+    <value>labHaveWafer</value>
+  </data>
+  <data name="&gt;&gt;labHaveWafer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labHaveWafer.Parent" xml:space="preserve">
+    <value>gbxWaferInfo</value>
+  </data>
+  <data name="&gt;&gt;labHaveWafer.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="labNoWafer.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labNoWafer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 17</value>
+  </data>
+  <data name="labNoWafer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="labNoWafer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 18</value>
+  </data>
+  <data name="labNoWafer.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="labNoWafer.Text" xml:space="preserve">
+    <value>No Wafer</value>
+  </data>
+  <data name="labNoWafer.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;labNoWafer.Name" xml:space="preserve">
+    <value>labNoWafer</value>
+  </data>
+  <data name="&gt;&gt;labNoWafer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labNoWafer.Parent" xml:space="preserve">
+    <value>gbxWaferInfo</value>
+  </data>
+  <data name="&gt;&gt;labNoWafer.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="gbxWaferInfo.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 9pt, style=Bold</value>
+  </data>
+  <data name="gbxWaferInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>423, 3</value>
+  </data>
+  <data name="gbxWaferInfo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="gbxWaferInfo.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="gbxWaferInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 105</value>
+  </data>
+  <data name="gbxWaferInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="gbxWaferInfo.Text" xml:space="preserve">
+    <value>Wafer Information</value>
+  </data>
+  <data name="&gt;&gt;gbxWaferInfo.Name" xml:space="preserve">
+    <value>gbxWaferInfo</value>
+  </data>
+  <data name="&gt;&gt;gbxWaferInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbxWaferInfo.Parent" xml:space="preserve">
+    <value>splTopStatus.Panel1</value>
+  </data>
+  <data name="&gt;&gt;gbxWaferInfo.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="picFan.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="picFan.Location" type="System.Drawing.Point, System.Drawing">
+    <value>330, 0</value>
+  </data>
+  <data name="picFan.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 80</value>
+  </data>
+  <data name="picFan.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>AutoSize</value>
+  </data>
+  <data name="picFan.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;picFan.Name" xml:space="preserve">
+    <value>picFan</value>
+  </data>
+  <data name="&gt;&gt;picFan.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;picFan.Parent" xml:space="preserve">
+    <value>splTopStatus.Panel1</value>
+  </data>
+  <data name="&gt;&gt;picFan.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="picAccount.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="picAccount.Location" type="System.Drawing.Point, System.Drawing">
+    <value>230, 0</value>
+  </data>
+  <data name="picAccount.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 80</value>
+  </data>
+  <data name="picAccount.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>AutoSize</value>
+  </data>
+  <data name="picAccount.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;picAccount.Name" xml:space="preserve">
+    <value>picAccount</value>
+  </data>
+  <data name="&gt;&gt;picAccount.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;picAccount.Parent" xml:space="preserve">
+    <value>splTopStatus.Panel1</value>
+  </data>
+  <data name="&gt;&gt;picAccount.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="labAccount.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 14.25pt, style=Bold</value>
+  </data>
+  <data name="labAccount.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labAccount.Location" type="System.Drawing.Point, System.Drawing">
+    <value>219, 83</value>
+  </data>
+  <data name="labAccount.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="labAccount.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="labAccount.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;labAccount.Name" xml:space="preserve">
+    <value>labAccount</value>
+  </data>
+  <data name="&gt;&gt;labAccount.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labAccount.Parent" xml:space="preserve">
+    <value>splTopStatus.Panel1</value>
+  </data>
+  <data name="&gt;&gt;labAccount.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="labMode.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labMode.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 14.25pt, style=Bold</value>
+  </data>
+  <data name="labMode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 21</value>
+  </data>
+  <data name="labMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 22</value>
+  </data>
+  <data name="labMode.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="labMode.Text" xml:space="preserve">
+    <value>MODE</value>
+  </data>
+  <data name="&gt;&gt;labMode.Name" xml:space="preserve">
+    <value>labMode</value>
+  </data>
+  <data name="&gt;&gt;labMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labMode.Parent" xml:space="preserve">
+    <value>splTopStatus.Panel1</value>
+  </data>
+  <data name="&gt;&gt;labMode.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="labEFEMStatut.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 11.25pt, style=Bold</value>
+  </data>
+  <data name="labEFEMStatut.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labEFEMStatut.Location" type="System.Drawing.Point, System.Drawing">
+    <value>72, 52</value>
+  </data>
+  <data name="labEFEMStatut.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 30</value>
+  </data>
+  <data name="labEFEMStatut.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="labEFEMStatut.Text" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="labEFEMStatut.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;labEFEMStatut.Name" xml:space="preserve">
+    <value>labEFEMStatut</value>
+  </data>
+  <data name="&gt;&gt;labEFEMStatut.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labEFEMStatut.Parent" xml:space="preserve">
+    <value>splTopStatus.Panel1</value>
+  </data>
+  <data name="&gt;&gt;labEFEMStatut.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="labStatusTitle.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labStatusTitle.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 14.25pt, style=Bold</value>
+  </data>
+  <data name="labStatusTitle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labStatusTitle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 56</value>
+  </data>
+  <data name="labStatusTitle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 22</value>
+  </data>
+  <data name="labStatusTitle.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="labStatusTitle.Text" xml:space="preserve">
+    <value>STATUS</value>
+  </data>
+  <data name="&gt;&gt;labStatusTitle.Name" xml:space="preserve">
+    <value>labStatusTitle</value>
+  </data>
+  <data name="&gt;&gt;labStatusTitle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labStatusTitle.Parent" xml:space="preserve">
+    <value>splTopStatus.Panel1</value>
+  </data>
+  <data name="&gt;&gt;labStatusTitle.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;splTopStatus.Panel1.Name" xml:space="preserve">
+    <value>splTopStatus.Panel1</value>
+  </data>
+  <data name="&gt;&gt;splTopStatus.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splTopStatus.Panel1.Parent" xml:space="preserve">
+    <value>splTopStatus</value>
+  </data>
+  <data name="&gt;&gt;splTopStatus.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="rtfLog.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="rtfLog.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt</value>
+  </data>
+  <data name="rtfLog.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="rtfLog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1025, 106</value>
+  </data>
+  <data name="rtfLog.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="rtfLog.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;rtfLog.Name" xml:space="preserve">
+    <value>rtfLog</value>
+  </data>
+  <data name="&gt;&gt;rtfLog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rtfLog.Parent" xml:space="preserve">
+    <value>splTopStatus.Panel2</value>
+  </data>
+  <data name="&gt;&gt;rtfLog.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="splTopStatus.Panel2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="&gt;&gt;splTopStatus.Panel2.Name" xml:space="preserve">
+    <value>splTopStatus.Panel2</value>
+  </data>
+  <data name="&gt;&gt;splTopStatus.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splTopStatus.Panel2.Parent" xml:space="preserve">
+    <value>splTopStatus</value>
+  </data>
+  <data name="&gt;&gt;splTopStatus.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="splTopStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1617, 112</value>
+  </data>
+  <data name="splTopStatus.SplitterDistance" type="System.Int32, mscorlib">
+    <value>585</value>
+  </data>
+  <data name="splTopStatus.SplitterWidth" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="splTopStatus.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splTopStatus.Name" xml:space="preserve">
+    <value>splTopStatus</value>
+  </data>
+  <data name="&gt;&gt;splTopStatus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splTopStatus.Parent" xml:space="preserve">
+    <value>splTop.Panel2</value>
+  </data>
+  <data name="&gt;&gt;splTopStatus.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="tmrMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>115, 17</value>
+  </metadata>
+  <metadata name="icnMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="icnMain.Text" xml:space="preserve">
+    <value>HirataMain</value>
+  </data>
+  <data name="icnMain.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="dgvRecipe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="dgvRecipe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 150</value>
+  </data>
+  <data name="dgvRecipe.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dgvRecipe.Name" xml:space="preserve">
+    <value>dgvRecipe</value>
+  </data>
+  <data name="&gt;&gt;dgvRecipe.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnRecipeDelete.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnRecipeDelete.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="btnRecipeDelete.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="btnRecipeDelete.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnRecipeDelete.Name" xml:space="preserve">
+    <value>btnRecipeDelete</value>
+  </data>
+  <data name="&gt;&gt;btnRecipeDelete.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txtRecipe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="txtRecipe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 22</value>
+  </data>
+  <data name="txtRecipe.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txtRecipe.Name" xml:space="preserve">
+    <value>txtRecipe</value>
+  </data>
+  <data name="&gt;&gt;txtRecipe.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnRecipeAdd.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnRecipeAdd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="btnRecipeAdd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="btnRecipeAdd.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnRecipeAdd.Name" xml:space="preserve">
+    <value>btnRecipeAdd</value>
+  </data>
+  <data name="&gt;&gt;btnRecipeAdd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnRecipeSetting.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnRecipeSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="btnRecipeSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="btnRecipeSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnRecipeSetting.Name" xml:space="preserve">
+    <value>btnRecipeSetting</value>
+  </data>
+  <data name="&gt;&gt;btnRecipeSetting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="labRule.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labRule.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="labRule.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="labRule.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;labRule.Name" xml:space="preserve">
+    <value>labRule</value>
+  </data>
+  <data name="&gt;&gt;labRule.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cboEQSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="cboEQSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 20</value>
+  </data>
+  <data name="cboEQSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;cboEQSetting.Name" xml:space="preserve">
+    <value>cboEQSetting</value>
+  </data>
+  <data name="&gt;&gt;cboEQSetting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnEQSetting.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnEQSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="btnEQSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="btnEQSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnEQSetting.Name" xml:space="preserve">
+    <value>btnEQSetting</value>
+  </data>
+  <data name="&gt;&gt;btnEQSetting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txtMax.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="txtMax.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 22</value>
+  </data>
+  <data name="txtMax.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txtMax.Name" xml:space="preserve">
+    <value>txtMax</value>
+  </data>
+  <data name="&gt;&gt;txtMax.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txtMin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="txtMin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 22</value>
+  </data>
+  <data name="txtMin.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txtMin.Name" xml:space="preserve">
+    <value>txtMin</value>
+  </data>
+  <data name="&gt;&gt;txtMin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="labEQmax.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labEQmax.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="labEQmax.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="labEQmax.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;labEQmax.Name" xml:space="preserve">
+    <value>labEQmax</value>
+  </data>
+  <data name="&gt;&gt;labEQmax.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="labmid.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labmid.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="labmid.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="labmid.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;labmid.Name" xml:space="preserve">
+    <value>labmid</value>
+  </data>
+  <data name="&gt;&gt;labmid.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="labEQmin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labEQmin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="labEQmin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="labEQmin.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;labEQmin.Name" xml:space="preserve">
+    <value>labEQmin</value>
+  </data>
+  <data name="&gt;&gt;labEQmin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="labEQLP.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labEQLP.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="labEQLP.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="labEQLP.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;labEQLP.Name" xml:space="preserve">
+    <value>labEQLP</value>
+  </data>
+  <data name="&gt;&gt;labEQLP.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dgvEQSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="dgvEQSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 150</value>
+  </data>
+  <data name="dgvEQSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dgvEQSetting.Name" xml:space="preserve">
+    <value>dgvEQSetting</value>
+  </data>
+  <data name="&gt;&gt;dgvEQSetting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cboLoadPortType.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="cboLoadPortType.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 20</value>
+  </data>
+  <data name="cboLoadPortType.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;cboLoadPortType.Name" xml:space="preserve">
+    <value>cboLoadPortType</value>
+  </data>
+  <data name="&gt;&gt;cboLoadPortType.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cboLoadPortSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="cboLoadPortSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 20</value>
+  </data>
+  <data name="cboLoadPortSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;cboLoadPortSetting.Name" xml:space="preserve">
+    <value>cboLoadPortSetting</value>
+  </data>
+  <data name="&gt;&gt;cboLoadPortSetting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="splMain.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="splMain.IsSplitterFixed" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="splMain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="splMain.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Horizontal</value>
+  </data>
+  <data name="splTop.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="splTop.IsSplitterFixed" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="splTop.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="splTopTitle.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="splTopTitle.IsSplitterFixed" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="splTopTitle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="splTopTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="splTopTitle.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Horizontal</value>
+  </data>
+  <data name="picLog.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="picLog.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="picLog.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="picLog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>286, 45</value>
+  </data>
+  <data name="picLog.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="picLog.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;picLog.Name" xml:space="preserve">
+    <value>picLog</value>
+  </data>
+  <data name="&gt;&gt;picLog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;picLog.Parent" xml:space="preserve">
+    <value>splTopTitle.Panel1</value>
+  </data>
+  <data name="&gt;&gt;picLog.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splTopTitle.Panel1.Name" xml:space="preserve">
+    <value>splTopTitle.Panel1</value>
+  </data>
+  <data name="&gt;&gt;splTopTitle.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splTopTitle.Panel1.Parent" xml:space="preserve">
+    <value>splTopTitle</value>
+  </data>
+  <data name="&gt;&gt;splTopTitle.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="labPLCversion.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="labPLCversion.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labPLCversion.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 42</value>
+  </data>
+  <data name="labPLCversion.Size" type="System.Drawing.Size, System.Drawing">
+    <value>286, 20</value>
+  </data>
+  <data name="labPLCversion.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="labPLCversion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;labPLCversion.Name" xml:space="preserve">
+    <value>labPLCversion</value>
+  </data>
+  <data name="&gt;&gt;labPLCversion.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labPLCversion.Parent" xml:space="preserve">
+    <value>splTopTitle.Panel2</value>
+  </data>
+  <data name="&gt;&gt;labPLCversion.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="labPCversion.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="labPCversion.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labPCversion.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 22</value>
+  </data>
+  <data name="labPCversion.Size" type="System.Drawing.Size, System.Drawing">
+    <value>286, 20</value>
+  </data>
+  <data name="labPCversion.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="labPCversion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;labPCversion.Name" xml:space="preserve">
+    <value>labPCversion</value>
+  </data>
+  <data name="&gt;&gt;labPCversion.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labPCversion.Parent" xml:space="preserve">
+    <value>splTopTitle.Panel2</value>
+  </data>
+  <data name="&gt;&gt;labPCversion.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="labTime.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="labTime.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Comic Sans MS, 14.25pt</value>
+  </data>
+  <data name="labTime.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="labTime.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="labTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>286, 22</value>
+  </data>
+  <data name="labTime.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="labTime.Text" xml:space="preserve">
+    <value>MM-dd HH:mm:ss</value>
+  </data>
+  <data name="labTime.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;labTime.Name" xml:space="preserve">
+    <value>labTime</value>
+  </data>
+  <data name="&gt;&gt;labTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labTime.Parent" xml:space="preserve">
+    <value>splTopTitle.Panel2</value>
+  </data>
+  <data name="&gt;&gt;labTime.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;splTopTitle.Panel2.Name" xml:space="preserve">
+    <value>splTopTitle.Panel2</value>
+  </data>
+  <data name="&gt;&gt;splTopTitle.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splTopTitle.Panel2.Parent" xml:space="preserve">
+    <value>splTopTitle</value>
+  </data>
+  <data name="&gt;&gt;splTopTitle.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="splTopTitle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>286, 112</value>
+  </data>
+  <data name="splTopTitle.SplitterDistance" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="splTopTitle.SplitterWidth" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="splTopTitle.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splTopTitle.Name" xml:space="preserve">
+    <value>splTopTitle</value>
+  </data>
+  <data name="&gt;&gt;splTopTitle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splTopTitle.Parent" xml:space="preserve">
+    <value>splTop.Panel1</value>
+  </data>
+  <data name="&gt;&gt;splTopTitle.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splTop.Panel1.Name" xml:space="preserve">
+    <value>splTop.Panel1</value>
+  </data>
+  <data name="&gt;&gt;splTop.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splTop.Panel1.Parent" xml:space="preserve">
+    <value>splTop</value>
+  </data>
+  <data name="&gt;&gt;splTop.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splTop.Panel2.Name" xml:space="preserve">
+    <value>splTop.Panel2</value>
+  </data>
+  <data name="&gt;&gt;splTop.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splTop.Panel2.Parent" xml:space="preserve">
+    <value>splTop</value>
+  </data>
+  <data name="&gt;&gt;splTop.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="splTop.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1904, 112</value>
+  </data>
+  <data name="splTop.SplitterDistance" type="System.Int32, mscorlib">
+    <value>286</value>
+  </data>
+  <data name="splTop.SplitterWidth" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="splTop.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splTop.Name" xml:space="preserve">
+    <value>splTop</value>
+  </data>
+  <data name="&gt;&gt;splTop.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splTop.Parent" xml:space="preserve">
+    <value>splMain.Panel1</value>
+  </data>
+  <data name="&gt;&gt;splTop.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splMain.Panel1.Name" xml:space="preserve">
+    <value>splMain.Panel1</value>
+  </data>
+  <data name="&gt;&gt;splMain.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splMain.Panel1.Parent" xml:space="preserve">
+    <value>splMain</value>
+  </data>
+  <data name="&gt;&gt;splMain.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tctlMain.Appearance" type="System.Windows.Forms.TabAppearance, System.Windows.Forms">
+    <value>FlatButtons</value>
+  </data>
+  <metadata name="tctlAccount.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="tctlAccount.Appearance" type="System.Windows.Forms.TabAppearance, System.Windows.Forms">
+    <value>FlatButtons</value>
+  </data>
+  <data name="button6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>509, 382</value>
+  </data>
+  <data name="button6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="button6.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="button6.Text" xml:space="preserve">
+    <value>button6</value>
+  </data>
+  <data name="&gt;&gt;button6.Name" xml:space="preserve">
+    <value>button6</value>
+  </data>
+  <data name="&gt;&gt;button6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button6.Parent" xml:space="preserve">
+    <value>tapgGuest</value>
+  </data>
+  <data name="&gt;&gt;button6.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="button5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>509, 343</value>
+  </data>
+  <data name="button5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="button5.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="button5.Text" xml:space="preserve">
+    <value>button5</value>
+  </data>
+  <data name="&gt;&gt;button5.Name" xml:space="preserve">
+    <value>button5</value>
+  </data>
+  <data name="&gt;&gt;button5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button5.Parent" xml:space="preserve">
+    <value>tapgGuest</value>
+  </data>
+  <data name="&gt;&gt;button5.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="button4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>509, 314</value>
+  </data>
+  <data name="button4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="button4.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="button4.Text" xml:space="preserve">
+    <value>button4</value>
+  </data>
+  <data name="&gt;&gt;button4.Name" xml:space="preserve">
+    <value>button4</value>
+  </data>
+  <data name="&gt;&gt;button4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button4.Parent" xml:space="preserve">
+    <value>tapgGuest</value>
+  </data>
+  <data name="&gt;&gt;button4.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="button3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>293, 443</value>
+  </data>
+  <data name="button3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="button3.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="button3.Text" xml:space="preserve">
+    <value>button3</value>
+  </data>
+  <data name="&gt;&gt;button3.Name" xml:space="preserve">
+    <value>button3</value>
+  </data>
+  <data name="&gt;&gt;button3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button3.Parent" xml:space="preserve">
+    <value>tapgGuest</value>
+  </data>
+  <data name="&gt;&gt;button3.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="button2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>293, 394</value>
+  </data>
+  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="button2.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="button2.Text" xml:space="preserve">
+    <value>button2</value>
+  </data>
+  <data name="&gt;&gt;button2.Name" xml:space="preserve">
+    <value>button2</value>
+  </data>
+  <data name="&gt;&gt;button2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button2.Parent" xml:space="preserve">
+    <value>tapgGuest</value>
+  </data>
+  <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="button1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>293, 343</value>
+  </data>
+  <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="button1.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>button1</value>
+  </data>
+  <data name="&gt;&gt;button1.Name" xml:space="preserve">
+    <value>button1</value>
+  </data>
+  <data name="&gt;&gt;button1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
+    <value>tapgGuest</value>
+  </data>
+  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="labVersion.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 14.25pt, style=Bold</value>
+  </data>
+  <data name="labVersion.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labVersion.Location" type="System.Drawing.Point, System.Drawing">
+    <value>37, 253</value>
+  </data>
+  <data name="labVersion.Size" type="System.Drawing.Size, System.Drawing">
+    <value>337, 25</value>
+  </data>
+  <data name="labVersion.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="labVersion.Text" xml:space="preserve">
+    <value>0.0</value>
+  </data>
+  <data name="labVersion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;labVersion.Name" xml:space="preserve">
+    <value>labVersion</value>
+  </data>
+  <data name="&gt;&gt;labVersion.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labVersion.Parent" xml:space="preserve">
+    <value>tapgGuest</value>
+  </data>
+  <data name="&gt;&gt;labVersion.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="btnLogIn.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微軟正黑體, 12pt</value>
+  </data>
+  <data name="btnLogIn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnLogIn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>240, 19</value>
+  </data>
+  <data name="btnLogIn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 81</value>
+  </data>
+  <data name="btnLogIn.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;btnLogIn.Name" xml:space="preserve">
+    <value>btnLogIn</value>
+  </data>
+  <data name="&gt;&gt;btnLogIn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnLogIn.Parent" xml:space="preserve">
+    <value>gbxAccount</value>
+  </data>
+  <data name="&gt;&gt;btnLogIn.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="labInPassword.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labInPassword.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt</value>
+  </data>
+  <data name="labInPassword.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labInPassword.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 103</value>
+  </data>
+  <data name="labInPassword.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 19</value>
+  </data>
+  <data name="labInPassword.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="labInPassword.Text" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="&gt;&gt;labInPassword.Name" xml:space="preserve">
+    <value>labInPassword</value>
+  </data>
+  <data name="&gt;&gt;labInPassword.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labInPassword.Parent" xml:space="preserve">
+    <value>gbxAccount</value>
+  </data>
+  <data name="&gt;&gt;labInPassword.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="labInName.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labInName.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt</value>
+  </data>
+  <data name="labInName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labInName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 39</value>
+  </data>
+  <data name="labInName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 19</value>
+  </data>
+  <data name="labInName.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="labInName.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="&gt;&gt;labInName.Name" xml:space="preserve">
+    <value>labInName</value>
+  </data>
+  <data name="&gt;&gt;labInName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labInName.Parent" xml:space="preserve">
+    <value>gbxAccount</value>
+  </data>
+  <data name="&gt;&gt;labInName.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnLogOut.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="btnLogOut.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微軟正黑體, 12pt</value>
+  </data>
+  <data name="btnLogOut.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnLogOut.Location" type="System.Drawing.Point, System.Drawing">
+    <value>240, 106</value>
+  </data>
+  <data name="btnLogOut.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 82</value>
+  </data>
+  <data name="btnLogOut.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;btnLogOut.Name" xml:space="preserve">
+    <value>btnLogOut</value>
+  </data>
+  <data name="&gt;&gt;btnLogOut.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnLogOut.Parent" xml:space="preserve">
+    <value>gbxAccount</value>
+  </data>
+  <data name="&gt;&gt;btnLogOut.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="txtInPassword.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微軟正黑體, 12pt</value>
+  </data>
+  <data name="txtInPassword.Location" type="System.Drawing.Point, System.Drawing">
+    <value>27, 126</value>
+  </data>
+  <data name="txtInPassword.MaxLength" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="txtInPassword.PasswordChar" type="System.Char, mscorlib" xml:space="preserve">
+    <value>*</value>
+  </data>
+  <data name="txtInPassword.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 29</value>
+  </data>
+  <data name="txtInPassword.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;txtInPassword.Name" xml:space="preserve">
+    <value>txtInPassword</value>
+  </data>
+  <data name="&gt;&gt;txtInPassword.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtInPassword.Parent" xml:space="preserve">
+    <value>gbxAccount</value>
+  </data>
+  <data name="&gt;&gt;txtInPassword.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="txtInUser.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微軟正黑體, 12pt</value>
+  </data>
+  <data name="txtInUser.Location" type="System.Drawing.Point, System.Drawing">
+    <value>27, 62</value>
+  </data>
+  <data name="txtInUser.MaxLength" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="txtInUser.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 29</value>
+  </data>
+  <data name="txtInUser.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtInUser.Name" xml:space="preserve">
+    <value>txtInUser</value>
+  </data>
+  <data name="&gt;&gt;txtInUser.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtInUser.Parent" xml:space="preserve">
+    <value>gbxAccount</value>
+  </data>
+  <data name="&gt;&gt;txtInUser.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="gbxAccount.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt, style=Bold</value>
+  </data>
+  <data name="gbxAccount.Location" type="System.Drawing.Point, System.Drawing">
+    <value>37, 56</value>
+  </data>
+  <data name="gbxAccount.Size" type="System.Drawing.Size, System.Drawing">
+    <value>337, 194</value>
+  </data>
+  <data name="gbxAccount.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="gbxAccount.Text" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="&gt;&gt;gbxAccount.Name" xml:space="preserve">
+    <value>gbxAccount</value>
+  </data>
+  <data name="&gt;&gt;gbxAccount.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbxAccount.Parent" xml:space="preserve">
+    <value>tapgGuest</value>
+  </data>
+  <data name="&gt;&gt;gbxAccount.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="tapgGuest.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 5</value>
+  </data>
+  <data name="tapgGuest.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tapgGuest.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1722, 904</value>
+  </data>
+  <data name="tapgGuest.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="tapgGuest.Text" xml:space="preserve">
+    <value>Guest</value>
+  </data>
+  <data name="&gt;&gt;tapgGuest.Name" xml:space="preserve">
+    <value>tapgGuest</value>
+  </data>
+  <data name="&gt;&gt;tapgGuest.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tapgGuest.Parent" xml:space="preserve">
+    <value>tctlAccount</value>
+  </data>
+  <data name="&gt;&gt;tapgGuest.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="dgvAuth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 25</value>
+  </data>
+  <data name="dgvAuth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>410, 555</value>
+  </data>
+  <data name="dgvAuth.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;dgvAuth.Name" xml:space="preserve">
+    <value>dgvAuth</value>
+  </data>
+  <data name="&gt;&gt;dgvAuth.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dgvAuth.Parent" xml:space="preserve">
+    <value>gbxAuthEdit</value>
+  </data>
+  <data name="&gt;&gt;dgvAuth.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnAuthEdit.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnAuthEdit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>422, 111</value>
+  </data>
+  <data name="btnAuthEdit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 80</value>
+  </data>
+  <data name="btnAuthEdit.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnAuthEdit.Name" xml:space="preserve">
+    <value>btnAuthEdit</value>
+  </data>
+  <data name="&gt;&gt;btnAuthEdit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnAuthEdit.Parent" xml:space="preserve">
+    <value>gbxAuthEdit</value>
+  </data>
+  <data name="&gt;&gt;btnAuthEdit.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnAuthSearch.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnAuthSearch.Location" type="System.Drawing.Point, System.Drawing">
+    <value>422, 25</value>
+  </data>
+  <data name="btnAuthSearch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 80</value>
+  </data>
+  <data name="btnAuthSearch.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnAuthSearch.Name" xml:space="preserve">
+    <value>btnAuthSearch</value>
+  </data>
+  <data name="&gt;&gt;btnAuthSearch.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnAuthSearch.Parent" xml:space="preserve">
+    <value>gbxAuthEdit</value>
+  </data>
+  <data name="&gt;&gt;btnAuthSearch.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="gbxAuthEdit.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt, style=Bold</value>
+  </data>
+  <data name="gbxAuthEdit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>510, 6</value>
+  </data>
+  <data name="gbxAuthEdit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>514, 586</value>
+  </data>
+  <data name="gbxAuthEdit.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="gbxAuthEdit.Text" xml:space="preserve">
+    <value>AuthEdit</value>
+  </data>
+  <data name="&gt;&gt;gbxAuthEdit.Name" xml:space="preserve">
+    <value>gbxAuthEdit</value>
+  </data>
+  <data name="&gt;&gt;gbxAuthEdit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbxAuthEdit.Parent" xml:space="preserve">
+    <value>tapgAdmin</value>
+  </data>
+  <data name="&gt;&gt;gbxAuthEdit.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="dgvAccount.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 27</value>
+  </data>
+  <data name="dgvAccount.Size" type="System.Drawing.Size, System.Drawing">
+    <value>370, 403</value>
+  </data>
+  <data name="dgvAccount.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;dgvAccount.Name" xml:space="preserve">
+    <value>dgvAccount</value>
+  </data>
+  <data name="&gt;&gt;dgvAccount.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dgvAccount.Parent" xml:space="preserve">
+    <value>gbxAccountDel</value>
+  </data>
+  <data name="&gt;&gt;dgvAccount.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnAccountDel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnAccountDel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>400, 132</value>
+  </data>
+  <data name="btnAccountDel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 80</value>
+  </data>
+  <data name="btnAccountDel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnAccountDel.Name" xml:space="preserve">
+    <value>btnAccountDel</value>
+  </data>
+  <data name="&gt;&gt;btnAccountDel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnAccountDel.Parent" xml:space="preserve">
+    <value>gbxAccountDel</value>
+  </data>
+  <data name="&gt;&gt;btnAccountDel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnRefresh.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnRefresh.Location" type="System.Drawing.Point, System.Drawing">
+    <value>400, 27</value>
+  </data>
+  <data name="btnRefresh.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 80</value>
+  </data>
+  <data name="btnRefresh.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnRefresh.Name" xml:space="preserve">
+    <value>btnRefresh</value>
+  </data>
+  <data name="&gt;&gt;btnRefresh.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnRefresh.Parent" xml:space="preserve">
+    <value>gbxAccountDel</value>
+  </data>
+  <data name="&gt;&gt;btnRefresh.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="gbxAccountDel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt, style=Bold</value>
+  </data>
+  <data name="gbxAccountDel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 156</value>
+  </data>
+  <data name="gbxAccountDel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>498, 436</value>
+  </data>
+  <data name="gbxAccountDel.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="gbxAccountDel.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="&gt;&gt;gbxAccountDel.Name" xml:space="preserve">
+    <value>gbxAccountDel</value>
+  </data>
+  <data name="&gt;&gt;gbxAccountDel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbxAccountDel.Parent" xml:space="preserve">
+    <value>tapgAdmin</value>
+  </data>
+  <data name="&gt;&gt;gbxAccountDel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="labAddAuthority.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labAddAuthority.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt</value>
+  </data>
+  <data name="labAddAuthority.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labAddAuthority.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 105</value>
+  </data>
+  <data name="labAddAuthority.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 19</value>
+  </data>
+  <data name="labAddAuthority.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="labAddAuthority.Text" xml:space="preserve">
+    <value>Authority</value>
+  </data>
+  <data name="&gt;&gt;labAddAuthority.Name" xml:space="preserve">
+    <value>labAddAuthority</value>
+  </data>
+  <data name="&gt;&gt;labAddAuthority.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labAddAuthority.Parent" xml:space="preserve">
+    <value>gbxAccountAdd</value>
+  </data>
+  <data name="&gt;&gt;labAddAuthority.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="labAddPassword.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labAddPassword.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt</value>
+  </data>
+  <data name="labAddPassword.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labAddPassword.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 71</value>
+  </data>
+  <data name="labAddPassword.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 19</value>
+  </data>
+  <data name="labAddPassword.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="labAddPassword.Text" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="&gt;&gt;labAddPassword.Name" xml:space="preserve">
+    <value>labAddPassword</value>
+  </data>
+  <data name="&gt;&gt;labAddPassword.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labAddPassword.Parent" xml:space="preserve">
+    <value>gbxAccountAdd</value>
+  </data>
+  <data name="&gt;&gt;labAddPassword.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="labAddName.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labAddName.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt</value>
+  </data>
+  <data name="labAddName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labAddName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 37</value>
+  </data>
+  <data name="labAddName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 19</value>
+  </data>
+  <data name="labAddName.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="labAddName.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="&gt;&gt;labAddName.Name" xml:space="preserve">
+    <value>labAddName</value>
+  </data>
+  <data name="&gt;&gt;labAddName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labAddName.Parent" xml:space="preserve">
+    <value>gbxAccountAdd</value>
+  </data>
+  <data name="&gt;&gt;labAddName.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="txtAddAuthority.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微軟正黑體, 12pt</value>
+  </data>
+  <data name="txtAddAuthority.Items" xml:space="preserve">
+    <value>Engineer</value>
+  </data>
+  <data name="txtAddAuthority.Items1" xml:space="preserve">
+    <value>Operator</value>
+  </data>
+  <data name="txtAddAuthority.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 101</value>
+  </data>
+  <data name="txtAddAuthority.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 28</value>
+  </data>
+  <data name="txtAddAuthority.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;txtAddAuthority.Name" xml:space="preserve">
+    <value>txtAddAuthority</value>
+  </data>
+  <data name="&gt;&gt;txtAddAuthority.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtAddAuthority.Parent" xml:space="preserve">
+    <value>gbxAccountAdd</value>
+  </data>
+  <data name="&gt;&gt;txtAddAuthority.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnAccountAdd.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微軟正黑體, 12pt</value>
+  </data>
+  <data name="btnAccountAdd.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnAccountAdd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>329, 33</value>
+  </data>
+  <data name="btnAccountAdd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 80</value>
+  </data>
+  <data name="btnAccountAdd.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;btnAccountAdd.Name" xml:space="preserve">
+    <value>btnAccountAdd</value>
+  </data>
+  <data name="&gt;&gt;btnAccountAdd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnAccountAdd.Parent" xml:space="preserve">
+    <value>gbxAccountAdd</value>
+  </data>
+  <data name="&gt;&gt;btnAccountAdd.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="txtAddPassword.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微軟正黑體, 12pt</value>
+  </data>
+  <data name="txtAddPassword.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 67</value>
+  </data>
+  <data name="txtAddPassword.MaxLength" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="txtAddPassword.PasswordChar" type="System.Char, mscorlib" xml:space="preserve">
+    <value>*</value>
+  </data>
+  <data name="txtAddPassword.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 29</value>
+  </data>
+  <data name="txtAddPassword.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;txtAddPassword.Name" xml:space="preserve">
+    <value>txtAddPassword</value>
+  </data>
+  <data name="&gt;&gt;txtAddPassword.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtAddPassword.Parent" xml:space="preserve">
+    <value>gbxAccountAdd</value>
+  </data>
+  <data name="&gt;&gt;txtAddPassword.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="txtAddName.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微軟正黑體, 12pt</value>
+  </data>
+  <data name="txtAddName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 33</value>
+  </data>
+  <data name="txtAddName.MaxLength" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="txtAddName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 29</value>
+  </data>
+  <data name="txtAddName.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtAddName.Name" xml:space="preserve">
+    <value>txtAddName</value>
+  </data>
+  <data name="&gt;&gt;txtAddName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtAddName.Parent" xml:space="preserve">
+    <value>gbxAccountAdd</value>
+  </data>
+  <data name="&gt;&gt;txtAddName.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="gbxAccountAdd.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt, style=Bold</value>
+  </data>
+  <data name="gbxAccountAdd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 6</value>
+  </data>
+  <data name="gbxAccountAdd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>498, 144</value>
+  </data>
+  <data name="gbxAccountAdd.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="gbxAccountAdd.Text" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="&gt;&gt;gbxAccountAdd.Name" xml:space="preserve">
+    <value>gbxAccountAdd</value>
+  </data>
+  <data name="&gt;&gt;gbxAccountAdd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbxAccountAdd.Parent" xml:space="preserve">
+    <value>tapgAdmin</value>
+  </data>
+  <data name="&gt;&gt;gbxAccountAdd.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tapgAdmin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 5</value>
+  </data>
+  <data name="tapgAdmin.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tapgAdmin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1722, 904</value>
+  </data>
+  <data name="tapgAdmin.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tapgAdmin.Text" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="&gt;&gt;tapgAdmin.Name" xml:space="preserve">
+    <value>tapgAdmin</value>
+  </data>
+  <data name="&gt;&gt;tapgAdmin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tapgAdmin.Parent" xml:space="preserve">
+    <value>tctlAccount</value>
+  </data>
+  <data name="&gt;&gt;tapgAdmin.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tctlAccount.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tctlAccount.ItemSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 1</value>
+  </data>
+  <data name="tctlAccount.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="tctlAccount.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1730, 913</value>
+  </data>
+  <data name="tctlAccount.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;tctlAccount.Name" xml:space="preserve">
+    <value>tctlAccount</value>
+  </data>
+  <data name="&gt;&gt;tctlAccount.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tctlAccount.Parent" xml:space="preserve">
+    <value>tapgAccount</value>
+  </data>
+  <data name="&gt;&gt;tctlAccount.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tapgAccount.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 5</value>
+  </data>
+  <data name="tapgAccount.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tapgAccount.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1736, 919</value>
+  </data>
+  <data name="tapgAccount.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="tapgAccount.Text" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="&gt;&gt;tapgAccount.Name" xml:space="preserve">
+    <value>tapgAccount</value>
+  </data>
+  <data name="&gt;&gt;tapgAccount.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tapgAccount.Parent" xml:space="preserve">
+    <value>tctlMain</value>
+  </data>
+  <data name="&gt;&gt;tapgAccount.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tapgMonitor.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="User_EFEM.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 9.75pt, style=Bold</value>
+  </data>
+  <data name="User_EFEM.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="User_EFEM.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="User_EFEM.Size" type="System.Drawing.Size, System.Drawing">
+    <value>2300, 937</value>
+  </data>
+  <data name="User_EFEM.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;User_EFEM.Name" xml:space="preserve">
+    <value>User_EFEM</value>
+  </data>
+  <data name="&gt;&gt;User_EFEM.Type" xml:space="preserve">
+    <value>HirataMainControl.HCT_EFEM, HirataMainControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;User_EFEM.Parent" xml:space="preserve">
+    <value>tapgMonitor</value>
+  </data>
+  <data name="&gt;&gt;User_EFEM.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tapgMonitor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 5</value>
+  </data>
+  <data name="tapgMonitor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="tapgMonitor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1736, 919</value>
+  </data>
+  <data name="tapgMonitor.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tapgMonitor.Text" xml:space="preserve">
+    <value>Monitor</value>
+  </data>
+  <data name="&gt;&gt;tapgMonitor.Name" xml:space="preserve">
+    <value>tapgMonitor</value>
+  </data>
+  <data name="&gt;&gt;tapgMonitor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tapgMonitor.Parent" xml:space="preserve">
+    <value>tctlMain</value>
+  </data>
+  <data name="&gt;&gt;tapgMonitor.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="splLog.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="splLog.IsSplitterFixed" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="splLog.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="splLogTime.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="splLogTime.IsSplitterFixed" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="splLogTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="splLogTime.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Horizontal</value>
+  </data>
+  <data name="cboDirectory.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="cboDirectory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 284</value>
+  </data>
+  <data name="cboDirectory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 23</value>
+  </data>
+  <data name="cboDirectory.TabIndex" type="System.Int32, mscorlib">
+    <value>1001</value>
+  </data>
+  <data name="&gt;&gt;cboDirectory.Name" xml:space="preserve">
+    <value>cboDirectory</value>
+  </data>
+  <data name="&gt;&gt;cboDirectory.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboDirectory.Parent" xml:space="preserve">
+    <value>splLogTime.Panel1</value>
+  </data>
+  <data name="&gt;&gt;cboDirectory.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnLogCopy.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="btnLogCopy.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt, style=Bold</value>
+  </data>
+  <data name="btnLogCopy.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnLogCopy.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 307</value>
+  </data>
+  <data name="btnLogCopy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 32</value>
+  </data>
+  <data name="btnLogCopy.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="btnLogCopy.Text" xml:space="preserve">
+    <value>BackUp Log</value>
+  </data>
+  <data name="&gt;&gt;btnLogCopy.Name" xml:space="preserve">
+    <value>btnLogCopy</value>
+  </data>
+  <data name="&gt;&gt;btnLogCopy.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnLogCopy.Parent" xml:space="preserve">
+    <value>splLogTime.Panel1</value>
+  </data>
+  <data name="&gt;&gt;btnLogCopy.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnLogSearch.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="btnLogSearch.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt, style=Bold</value>
+  </data>
+  <data name="btnLogSearch.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnLogSearch.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 339</value>
+  </data>
+  <data name="btnLogSearch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 32</value>
+  </data>
+  <data name="btnLogSearch.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="btnLogSearch.Text" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="&gt;&gt;btnLogSearch.Name" xml:space="preserve">
+    <value>btnLogSearch</value>
+  </data>
+  <data name="&gt;&gt;btnLogSearch.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnLogSearch.Parent" xml:space="preserve">
+    <value>splLogTime.Panel1</value>
+  </data>
+  <data name="&gt;&gt;btnLogSearch.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="dtpLogStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 24</value>
+  </data>
+  <data name="dtpLogStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 23</value>
+  </data>
+  <data name="dtpLogStart.TabIndex" type="System.Int32, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="&gt;&gt;dtpLogStart.Name" xml:space="preserve">
+    <value>dtpLogStart</value>
+  </data>
+  <data name="&gt;&gt;dtpLogStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpLogStart.Parent" xml:space="preserve">
+    <value>splLogTime.Panel1</value>
+  </data>
+  <data name="&gt;&gt;dtpLogStart.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="dtpLogEnd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 153</value>
+  </data>
+  <data name="dtpLogEnd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 23</value>
+  </data>
+  <data name="dtpLogEnd.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dtpLogEnd.Name" xml:space="preserve">
+    <value>dtpLogEnd</value>
+  </data>
+  <data name="&gt;&gt;dtpLogEnd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpLogEnd.Parent" xml:space="preserve">
+    <value>splLogTime.Panel1</value>
+  </data>
+  <data name="&gt;&gt;dtpLogEnd.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="labLogTo.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 9.75pt, style=Bold</value>
+  </data>
+  <data name="labLogTo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labLogTo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 86</value>
+  </data>
+  <data name="labLogTo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 20</value>
+  </data>
+  <data name="labLogTo.TabIndex" type="System.Int32, mscorlib">
+    <value>1000</value>
+  </data>
+  <data name="labLogTo.Text" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="labLogTo.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;labLogTo.Name" xml:space="preserve">
+    <value>labLogTo</value>
+  </data>
+  <data name="&gt;&gt;labLogTo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labLogTo.Parent" xml:space="preserve">
+    <value>splLogTime.Panel1</value>
+  </data>
+  <data name="&gt;&gt;labLogTo.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;splLogTime.Panel1.Name" xml:space="preserve">
+    <value>splLogTime.Panel1</value>
+  </data>
+  <data name="&gt;&gt;splLogTime.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splLogTime.Panel1.Parent" xml:space="preserve">
+    <value>splLogTime</value>
+  </data>
+  <data name="&gt;&gt;splLogTime.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="trvLog.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="trvLog.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="trvLog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 538</value>
+  </data>
+  <data name="trvLog.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="&gt;&gt;trvLog.Name" xml:space="preserve">
+    <value>trvLog</value>
+  </data>
+  <data name="&gt;&gt;trvLog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;trvLog.Parent" xml:space="preserve">
+    <value>splLogTime.Panel2</value>
+  </data>
+  <data name="&gt;&gt;trvLog.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splLogTime.Panel2.Name" xml:space="preserve">
+    <value>splLogTime.Panel2</value>
+  </data>
+  <data name="&gt;&gt;splLogTime.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splLogTime.Panel2.Parent" xml:space="preserve">
+    <value>splLogTime</value>
+  </data>
+  <data name="&gt;&gt;splLogTime.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="splLogTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 913</value>
+  </data>
+  <data name="splLogTime.SplitterDistance" type="System.Int32, mscorlib">
+    <value>371</value>
+  </data>
+  <data name="splLogTime.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="&gt;&gt;splLogTime.Name" xml:space="preserve">
+    <value>splLogTime</value>
+  </data>
+  <data name="&gt;&gt;splLogTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splLogTime.Parent" xml:space="preserve">
+    <value>splLog.Panel1</value>
+  </data>
+  <data name="&gt;&gt;splLogTime.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splLog.Panel1.Name" xml:space="preserve">
+    <value>splLog.Panel1</value>
+  </data>
+  <data name="&gt;&gt;splLog.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splLog.Panel1.Parent" xml:space="preserve">
+    <value>splLog</value>
+  </data>
+  <data name="&gt;&gt;splLog.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="User_Log.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="User_Log.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt</value>
+  </data>
+  <data name="User_Log.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="User_Log.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 294237500, 2, 294237500</value>
+  </data>
+  <data name="User_Log.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1548, 913</value>
+  </data>
+  <data name="User_Log.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;User_Log.Name" xml:space="preserve">
+    <value>User_Log</value>
+  </data>
+  <data name="&gt;&gt;User_Log.Type" xml:space="preserve">
+    <value>HirataMainControl.LogLib, HirataMainControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;User_Log.Parent" xml:space="preserve">
+    <value>splLog.Panel2</value>
+  </data>
+  <data name="&gt;&gt;User_Log.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splLog.Panel2.Name" xml:space="preserve">
+    <value>splLog.Panel2</value>
+  </data>
+  <data name="&gt;&gt;splLog.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splLog.Panel2.Parent" xml:space="preserve">
+    <value>splLog</value>
+  </data>
+  <data name="&gt;&gt;splLog.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="splLog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1730, 913</value>
+  </data>
+  <data name="splLog.SplitterDistance" type="System.Int32, mscorlib">
+    <value>181</value>
+  </data>
+  <data name="splLog.SplitterWidth" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="splLog.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splLog.Name" xml:space="preserve">
+    <value>splLog</value>
+  </data>
+  <data name="&gt;&gt;splLog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splLog.Parent" xml:space="preserve">
+    <value>tapgLog</value>
+  </data>
+  <data name="&gt;&gt;splLog.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tapgLog.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 5</value>
+  </data>
+  <data name="tapgLog.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tapgLog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1736, 919</value>
+  </data>
+  <data name="tapgLog.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tapgLog.Text" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="&gt;&gt;tapgLog.Name" xml:space="preserve">
+    <value>tapgLog</value>
+  </data>
+  <data name="&gt;&gt;tapgLog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tapgLog.Parent" xml:space="preserve">
+    <value>tctlMain</value>
+  </data>
+  <data name="&gt;&gt;tapgLog.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="User_Core.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="User_Core.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="User_Core.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="User_Core.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1730, 913</value>
+  </data>
+  <data name="User_Core.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;User_Core.Name" xml:space="preserve">
+    <value>User_Core</value>
+  </data>
+  <data name="&gt;&gt;User_Core.Type" xml:space="preserve">
+    <value>HirataMainControl.UserCore, HirataMainControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;User_Core.Parent" xml:space="preserve">
+    <value>tapgProcess</value>
+  </data>
+  <data name="&gt;&gt;User_Core.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tapgProcess.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 5</value>
+  </data>
+  <data name="tapgProcess.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tapgProcess.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1736, 919</value>
+  </data>
+  <data name="tapgProcess.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="tapgProcess.Text" xml:space="preserve">
+    <value>Process</value>
+  </data>
+  <data name="&gt;&gt;tapgProcess.Name" xml:space="preserve">
+    <value>tapgProcess</value>
+  </data>
+  <data name="&gt;&gt;tapgProcess.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tapgProcess.Parent" xml:space="preserve">
+    <value>tctlMain</value>
+  </data>
+  <data name="&gt;&gt;tapgProcess.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tapgCycle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 5</value>
+  </data>
+  <data name="tapgCycle.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tapgCycle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1736, 919</value>
+  </data>
+  <data name="tapgCycle.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="tapgCycle.Text" xml:space="preserve">
+    <value>Cycle</value>
+  </data>
+  <data name="&gt;&gt;tapgCycle.Name" xml:space="preserve">
+    <value>tapgCycle</value>
+  </data>
+  <data name="&gt;&gt;tapgCycle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tapgCycle.Parent" xml:space="preserve">
+    <value>tctlMain</value>
+  </data>
+  <data name="&gt;&gt;tapgCycle.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="rb_hand.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rb_hand.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rb_hand.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 37</value>
+  </data>
+  <data name="rb_hand.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 19</value>
+  </data>
+  <data name="rb_hand.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="rb_hand.Text" xml:space="preserve">
+    <value>Use Hand reader</value>
+  </data>
+  <data name="&gt;&gt;rb_hand.Name" xml:space="preserve">
+    <value>rb_hand</value>
+  </data>
+  <data name="&gt;&gt;rb_hand.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rb_hand.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;rb_hand.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="rb_rf.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rb_rf.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rb_rf.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 12</value>
+  </data>
+  <data name="rb_rf.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 19</value>
+  </data>
+  <data name="rb_rf.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="rb_rf.Text" xml:space="preserve">
+    <value>Use RFID</value>
+  </data>
+  <data name="&gt;&gt;rb_rf.Name" xml:space="preserve">
+    <value>rb_rf</value>
+  </data>
+  <data name="&gt;&gt;rb_rf.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rb_rf.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;rb_rf.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1244, 47</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 74</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>tapgJpSetting</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnUpdateStatus.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnUpdateStatus.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 22</value>
+  </data>
+  <data name="btnUpdateStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 23</value>
+  </data>
+  <data name="btnUpdateStatus.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="btnUpdateStatus.Text" xml:space="preserve">
+    <value>Update Status</value>
+  </data>
+  <data name="&gt;&gt;btnUpdateStatus.Name" xml:space="preserve">
+    <value>btnUpdateStatus</value>
+  </data>
+  <data name="&gt;&gt;btnUpdateStatus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnUpdateStatus.Parent" xml:space="preserve">
+    <value>gbxMemoryWafer</value>
+  </data>
+  <data name="&gt;&gt;btnUpdateStatus.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="Device.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Device.HeaderText" xml:space="preserve">
+    <value>Device</value>
+  </data>
+  <data name="Device.Width" type="System.Int32, mscorlib">
+    <value>74</value>
+  </data>
+  <metadata name="Memory.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Memory.HeaderText" xml:space="preserve">
+    <value>Memory</value>
+  </data>
+  <data name="Memory.Width" type="System.Int32, mscorlib">
+    <value>74</value>
+  </data>
+  <metadata name="Sensor.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Sensor.HeaderText" xml:space="preserve">
+    <value>Sensor</value>
+  </data>
+  <data name="Sensor.Width" type="System.Int32, mscorlib">
+    <value>74</value>
+  </data>
+  <data name="dgvWaferStatus.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="dgvWaferStatus.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 59</value>
+  </data>
+  <data name="dgvWaferStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>501, 857</value>
+  </data>
+  <data name="dgvWaferStatus.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dgvWaferStatus.Name" xml:space="preserve">
+    <value>dgvWaferStatus</value>
+  </data>
+  <data name="&gt;&gt;dgvWaferStatus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dgvWaferStatus.Parent" xml:space="preserve">
+    <value>gbxMemoryWafer</value>
+  </data>
+  <data name="&gt;&gt;dgvWaferStatus.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="gbxMemoryWafer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="gbxMemoryWafer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>686, 0</value>
+  </data>
+  <data name="gbxMemoryWafer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>507, 919</value>
+  </data>
+  <data name="gbxMemoryWafer.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="gbxMemoryWafer.Text" xml:space="preserve">
+    <value>WaferStatus</value>
+  </data>
+  <data name="&gt;&gt;gbxMemoryWafer.Name" xml:space="preserve">
+    <value>gbxMemoryWafer</value>
+  </data>
+  <data name="&gt;&gt;gbxMemoryWafer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbxMemoryWafer.Parent" xml:space="preserve">
+    <value>tapgJpSetting</value>
+  </data>
+  <data name="&gt;&gt;gbxMemoryWafer.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="splitPortSetting.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="splitPortSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 22</value>
+  </data>
+  <metadata name="LoadPort.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="LoadPort.HeaderText" xml:space="preserve">
+    <value>LoadPort</value>
+  </data>
+  <metadata name="PortType.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="PortType.HeaderText" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="PortType.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <data name="dgvLoadPortType.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="dgvLoadPortType.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="dgvLoadPortType.Size" type="System.Drawing.Size, System.Drawing">
+    <value>337, 894</value>
+  </data>
+  <data name="dgvLoadPortType.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dgvLoadPortType.Name" xml:space="preserve">
+    <value>dgvLoadPortType</value>
+  </data>
+  <data name="&gt;&gt;dgvLoadPortType.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dgvLoadPortType.Parent" xml:space="preserve">
+    <value>splitPortSetting.Panel1</value>
+  </data>
+  <data name="&gt;&gt;dgvLoadPortType.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splitPortSetting.Panel1.Name" xml:space="preserve">
+    <value>splitPortSetting.Panel1</value>
+  </data>
+  <data name="&gt;&gt;splitPortSetting.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splitPortSetting.Panel1.Parent" xml:space="preserve">
+    <value>splitPortSetting</value>
+  </data>
+  <data name="&gt;&gt;splitPortSetting.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnOMSOut.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="btnOMSOut.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="btnOMSOut.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnOMSOut.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 174</value>
+  </data>
+  <data name="btnOMSOut.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 58</value>
+  </data>
+  <data name="btnOMSOut.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="btnOMSOut.Text" xml:space="preserve">
+    <value>OMS out</value>
+  </data>
+  <data name="&gt;&gt;btnOMSOut.Name" xml:space="preserve">
+    <value>btnOMSOut</value>
+  </data>
+  <data name="&gt;&gt;btnOMSOut.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOMSOut.Parent" xml:space="preserve">
+    <value>splitPortSetting.Panel2</value>
+  </data>
+  <data name="&gt;&gt;btnOMSOut.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnOMSIn.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="btnOMSIn.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="btnOMSIn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnOMSIn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 116</value>
+  </data>
+  <data name="btnOMSIn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 58</value>
+  </data>
+  <data name="btnOMSIn.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="btnOMSIn.Text" xml:space="preserve">
+    <value>OMS in</value>
+  </data>
+  <data name="&gt;&gt;btnOMSIn.Name" xml:space="preserve">
+    <value>btnOMSIn</value>
+  </data>
+  <data name="&gt;&gt;btnOMSIn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOMSIn.Parent" xml:space="preserve">
+    <value>splitPortSetting.Panel2</value>
+  </data>
+  <data name="&gt;&gt;btnOMSIn.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnDummyWafer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="btnDummyWafer.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="btnDummyWafer.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDummyWafer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 58</value>
+  </data>
+  <data name="btnDummyWafer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 58</value>
+  </data>
+  <data name="btnDummyWafer.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="btnDummyWafer.Text" xml:space="preserve">
+    <value>Dummy Wafer</value>
+  </data>
+  <data name="&gt;&gt;btnDummyWafer.Name" xml:space="preserve">
+    <value>btnDummyWafer</value>
+  </data>
+  <data name="&gt;&gt;btnDummyWafer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDummyWafer.Parent" xml:space="preserve">
+    <value>splitPortSetting.Panel2</value>
+  </data>
+  <data name="&gt;&gt;btnDummyWafer.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnRealwafer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="btnRealwafer.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnRealwafer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="btnRealwafer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 58</value>
+  </data>
+  <data name="btnRealwafer.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="btnRealwafer.Text" xml:space="preserve">
+    <value>Real Wafer</value>
+  </data>
+  <data name="&gt;&gt;btnRealwafer.Name" xml:space="preserve">
+    <value>btnRealwafer</value>
+  </data>
+  <data name="&gt;&gt;btnRealwafer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnRealwafer.Parent" xml:space="preserve">
+    <value>splitPortSetting.Panel2</value>
+  </data>
+  <data name="&gt;&gt;btnRealwafer.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;splitPortSetting.Panel2.Name" xml:space="preserve">
+    <value>splitPortSetting.Panel2</value>
+  </data>
+  <data name="&gt;&gt;splitPortSetting.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splitPortSetting.Panel2.Parent" xml:space="preserve">
+    <value>splitPortSetting</value>
+  </data>
+  <data name="&gt;&gt;splitPortSetting.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="splitPortSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>483, 894</value>
+  </data>
+  <data name="splitPortSetting.SplitterDistance" type="System.Int32, mscorlib">
+    <value>337</value>
+  </data>
+  <data name="splitPortSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splitPortSetting.Name" xml:space="preserve">
+    <value>splitPortSetting</value>
+  </data>
+  <data name="&gt;&gt;splitPortSetting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splitPortSetting.Parent" xml:space="preserve">
+    <value>gbxPortSetting</value>
+  </data>
+  <data name="&gt;&gt;splitPortSetting.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="gbxPortSetting.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="gbxPortSetting.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="gbxPortSetting.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt, style=Bold</value>
+  </data>
+  <data name="gbxPortSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>197, 0</value>
+  </data>
+  <data name="gbxPortSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>489, 919</value>
+  </data>
+  <data name="gbxPortSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="gbxPortSetting.Text" xml:space="preserve">
+    <value>Port Setting</value>
+  </data>
+  <data name="&gt;&gt;gbxPortSetting.Name" xml:space="preserve">
+    <value>gbxPortSetting</value>
+  </data>
+  <data name="&gt;&gt;gbxPortSetting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbxPortSetting.Parent" xml:space="preserve">
+    <value>tapgJpSetting</value>
+  </data>
+  <data name="&gt;&gt;gbxPortSetting.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="clsRobotSetting.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="clsRobotSetting.Items" xml:space="preserve">
+    <value>IsUseStage1</value>
+  </data>
+  <data name="clsRobotSetting.Items1" xml:space="preserve">
+    <value>IsUseStage2</value>
+  </data>
+  <data name="clsRobotSetting.Items2" xml:space="preserve">
+    <value>IsUseLower</value>
+  </data>
+  <data name="clsRobotSetting.Items3" xml:space="preserve">
+    <value>IsUseUpper</value>
+  </data>
+  <data name="clsRobotSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 723</value>
+  </data>
+  <data name="clsRobotSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 86</value>
+  </data>
+  <data name="clsRobotSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="&gt;&gt;clsRobotSetting.Name" xml:space="preserve">
+    <value>clsRobotSetting</value>
+  </data>
+  <data name="&gt;&gt;clsRobotSetting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clsRobotSetting.Parent" xml:space="preserve">
+    <value>gbxRecipeSetting</value>
+  </data>
+  <data name="&gt;&gt;clsRobotSetting.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="txtOCRDegree.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 124</value>
+  </data>
+  <data name="txtOCRDegree.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 26</value>
+  </data>
+  <data name="txtOCRDegree.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="&gt;&gt;txtOCRDegree.Name" xml:space="preserve">
+    <value>txtOCRDegree</value>
+  </data>
+  <data name="&gt;&gt;txtOCRDegree.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtOCRDegree.Parent" xml:space="preserve">
+    <value>gbxRecipeSetting</value>
+  </data>
+  <data name="&gt;&gt;txtOCRDegree.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="labOCRDegree.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labOCRDegree.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 9.75pt, style=Bold</value>
+  </data>
+  <data name="labOCRDegree.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labOCRDegree.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 106</value>
+  </data>
+  <data name="labOCRDegree.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 15</value>
+  </data>
+  <data name="labOCRDegree.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="labOCRDegree.Text" xml:space="preserve">
+    <value>OCR Degree:</value>
+  </data>
+  <data name="&gt;&gt;labOCRDegree.Name" xml:space="preserve">
+    <value>labOCRDegree</value>
+  </data>
+  <data name="&gt;&gt;labOCRDegree.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labOCRDegree.Parent" xml:space="preserve">
+    <value>gbxRecipeSetting</value>
+  </data>
+  <data name="&gt;&gt;labOCRDegree.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="txtAlignerDegree.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 77</value>
+  </data>
+  <data name="txtAlignerDegree.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 26</value>
+  </data>
+  <data name="txtAlignerDegree.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="&gt;&gt;txtAlignerDegree.Name" xml:space="preserve">
+    <value>txtAlignerDegree</value>
+  </data>
+  <data name="&gt;&gt;txtAlignerDegree.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtAlignerDegree.Parent" xml:space="preserve">
+    <value>gbxRecipeSetting</value>
+  </data>
+  <data name="&gt;&gt;txtAlignerDegree.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="labAlignerDegree.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labAlignerDegree.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 9.75pt, style=Bold</value>
+  </data>
+  <data name="labAlignerDegree.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labAlignerDegree.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 59</value>
+  </data>
+  <data name="labAlignerDegree.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 15</value>
+  </data>
+  <data name="labAlignerDegree.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="labAlignerDegree.Text" xml:space="preserve">
+    <value>Aligner Degree:</value>
+  </data>
+  <data name="&gt;&gt;labAlignerDegree.Name" xml:space="preserve">
+    <value>labAlignerDegree</value>
+  </data>
+  <data name="&gt;&gt;labAlignerDegree.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labAlignerDegree.Parent" xml:space="preserve">
+    <value>gbxRecipeSetting</value>
+  </data>
+  <data name="&gt;&gt;labAlignerDegree.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="clsParameter.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="clsParameter.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt, style=Bold</value>
+  </data>
+  <data name="clsParameter.Items" xml:space="preserve">
+    <value>IsFlip</value>
+  </data>
+  <data name="clsParameter.Items1" xml:space="preserve">
+    <value>IsAligner</value>
+  </data>
+  <data name="clsParameter.Items2" xml:space="preserve">
+    <value>IsOCR_Up</value>
+  </data>
+  <data name="clsParameter.Items3" xml:space="preserve">
+    <value>IsOCR_Down</value>
+  </data>
+  <data name="clsParameter.Items4" xml:space="preserve">
+    <value>IsOCR_Stage</value>
+  </data>
+  <data name="clsParameter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 809</value>
+  </data>
+  <data name="clsParameter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 107</value>
+  </data>
+  <data name="clsParameter.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="&gt;&gt;clsParameter.Name" xml:space="preserve">
+    <value>clsParameter</value>
+  </data>
+  <data name="&gt;&gt;clsParameter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clsParameter.Parent" xml:space="preserve">
+    <value>gbxRecipeSetting</value>
+  </data>
+  <data name="&gt;&gt;clsParameter.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="cboModeSetting.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="cboModeSetting.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt, style=Bold</value>
+  </data>
+  <data name="cboModeSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 22</value>
+  </data>
+  <data name="cboModeSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 27</value>
+  </data>
+  <data name="cboModeSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="&gt;&gt;cboModeSetting.Name" xml:space="preserve">
+    <value>cboModeSetting</value>
+  </data>
+  <data name="&gt;&gt;cboModeSetting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboModeSetting.Parent" xml:space="preserve">
+    <value>gbxRecipeSetting</value>
+  </data>
+  <data name="&gt;&gt;cboModeSetting.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="gbxRecipeSetting.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="gbxRecipeSetting.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="gbxRecipeSetting.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt, style=Bold</value>
+  </data>
+  <data name="gbxRecipeSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="gbxRecipeSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 919</value>
+  </data>
+  <data name="gbxRecipeSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="gbxRecipeSetting.Text" xml:space="preserve">
+    <value>Recipe Setting</value>
+  </data>
+  <data name="&gt;&gt;gbxRecipeSetting.Name" xml:space="preserve">
+    <value>gbxRecipeSetting</value>
+  </data>
+  <data name="&gt;&gt;gbxRecipeSetting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbxRecipeSetting.Parent" xml:space="preserve">
+    <value>tapgJpSetting</value>
+  </data>
+  <data name="&gt;&gt;gbxRecipeSetting.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tapgJpSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 5</value>
+  </data>
+  <data name="tapgJpSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1736, 919</value>
+  </data>
+  <data name="tapgJpSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="tapgJpSetting.Text" xml:space="preserve">
+    <value>Mode</value>
+  </data>
+  <data name="&gt;&gt;tapgJpSetting.Name" xml:space="preserve">
+    <value>tapgJpSetting</value>
+  </data>
+  <data name="&gt;&gt;tapgJpSetting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tapgJpSetting.Parent" xml:space="preserve">
+    <value>tctlMain</value>
+  </data>
+  <data name="&gt;&gt;tapgJpSetting.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="splHistory.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="splHistory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="splHistory.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Horizontal</value>
+  </data>
+  <data name="txtHistoryCJ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 31</value>
+  </data>
+  <data name="txtHistoryCJ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 26</value>
+  </data>
+  <data name="txtHistoryCJ.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;txtHistoryCJ.Name" xml:space="preserve">
+    <value>txtHistoryCJ</value>
+  </data>
+  <data name="&gt;&gt;txtHistoryCJ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtHistoryCJ.Parent" xml:space="preserve">
+    <value>gbxWaferSearch</value>
+  </data>
+  <data name="&gt;&gt;txtHistoryCJ.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="labWaferID.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labWaferID.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt, style=Bold</value>
+  </data>
+  <data name="labWaferID.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labWaferID.Location" type="System.Drawing.Point, System.Drawing">
+    <value>41, 143</value>
+  </data>
+  <data name="labWaferID.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 19</value>
+  </data>
+  <data name="labWaferID.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="labWaferID.Text" xml:space="preserve">
+    <value>Wafer ID</value>
+  </data>
+  <data name="&gt;&gt;labWaferID.Name" xml:space="preserve">
+    <value>labWaferID</value>
+  </data>
+  <data name="&gt;&gt;labWaferID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labWaferID.Parent" xml:space="preserve">
+    <value>gbxWaferSearch</value>
+  </data>
+  <data name="&gt;&gt;labWaferID.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="labCarrierID.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labCarrierID.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt, style=Bold</value>
+  </data>
+  <data name="labCarrierID.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labCarrierID.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 178</value>
+  </data>
+  <data name="labCarrierID.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 19</value>
+  </data>
+  <data name="labCarrierID.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="labCarrierID.Text" xml:space="preserve">
+    <value>Carrier ID</value>
+  </data>
+  <data name="&gt;&gt;labCarrierID.Name" xml:space="preserve">
+    <value>labCarrierID</value>
+  </data>
+  <data name="&gt;&gt;labCarrierID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labCarrierID.Parent" xml:space="preserve">
+    <value>gbxWaferSearch</value>
+  </data>
+  <data name="&gt;&gt;labCarrierID.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="txtHistoryWafer.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt</value>
+  </data>
+  <data name="txtHistoryWafer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 140</value>
+  </data>
+  <data name="txtHistoryWafer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 26</value>
+  </data>
+  <data name="txtHistoryWafer.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;txtHistoryWafer.Name" xml:space="preserve">
+    <value>txtHistoryWafer</value>
+  </data>
+  <data name="&gt;&gt;txtHistoryWafer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtHistoryWafer.Parent" xml:space="preserve">
+    <value>gbxWaferSearch</value>
+  </data>
+  <data name="&gt;&gt;txtHistoryWafer.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="txtHistoryCarrier.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt</value>
+  </data>
+  <data name="txtHistoryCarrier.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 175</value>
+  </data>
+  <data name="txtHistoryCarrier.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 26</value>
+  </data>
+  <data name="txtHistoryCarrier.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;txtHistoryCarrier.Name" xml:space="preserve">
+    <value>txtHistoryCarrier</value>
+  </data>
+  <data name="&gt;&gt;txtHistoryCarrier.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtHistoryCarrier.Parent" xml:space="preserve">
+    <value>gbxWaferSearch</value>
+  </data>
+  <data name="&gt;&gt;txtHistoryCarrier.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="labHistoryCJID.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labHistoryCJID.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt, style=Bold</value>
+  </data>
+  <data name="labHistoryCJID.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labHistoryCJID.Location" type="System.Drawing.Point, System.Drawing">
+    <value>74, 34</value>
+  </data>
+  <data name="labHistoryCJID.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 19</value>
+  </data>
+  <data name="labHistoryCJID.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="labHistoryCJID.Text" xml:space="preserve">
+    <value>CJID</value>
+  </data>
+  <data name="&gt;&gt;labHistoryCJID.Name" xml:space="preserve">
+    <value>labHistoryCJID</value>
+  </data>
+  <data name="&gt;&gt;labHistoryCJID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labHistoryCJID.Parent" xml:space="preserve">
+    <value>gbxWaferSearch</value>
+  </data>
+  <data name="&gt;&gt;labHistoryCJID.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="dtpHistoryEnd.CalendarFont" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt</value>
+  </data>
+  <data name="dtpHistoryEnd.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt</value>
+  </data>
+  <data name="dtpHistoryEnd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>392, 80</value>
+  </data>
+  <data name="dtpHistoryEnd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 26</value>
+  </data>
+  <data name="dtpHistoryEnd.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;dtpHistoryEnd.Name" xml:space="preserve">
+    <value>dtpHistoryEnd</value>
+  </data>
+  <data name="&gt;&gt;dtpHistoryEnd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpHistoryEnd.Parent" xml:space="preserve">
+    <value>gbxWaferSearch</value>
+  </data>
+  <data name="&gt;&gt;dtpHistoryEnd.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="btnHistorySearch.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt</value>
+  </data>
+  <data name="btnHistorySearch.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnHistorySearch.Location" type="System.Drawing.Point, System.Drawing">
+    <value>277, 160</value>
+  </data>
+  <data name="btnHistorySearch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>328, 35</value>
+  </data>
+  <data name="btnHistorySearch.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="btnHistorySearch.Text" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="&gt;&gt;btnHistorySearch.Name" xml:space="preserve">
+    <value>btnHistorySearch</value>
+  </data>
+  <data name="&gt;&gt;btnHistorySearch.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnHistorySearch.Parent" xml:space="preserve">
+    <value>gbxWaferSearch</value>
+  </data>
+  <data name="&gt;&gt;btnHistorySearch.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="txtHistoryMagazine.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt</value>
+  </data>
+  <data name="txtHistoryMagazine.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 70</value>
+  </data>
+  <data name="txtHistoryMagazine.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 26</value>
+  </data>
+  <data name="txtHistoryMagazine.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;txtHistoryMagazine.Name" xml:space="preserve">
+    <value>txtHistoryMagazine</value>
+  </data>
+  <data name="&gt;&gt;txtHistoryMagazine.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtHistoryMagazine.Parent" xml:space="preserve">
+    <value>gbxWaferSearch</value>
+  </data>
+  <data name="&gt;&gt;txtHistoryMagazine.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="dtpHistoryStart.CalendarFont" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt</value>
+  </data>
+  <data name="dtpHistoryStart.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt</value>
+  </data>
+  <data name="dtpHistoryStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>392, 34</value>
+  </data>
+  <data name="dtpHistoryStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 26</value>
+  </data>
+  <data name="dtpHistoryStart.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;dtpHistoryStart.Name" xml:space="preserve">
+    <value>dtpHistoryStart</value>
+  </data>
+  <data name="&gt;&gt;dtpHistoryStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpHistoryStart.Parent" xml:space="preserve">
+    <value>gbxWaferSearch</value>
+  </data>
+  <data name="&gt;&gt;dtpHistoryStart.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="txtHistoryCassette.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt</value>
+  </data>
+  <data name="txtHistoryCassette.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 105</value>
+  </data>
+  <data name="txtHistoryCassette.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 26</value>
+  </data>
+  <data name="txtHistoryCassette.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;txtHistoryCassette.Name" xml:space="preserve">
+    <value>txtHistoryCassette</value>
+  </data>
+  <data name="&gt;&gt;txtHistoryCassette.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtHistoryCassette.Parent" xml:space="preserve">
+    <value>gbxWaferSearch</value>
+  </data>
+  <data name="&gt;&gt;txtHistoryCassette.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="labTimeEnd.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labTimeEnd.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt, style=Bold</value>
+  </data>
+  <data name="labTimeEnd.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labTimeEnd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>273, 80</value>
+  </data>
+  <data name="labTimeEnd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 19</value>
+  </data>
+  <data name="labTimeEnd.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="labTimeEnd.Text" xml:space="preserve">
+    <value>Due Date</value>
+  </data>
+  <data name="&gt;&gt;labTimeEnd.Name" xml:space="preserve">
+    <value>labTimeEnd</value>
+  </data>
+  <data name="&gt;&gt;labTimeEnd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labTimeEnd.Parent" xml:space="preserve">
+    <value>gbxWaferSearch</value>
+  </data>
+  <data name="&gt;&gt;labTimeEnd.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="labMagazineID.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labMagazineID.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt, style=Bold</value>
+  </data>
+  <data name="labMagazineID.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labMagazineID.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 73</value>
+  </data>
+  <data name="labMagazineID.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 19</value>
+  </data>
+  <data name="labMagazineID.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="labMagazineID.Text" xml:space="preserve">
+    <value>Magazine ID</value>
+  </data>
+  <data name="&gt;&gt;labMagazineID.Name" xml:space="preserve">
+    <value>labMagazineID</value>
+  </data>
+  <data name="&gt;&gt;labMagazineID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labMagazineID.Parent" xml:space="preserve">
+    <value>gbxWaferSearch</value>
+  </data>
+  <data name="&gt;&gt;labMagazineID.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="labTimeStart.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labTimeStart.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt, style=Bold</value>
+  </data>
+  <data name="labTimeStart.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labTimeStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>273, 34</value>
+  </data>
+  <data name="labTimeStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 19</value>
+  </data>
+  <data name="labTimeStart.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="labTimeStart.Text" xml:space="preserve">
+    <value>Date from</value>
+  </data>
+  <data name="&gt;&gt;labTimeStart.Name" xml:space="preserve">
+    <value>labTimeStart</value>
+  </data>
+  <data name="&gt;&gt;labTimeStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labTimeStart.Parent" xml:space="preserve">
+    <value>gbxWaferSearch</value>
+  </data>
+  <data name="&gt;&gt;labTimeStart.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="labCassetteID.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labCassetteID.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt, style=Bold</value>
+  </data>
+  <data name="labCassetteID.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labCassetteID.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 108</value>
+  </data>
+  <data name="labCassetteID.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 19</value>
+  </data>
+  <data name="labCassetteID.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="labCassetteID.Text" xml:space="preserve">
+    <value>Cassette ID</value>
+  </data>
+  <data name="&gt;&gt;labCassetteID.Name" xml:space="preserve">
+    <value>labCassetteID</value>
+  </data>
+  <data name="&gt;&gt;labCassetteID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labCassetteID.Parent" xml:space="preserve">
+    <value>gbxWaferSearch</value>
+  </data>
+  <data name="&gt;&gt;labCassetteID.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="gbxWaferSearch.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 12pt, style=Bold</value>
+  </data>
+  <data name="gbxWaferSearch.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="gbxWaferSearch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>627, 214</value>
+  </data>
+  <data name="gbxWaferSearch.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="gbxWaferSearch.Text" xml:space="preserve">
+    <value>Search condition</value>
+  </data>
+  <data name="&gt;&gt;gbxWaferSearch.Name" xml:space="preserve">
+    <value>gbxWaferSearch</value>
+  </data>
+  <data name="&gt;&gt;gbxWaferSearch.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbxWaferSearch.Parent" xml:space="preserve">
+    <value>splHistory.Panel1</value>
+  </data>
+  <data name="&gt;&gt;gbxWaferSearch.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splHistory.Panel1.Name" xml:space="preserve">
+    <value>splHistory.Panel1</value>
+  </data>
+  <data name="&gt;&gt;splHistory.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splHistory.Panel1.Parent" xml:space="preserve">
+    <value>splHistory</value>
+  </data>
+  <data name="&gt;&gt;splHistory.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="dgvHistoryWafer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="dgvHistoryWafer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="dgvHistoryWafer.RowHeadersWidth" type="System.Int32, mscorlib">
+    <value>55</value>
+  </data>
+  <data name="dgvHistoryWafer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1736, 696</value>
+  </data>
+  <data name="dgvHistoryWafer.TabIndex" type="System.Int32, mscorlib">
+    <value>75</value>
+  </data>
+  <data name="&gt;&gt;dgvHistoryWafer.Name" xml:space="preserve">
+    <value>dgvHistoryWafer</value>
+  </data>
+  <data name="&gt;&gt;dgvHistoryWafer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dgvHistoryWafer.Parent" xml:space="preserve">
+    <value>splHistory.Panel2</value>
+  </data>
+  <data name="&gt;&gt;dgvHistoryWafer.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splHistory.Panel2.Name" xml:space="preserve">
+    <value>splHistory.Panel2</value>
+  </data>
+  <data name="&gt;&gt;splHistory.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splHistory.Panel2.Parent" xml:space="preserve">
+    <value>splHistory</value>
+  </data>
+  <data name="&gt;&gt;splHistory.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="splHistory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1736, 919</value>
+  </data>
+  <data name="splHistory.SplitterDistance" type="System.Int32, mscorlib">
+    <value>219</value>
+  </data>
+  <data name="splHistory.TabIndex" type="System.Int32, mscorlib">
+    <value>76</value>
+  </data>
+  <data name="&gt;&gt;splHistory.Name" xml:space="preserve">
+    <value>splHistory</value>
+  </data>
+  <data name="&gt;&gt;splHistory.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splHistory.Parent" xml:space="preserve">
+    <value>tapgProcessHistory</value>
+  </data>
+  <data name="&gt;&gt;splHistory.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tapgProcessHistory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 5</value>
+  </data>
+  <data name="tapgProcessHistory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1736, 919</value>
+  </data>
+  <data name="tapgProcessHistory.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="tapgProcessHistory.Text" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="&gt;&gt;tapgProcessHistory.Name" xml:space="preserve">
+    <value>tapgProcessHistory</value>
+  </data>
+  <data name="&gt;&gt;tapgProcessHistory.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tapgProcessHistory.Parent" xml:space="preserve">
+    <value>tctlMain</value>
+  </data>
+  <data name="&gt;&gt;tapgProcessHistory.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="tapgPLC.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 5</value>
+  </data>
+  <data name="tapgPLC.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1736, 919</value>
+  </data>
+  <data name="tapgPLC.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="tapgPLC.Text" xml:space="preserve">
+    <value>tapgPLC</value>
+  </data>
+  <data name="&gt;&gt;tapgPLC.Name" xml:space="preserve">
+    <value>tapgPLC</value>
+  </data>
+  <data name="&gt;&gt;tapgPLC.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tapgPLC.Parent" xml:space="preserve">
+    <value>tctlMain</value>
+  </data>
+  <data name="&gt;&gt;tapgPLC.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="tapgSecsView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 5</value>
+  </data>
+  <data name="tapgSecsView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1736, 919</value>
+  </data>
+  <data name="tapgSecsView.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;tapgSecsView.Name" xml:space="preserve">
+    <value>tapgSecsView</value>
+  </data>
+  <data name="&gt;&gt;tapgSecsView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tapgSecsView.Parent" xml:space="preserve">
+    <value>tctlMain</value>
+  </data>
+  <data name="&gt;&gt;tapgSecsView.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="tctlMain.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tctlMain.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 9.75pt, style=Bold</value>
+  </data>
+  <data name="tctlMain.ItemSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 1</value>
+  </data>
+  <data name="tctlMain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 0</value>
+  </data>
+  <data name="tctlMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1744, 928</value>
+  </data>
+  <data name="tctlMain.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;tctlMain.Name" xml:space="preserve">
+    <value>tctlMain</value>
+  </data>
+  <data name="&gt;&gt;tctlMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tctlMain.Parent" xml:space="preserve">
+    <value>splMain.Panel2</value>
+  </data>
+  <data name="&gt;&gt;tctlMain.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="splButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="splButton.IsSplitterFixed" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="splButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="splButton.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Horizontal</value>
+  </data>
+  <data name="&gt;&gt;splButton.Panel1.Name" xml:space="preserve">
+    <value>splButton.Panel1</value>
+  </data>
+  <data name="&gt;&gt;splButton.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splButton.Panel1.Parent" xml:space="preserve">
+    <value>splButton</value>
+  </data>
+  <data name="&gt;&gt;splButton.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splButton.Panel2.Name" xml:space="preserve">
+    <value>splButton.Panel2</value>
+  </data>
+  <data name="&gt;&gt;splButton.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splButton.Panel2.Parent" xml:space="preserve">
+    <value>splButton</value>
+  </data>
+  <data name="&gt;&gt;splButton.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="splButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 928</value>
+  </data>
+  <data name="splButton.SplitterDistance" type="System.Int32, mscorlib">
+    <value>704</value>
+  </data>
+  <data name="splButton.SplitterWidth" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="splButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splButton.Name" xml:space="preserve">
+    <value>splButton</value>
+  </data>
+  <data name="&gt;&gt;splButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splButton.Parent" xml:space="preserve">
+    <value>splMain.Panel2</value>
+  </data>
+  <data name="&gt;&gt;splButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;splMain.Panel2.Name" xml:space="preserve">
+    <value>splMain.Panel2</value>
+  </data>
+  <data name="&gt;&gt;splMain.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splMain.Panel2.Parent" xml:space="preserve">
+    <value>splMain</value>
+  </data>
+  <data name="&gt;&gt;splMain.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="splMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1904, 1041</value>
+  </data>
+  <data name="splMain.SplitterDistance" type="System.Int32, mscorlib">
+    <value>112</value>
+  </data>
+  <data name="splMain.SplitterWidth" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="splMain.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splMain.Name" xml:space="preserve">
+    <value>splMain</value>
+  </data>
+  <data name="&gt;&gt;splMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splMain.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;splMain.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>63</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>7, 16</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>1904, 1041</value>
+  </data>
+  <data name="$this.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微軟正黑體, 9pt</value>
+  </data>
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAMDAAAAEAIACoJQAAFgAAACgAAAAwAAAAYAAAAAEAIAAAAAAAACQAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD+/v4E/v7+BP7+/gT///8E/v7+BP//
+        /wT+/v4E////BP7+/gT+/v4E////BP7+/gT+/v4E////BP7+/gT+/v4E////BP///wT+/v4E////BP7+
+        /gT+/v4E////BP7+/gT+/v4E/v7+BP7+/gT+/v4E/v7+BP7+/gT+/v4E/v7+BP7+/gT+/v4E/v7+BP7+
+        /gT+/v4E/v7+BP7+/gT+/v4E/v7+BP7+/gT+/v4E/v7+BP7+/gT+/v4E/v7+BP7+/gT+/v4m/v7+Jv7+
+        /ib+/v4m/v7+Jv7+/ib+/v4m////Jv7+/ib+/v4m////Jv7+/ib+/v4m/v7+Jv7+/ib+/v4m/v7+Jv7+
+        /ib+/v4m////Jv7+/ib+/v4m////Jv7+/ib+/v4m////Jv7+/ib+/v4m/v7+Jv7+/ib+/v4m/v7+Jv7+
+        /ib+/v4m////Jv7+/ib+/v4m////Jv7+/ib+/v4m/v7+Jv7+/ib+/v4m/v7+Jv7+/ib+/v4m////Jv7+
+        /ib+/v5Q////UP7+/lD///9Q/v7+UP///1D///9Q////UP7+/lD+/v5Q////UP7+/lD///9Q////UP7+
+        /lD///9Q////UP///1D+/v5Q////UP///1D+/v5Q////UP7+/lD///9Q////UP///1D///9Q////UP//
+        /1D///9Q////UP///1D///9Q////UP///1D///9Q////UP///1D///9Q////UP///1D///9Q////UP//
+        /1D///9Q////UP///1D///94////eP///3j+/v54////eP///3j+/v54////eP7+/nj+/v54////eP7+
+        /nj+/v54/v7+eP7+/nj+/v54/v7+eP7+/nj+/v54/v7+eP7+/nj+/v54/v7+eP7+/nj+/v54////eP//
+        /3j+/v54////eP///3j+/v54////eP///3j+/v54////eP///3j+/v54////eP///3j+/v54////eP//
+        /3j+/v54////eP///3j+/v54////eP///3j+/v6l/v7+pf7+/qX+/v6l/v7+pf7+/qX+/v6l/v7+pf7+
+        /qX+/v6l/v7+pf7+/qX+/v6l/v7+pf7+/qX+/v6l/v7+pf7+/qX+/v6l/v7+pf7+/qX+/v6l/v7+pf7+
+        /qX+/v6l/v7+pf7+/qX+/v6l/v7+pf7+/qX+/v6l/v7+pf7+/qX+/v6l/v7+pf7+/qX+/v6l/v7+pf7+
+        /qX+/v6l/v7+pf7+/qX+/v6l/v7+pf7+/qX+/v6l/v7+pf7+/qX+/v7N/v7+zf7+/s3+/v7N/v7+zf7+
+        /s3+/v7N/v7+zf7+/s3+/v7N/v7+zf7+/s3+/v7N/v7+zf7+/s3+/v7N/v7+zf7+/s3+/v7N/v7+zf7+
+        /s3+/v7N/v7+zf7+/s3+/v7N/v7+zf7+/s3+/v7N/v7+zf7+/s3+/v7N/v7+zf7+/s3+/v7N/v7+zf7+
+        /s3+/v7N/v7+zf7+/s3+/v7N/v7+zf7+/s3+/v7N/v7+zf7+/s3+/v7N/v7+zf7+/s3////1////9f//
+        //X////1/v7+9f////X+/v71////9f7+/vX+/v71////9f7+/vX////1/v7+9f7+/vX+/v71/v7+9f7+
+        /vX+/v71/v7+9f7+/vX////1/v7+9f7+/vX+/v71////9f7+/vX+/v71////9f7+/vX+/v71////9f7+
+        /vX+/v71////9f7+/vX+/v71////9f7+/vX+/v71////9f7+/vX+/v71////9f7+/vX+/v71////9f7+
+        /vX89vL/0Xc1/9F3Nf/RdzX/0Xc1//fp3v/359v/0Xc1/9F3Nf/TfDz//v38/+rAov/RdzX/0Xc1/9F3
+        Nf/clmP/8tnG/9F3Nf/RdzX/0Xc1/9F3Nf/gpHj///////fq3//RdzX/0Xc1/9F3Nf/RdzX/3p1t/+rB
+        ov/RdzX/0Xc1/9F3Nf/RdzX/7sy0///////dmmr/0Xc1/9F3Nf/RdzX/8dbD///////tyrH/0Xc1/9F3
+        Nf/RdzX/0no6//78+v/79O//x1kJ/8hZCf/IWgn/x1kJ//bk1//sx6z/yFoJ/8hZCf/IWgr/+Org/+Wz
+        j//HWQn/yFkJ/8dZCf/UgEL/9+nf/8hZCf/IWQn/yFkJ/8hZCf/VgUP//v7+//HWw//HWQn/yFkJ/8hZ
+        Cf/HWQn/4KR4/+Wzj//IWQn/yFoJ/8hZCf/HWQn/6sKk//7+/v/WhUr/yFkJ/8hZCf/HWQn/7s62//7+
+        /v/Xh03/yFoJ/8hZCf/HWQn/yV4Q//37+v/79O//x1kJ/8haCv/IWgr/x1kK//Xi1f/iqoH/yFoK/8dZ
+        Cf/HWQn/78+4/+Wzj//HWgr/yFoK/8dZCv/UgEL//v39/8piFv/HWgr/yFoK/8dZCv/ObSb/9+jd/+e4
+        lv/HWgn/yFoK/8daCf/HWgn/68Om/+Wzj//HWgn/yFoK/8daCf/HWgn/6sKk//7+/v/WhUr/yFoK/8da
+        Cf/HWgn/7s62//js4//IXA3/yFoK/8daCf/HWgn/yV4Q//37+v/79O//yFoK/8daCv/IWgr/x1kK//Tg
+        0f/ZjVb/yFoK/8haCv/HWQr/5rSQ/+Wzj//HWgr/yFoK/8daCv/UgEL//////9N8Pf/HWgr/yFoK/8da
+        Cv/HWgr/yFoK/8daCv/HWgr/yFoK/8daCv/HWgr/9eLU/+Wzj//IWgr/yFoK/8daCv/HWgr/6sKk////
+        ///WhUr/yFoK/8daCv/HWgr/7s62/+Wxi//IWgr/yFoK/8daCv/HWgr/yV4Q//37+v/79O//x1kJ/8hZ
+        Cf/IWgn/x1kJ//Tg0f/PcCv/yFoJ/8hZCf/HWQn/3Zlo/+WxjP/HWQn/yFoJ/8hZCf/UgEL//v7+/9yY
+        Zv/HWQn/yFkJ/8haCf/HWQn/yFoJ/8hZCf/IWQn/yFkJ/8dZCf/KYBP//fv5/+Wzj//IWQn/yFkJ/8dZ
+        Cf/HWQn/6sKk//7+/v/WhUr/yFkJ/8dZCf/IWQn/7s21/9BzMP/IWQn/yFkJ/8dZCf/HWQn/yV4Q//37
+        +v/79O//x1kJ/8haCv/IWgn/x1kK//HXxP/IXA3/yFoK/8dZCf/HWQn/1H5A/+Svif/HWgr/yFoJ/8dZ
+        Cv/UgEL//////+Wzj//HWgr/yFoK/8dZCv/MZhz/5bOP/9aESf/HWgn/yFoK/8daCf/Tezz//////+Wz
+        j//HWgn/yFoK/8daCf/HWgn/6sKk//7+/v/WhUr/yFoK/8daCf/HWgn/4qmA/8daCf/HWgn/yFoK/8da
+        Cf/HWgn/yV4Q//37+v/79O//x1oK/8haCv/IWgr/x1kK/+i8nP/HWQr/yFoK/8dZCv/HWgr/y2Qa/+Su
+        h//HWgr/yFoK/8daCv/UgEL//////+/Pt//HWgr/yFoK/8daCv/KYRX//v79/9yWY//HWgr/yFoK/8da
+        Cv/dmmr//////+Wzj//IWgr/yFoK/8daCv/HWgr/6sKk///////WhUr/yFoK/8daCv/IWgr/zm0m/8da
+        Cv/IWgr/yFoK/8daCv/HWgr/yV4Q//37+v/79O//x1kJ/8dZCf/IWgn/x1kJ/96dbv/IWQn/x1oJ/8hZ
+        Cf/IWQn/yFoK/96eb//HWQn/yFoJ/8dZCf/UgEL//v7+//jq4P/IWgr/yFoJ/8hZCf/IWgr/+e7m/9SA
+        Q//IWQn/yFkJ/8hZCf/nuZj//v7+/+Wzj//IWQn/yFkJ/8hZCf/HWQn/6sKk//7+/v/WhUr/yFkJ/8hZ
+        Cf/IWQn/yFkJ/8hZCf/IWQn/yFkJ/8hZCf/HWQn/yV4Q//37+v/79O//yFoJ/8haCv/IWgr/x1kK/9R+
+        QP/HWQn/yFoK/9ByLf/HWQn/yFoK/9WDR//HWgn/yFkK/8daCf/UgEL///////79/P/LYxf/yFkK/8da
+        Cf/HWgn/8dXB/85sJf/IWgn/yFoK/8dZCf/y2Mb//////+Wzj//IWgn/yFoK/8dZCf/IWgn/6sKk//7+
+        /v/WhUr/yFoK/8dZCf/IWgn/yFoK/8dZCf/NaiL/yFoK/8dZCf/IWgn/yV4Q//37+v/79O//x1oK/8ha
+        Cv/IWgr/x1kK/8piFv/IWQr/yFoK/+Org//HWQr/yFoK/8xmHP/HWgr/yFoK/8daCv/UgEL/////////
+        ///TfT7/yFoK/8daCv/HWgr/5raT/8ldD//IWgr/yFoK/8hbDP/89vH//////+Wzj//HWgr/yFoK/8ha
+        Cv/HWgr/6sKk///////WhUr/yFoK/8daCv/HWgr/yFoK/8haCv/iqoD/yFoL/8haCv/HWgr/yV4Q//37
+        +v/79O//yFkJ/8hZCf/IWgn/x1kJ/8haCf/IWQn/ymIW//Pcy//IWQn/yFoJ/8hZCf/HWQn/yFoJ/8dZ
+        Cf/UgEL//v7+//7+/v/cmGf/yFkJ/8dZCf/HWQn/2ItU/8dZCf/HWQn/yFkJ/9ByLf/+/v7//v7+/+Wz
+        j//IWQn/yFkJ/8hZCf/HWQn/6sKk//7+/v/WhUr/yFkJ/8hZCf/IWQn/yFkJ/8ldDv/36d//yFoL/8hZ
+        Cf/HWQn/yV4Q//37+v/79O//x1kJ/8haCv/IWgn/x1kK/8haCv/IWQr/1H5A//z38//IXA3/x1oK/8hZ
+        Cv/HWgr/yFkK/8dZCv/UgEL///////7+/v/mtJD/yFkK/8dZCv/HWgr/ymEV/8dZCv/HWgn/yFoK/9qR
+        W//+/v7//////+Wzj//HWgn/yFoK/8dZCf/HWgn/6sKk//7+/v/WhUr/yFoK/8dZCf/HWgn/yFoK/9mO
+        WP/9+/n/yFoL/8dZCf/HWgn/yV4Q//37+v/79O//yFoK/8haCv/IWgr/x1kK/8daCv/IWQr/3pxs////
+        ///Pbyn/yFoK/8daCv/HWgr/yFoK/8daCv/UgEL////////////vz7j/yFoK/8daCv/HWgr/yFoK/8da
+        Cv/HWgr/yFoK/+Swiv///////////+Wzj//HWgr/yFoK/8daCv/HWgr/6sKk///////WhUr/yFoK/8da
+        Cv/HWgr/yFoK/+/Ru//9+/n/yFoL/8daCv/HWgr/yV4Q//37+v/79O//x1kJ/8hZCf/IWgn/x1kJ/8ha
+        Cf/HWQn/57mY//7+/v/YilH/yFoJ/8hZCf/HWQn/yFkJ/8dZCf/UgEL//v7+//7+/v/46+H/yFoK/8hZ
+        Cf/HWQn/yFkJ/8hZCf/HWQn/yFkJ/+/PuP/+/v7//v7+/+Wzj//IWQn/yFoJ/8hZCf/HWQn/6sKk//7+
+        /v/WhUr/yFkJ/8hZCf/HWQn/z3Ar//79/f/9+/n/yFoL/8hZCf/HWQn/yV4Q//37+v/79fH/z3Ar/89w
+        K//PcCv/z3Ar/89wK//PcCv/89zM//7+/v/ksIn/z3Ar/89wK//PcCv/z3Ar/89wK//akVz///////7+
+        /v/+/v3/0XY0/89wK//PcCv/z3Ar/89wK//PcCv/z3Ar//nu5v/+/v7//////+m+nv/PcCv/z3Ar/89w
+        K//PcCv/7cqx//7+/v/clmP/z3Ar/89wK//PcCv/57mX//7+/v/9+/r/z3Es/89wK//PcCv/0HQx//78
+        +v//////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////
+        ///////////////////+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7///////7+
+        /v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7///////7+/v/+/v7///////7+/v/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/+/v7///////7+/v///////v7+/////////////v7+///////+/v7///////7+
+        /v/+/v7///////7+/v/+/v7///////7+/v/+/v7///////7+/v/+/v7///////7+/v/+/v7///////7+
+        /v/+/v7///////7+/v/+/v7///////7+/v/+/v7///////7+/v/+/v7///////7+/v/+/v7///////7+
+        /v/+/v7///////7+/v/+/v7///////7+/v/+/v7///////7+/v///////fr3//rx6//68ev//Pfz////
+        //////////////v18f/68ev/+vHr//78+//+/v7/+vDp//rx6//79PD///////v07//68ev/+vHr//79
+        /P/////////////////9+vj/+vHq//nt5f/57+f/+vHr//rx6//68ev//v39/////////////v7+//7+
+        /v/+/v7////////////+/fz/+vLs//rw6f/57eX/+e3l//nt5f/68ev//fr3///////+/v7/6b6e/8da
+        Cv/HWgn/3Zpq//7+/v/+/v7//v7+/9eITv/HWgn/x1oK//Tg0f/8+PX/x1oJ/8daCf/XiE7//v7+/9eI
+        Tv/HWgn/x1oJ//js4//+/v7/+Ovh/9aGS//IXA3/x1oK/8daCf/HWgn/x1oK/8daCf/HWgn/9+nf//Tf
+        z//SeTn/zGYc/8tkGv/NayP//Pfz/96dbv/KYhb/x1oK/8daCf/HWgn/x1oK/8daCf/HWgn/6b6e//7+
+        /v//////6b6e/8hZCv/HWgn/3Zpq///////+/v7//////9eITv/HWQn/yFoK//Tg0f/8+PX/yFoK/8da
+        Cv/XiE7//////9eITv/HWgr/yFkK//js4//+/v7/2pJe/8daCv/IWgv/6Lub//LayP/z28r/2pBb/8dZ
+        Cf/HWQn/9+nf/9SAQ//HWQn/yV0P/+e5l//rxan/6b+g/8haCf/HWQn/3Ztr//LYxf/z28r/5rSQ/8dZ
+        Cf/HWQn/6b6e////////////6b6e/8hZCv/IWgr/3Zpq/////////////////9eITv/IWQr/yFoK//Tg
+        0f/8+PX/yFkK/8hZCv/XiE7//////9eITv/IWQr/yFkK//js4///////2ItU/8hZCv/JXQ//89zL//36
+        +P/9+/n/3p5v/8hZCv/IWQn/9+nf/89wK//IWQr/0ng2////////////57mX/8hZCv/IWQn/5bOO//35
+        9v/9+/n/7cqx/8hZCv/IWQr/6b6e///////+/v7/6b6e/8daCf/HWgn/0no5/+Org//jq4P/46yE/89w
+        K//HWgn/x1oK//Tg0f/8+PX/yFoJ/8daCf/XiE7//v7+/9eITv/HWgn/x1oJ//js4//+/v7/9N7O/89x
+        LP/HWgn/x1oK/8hcDf/IXA3/yFoL/8daCf/HWgn/9+nf/89wK//HWgn/0no6//7+/v/+/v7/+/Xw/9eH
+        TP/IWgv/x1oJ/8hbDP/IXA3/yFsM/8daCf/HWgn/6b6e//7+/v//////6b6e/8haCv/IWgr/yFoK/8ha
+        Cv/IWgr/yFoK/8haCv/IWQr/x1oK//Tg0f/8+PX/yFoK/8haCv/XiE7//////9iLU//HWQn/yFkJ//fp
+        3v/+/v7///////7+/f/47OP/9ePV//Xj1f/149X/25Nf/8dZCf/HWQn/+Ovi/89wK//HWQn/0no6//7+
+        /v/+/v7///////7+/v/68uz/9uTX//Xj1f/149X/57mX/8dZCf/HWQn/6b+g//7+/v//////6b6e/8hZ
+        Cv/IWQr/3JZj//v18P/79fD/+/Xw/9aFSv/IWQr/yFoK//Tg0f/9+ff/0Xc1/9F3Nf/enW7//////+e3
+        lf/IWQr/yFkK/92ZZ//pvp7/9ODR//ry7P/pv6D/6b6e/+m+nv/nuJX/zGce/8hZCv/NaiL//vz7/89w
+        K//IWQr/zm4o/+zGqv/sx6z//v38/+zIrf/pvp7/6b6e/+m+nv/pvZ3/1H5A/8hZCv/IWgv/9N/P////
+        ///+/v7/6b6e/8daCf/IWgn/3Zpq//7+/v/+/v7//v7+/9eITv/HWgn/x1oK//Tg0f/+/Pv/7Maq/+vE
+        qP/x1cH//v7+//79/P/mtpP/03s7/8xnHf/LZRv/5raT//Tezv/LZRv/y2Ub/8tlG//LZRv/zGYd/9WC
+        Rv/z3Mz//v7+/89wK//HWgn/yFsM/8tlG//MaSD//fr4/9N7O//LZRv/y2Ub/8tlG//LZRv/y2Ub/9F2
+        NP/qwaP//v7+//7+/v//////6b6e/8haCv/IWgr/3Zpq///////+/v7//////9eITv/HWQn/yFoK//Tg
+        0f/9+vn/yV8R/8daCv/XiE7///////7+/v/+/v7///////7+/v/+/v7///////7+/v/+/v7///////7+
+        /v/+/v7///////7+/v/+/v7//////89wK//HWQn/0no6//7+/v/+/v7///////7+/v/+/v7///////7+
+        /v/+/v7///////7+/v/+/v7///////7+/v//////9+ne/+zGqv/sxqr/89zM//////////////////HW
+        w//sxqr/7Maq//v08P//////8tnH/+zGqv/x1sP/////////////////////////////////////////
+        /////////////////////////////////////////////+7Otv/sxqr/79G8////////////////////
+        ///////////////////////////////////////////////////+/v7r/v7+6/7+/uv+/v7r/v7+6/7+
+        /uv+/v7r/v7+6/7+/uv+/v7r/v7+6/7+/uv+/v7r/v7+6/7+/uv+/v7r/v7+6/7+/uv+/v7r/v7+6/7+
+        /uv+/v7r/v7+6/7+/uv+/v7r/v7+6/7+/uv+/v7r/v7+6/7+/uv+/v7r/v7+6/7+/uv+/v7r/v7+6/7+
+        /uv+/v7r/v7+6/7+/uv+/v7r/v7+6/7+/uv+/v7r/v7+6/7+/uv+/v7r/v7+6/7+/uv+/v7B////wf7+
+        /sH////B/v7+wf///8H+/v7B/v7+wf7+/sH+/v7B/v7+wf7+/sH+/v7B////wf///8H+/v7B////wf//
+        /8H+/v7B////wf///8H+/v7B////wf///8H+/v7B////wf7+/sH+/v7B////wf7+/sH+/v7B////wf7+
+        /sH+/v7B////wf7+/sH+/v7B////wf7+/sH+/v7B////wf7+/sH+/v7B////wf7+/sH+/v7B////wf7+
+        /sH///+Z////mf///5n///+Z////mf///5n///+Z////mf///5n///+Z////mf///5n///+Z////mf//
+        /5n///+Z////mf///5n///+Z////mf///5n///+Z////mf///5n///+Z////mf///5n///+Z////mf//
+        /5n///+Z////mf///5n///+Z////mf///5n///+Z////mf///5n///+Z////mf///5n///+Z////mf//
+        /5n///+Z////mf///5n+/v5s/v7+bP7+/mz+/v5s/v7+bP7+/mz+/v5s/v7+bP7+/mz+/v5s/v7+bP7+
+        /mz+/v5s/v7+bP7+/mz+/v5s/v7+bP7+/mz+/v5s/v7+bP7+/mz+/v5s/v7+bP7+/mz+/v5s////bP7+
+        /mz+/v5s/v7+bP7+/mz+/v5s/v7+bP7+/mz+/v5s////bP7+/mz+/v5s////bP7+/mz+/v5s/v7+bP7+
+        /mz+/v5s/v7+bP7+/mz+/v5s////bP7+/mz///9E////RP///0T///9E/v7+RP///0T///9E////RP//
+        /0T///9E////RP///0T///9E////RP///0T///9E/v7+RP///0T///9E////RP///0T///9E////RP//
+        /0T///9E/v7+RP///0T///9E/v7+RP///0T///9E/v7+RP///0T///9E/v7+RP///0T///9E/v7+RP//
+        /0T///9E/v7+RP///0T///9E/v7+RP///0T///9E/v7+RP///0T///8a////Gv7+/hr///8a/v7+Gv//
+        /xr+/v4a/v7+Gv7+/hr///8a/v7+Gv7+/hr///8a////Gv///xr///8a/v7+Gv///xr///8a/v7+Gv//
+        /xr///8a////Gv///xr///8a/v7+Gv7+/hr///8a/v7+Gv7+/hr///8a/v7+Gv7+/hr///8a/v7+Gv7+
+        /hr///8a/v7+Gv7+/hr///8a/v7+Gv7+/hr///8a/v7+Gv7+/hr///8a/v7+Gv7+/hr+/v4A////AP7+
+        /gD///8A/v7+AP///wD+/v4A////AP7+/gD+/v4A////AP7+/gD///8A////AP7+/gD+/v4A////AP7+
+        /gD+/v4A/v7+AP///wD+/v4A////AP///wD///8A/v7+AP7+/gD///8A/v7+AP///wD///8A/v7+AP//
+        /wD///8A/v7+AP7+/gD///8A/v7+AP7+/gD///8A/v7+AP///wD///8A/v7+AP///wD///8A/v7+AP7+
+        /gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////8AAP///////wAA////////
+        AAD///////8AAP///////wAA////////AAD///////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAA////////AAD///////8AAP///////wAA////////AAD///////8AAP///////wAA////////
+        AAA=
+</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>1920, 1080</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>1364, 726</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Hirata MainControl</value>
+  </data>
+  <data name="&gt;&gt;tmrMain.Name" xml:space="preserve">
+    <value>tmrMain</value>
+  </data>
+  <data name="&gt;&gt;tmrMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;icnMain.Name" xml:space="preserve">
+    <value>icnMain</value>
+  </data>
+  <data name="&gt;&gt;icnMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NotifyIcon, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Device.Name" xml:space="preserve">
+    <value>Device</value>
+  </data>
+  <data name="&gt;&gt;Device.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Memory.Name" xml:space="preserve">
+    <value>Memory</value>
+  </data>
+  <data name="&gt;&gt;Memory.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Sensor.Name" xml:space="preserve">
+    <value>Sensor</value>
+  </data>
+  <data name="&gt;&gt;Sensor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LoadPort.Name" xml:space="preserve">
+    <value>LoadPort</value>
+  </data>
+  <data name="&gt;&gt;LoadPort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PortType.Name" xml:space="preserve">
+    <value>PortType</value>
+  </data>
+  <data name="&gt;&gt;PortType.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>frmMain</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

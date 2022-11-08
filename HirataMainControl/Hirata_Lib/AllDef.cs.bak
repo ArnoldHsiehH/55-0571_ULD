@@ -1,0 +1,462 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+
+
+namespace HirataMainControl
+{
+
+    #region Robot
+    public class RobotInfo
+    {
+        public Waferinfo[] Wafer;
+
+        //Joanne 20200930 Start Add
+        public DataInfo[] WaferData;   
+        public DataInfo[] CarrierData;   
+        //Joanne 20200930 End Add
+
+        private string Device;
+
+        public void RobotInit(int index, int armcount)
+        {
+            Device = string.Format("{0}{1}", NormalStatic.Robot, index);
+
+            Wafer = new Waferinfo[armcount];
+
+            //Joanne 20200930 Start Add
+            WaferData = new DataInfo[armcount];
+            CarrierData = new DataInfo[armcount];
+            //Joanne 20200930 End Add
+
+            for (int i = 0; i < armcount; i++)
+            {
+                Wafer[i] = new Waferinfo();
+                Wafer[i] = Wafer[i].ConvertedInfo(INI.ReadValue(Device, i.ToString(), "", 1024, NormalStatic.IniPath));
+
+                //Joanne 20200930 Start Add
+                WaferData[i] = new DataInfo();
+                WaferData[i] = WaferData[i].ConvertedDataInfo(INI.ReadValue(Device, string.Format("{0}{1}", NormalStatic.Wafer, i), "", 1024, NormalStatic.DataPath));
+                CarrierData[i] = new DataInfo();
+                CarrierData[i] = CarrierData[i].ConvertedDataInfo(INI.ReadValue(Device, string.Format("{0}{1}", NormalStatic.Carrier, i), "", 1024, NormalStatic.DataPath));
+                //Joanne 20200930 End Add
+            }
+        }
+
+        public void SetWafer(int index)
+        {
+            INI.WriteValue(Device, index.ToString(), string.Format("{0},{1},{2}",
+                                                                    Wafer[index].SocPort,
+                                                                    Wafer[index].SocSlot,
+                                                                    Wafer[index].Status
+                                                                  ),
+                                                                  NormalStatic.IniPath);
+        }
+
+        //Joanne 20200930 Start Add
+        public void SetWaferData(int Index)
+        {
+            INI.WriteValue(Device, string.Format("{0}{1}", NormalStatic.Wafer, Index), string.Format("{0},{1},{2},{3},{4}",
+                                                                                                      WaferData[Index].Status,
+                                                                                                      WaferData[Index].SocPort,
+                                                                                                      WaferData[Index].SocSlot,
+                                                                                                      WaferData[Index].DesPort,
+                                                                                                      WaferData[Index].DesSlot
+                                                                                                    ),
+                                                                                                    NormalStatic.DataPath);
+        }
+
+        public void SetCarrierData(int Index)
+        {
+            INI.WriteValue(Device, string.Format("{0}{1}", NormalStatic.Carrier, Index), string.Format("{0},{1},{2},{3},{4}",
+                                                                                                        CarrierData[Index].Status,
+                                                                                                        CarrierData[Index].SocPort,
+                                                                                                        CarrierData[Index].SocSlot,
+                                                                                                        CarrierData[Index].DesPort,
+                                                                                                        CarrierData[Index].DesSlot
+                                                                                                      ),
+                                                                                                      NormalStatic.DataPath);
+        }
+        //Joanne 20200930 End Add
+    }
+
+    #endregion
+
+    #region Aligner
+    public class AlignerInfo
+    {
+        public Waferinfo Wafer = new Waferinfo();
+        public DataInfo WaferData = new DataInfo(); //Joanne 20200930 Add
+        private string Device;
+
+        public void AlignerInit(int index)
+        {
+            Device = string.Format("{0}{1}", NormalStatic.Aligner, index);
+            Wafer = Wafer.ConvertedInfo(INI.ReadValue(Device, NormalStatic.Wafer, "", 1024, NormalStatic.IniPath));
+            WaferData = WaferData.ConvertedDataInfo(INI.ReadValue(Device, NormalStatic.Wafer, "", 1024, NormalStatic.DataPath));    //Joanne 20200930 Add
+        }
+
+        public void SetWafer()
+        {
+            INI.WriteValue(Device, NormalStatic.Wafer, string.Format("{0},{1},{2}",
+                                                                      Wafer.SocPort,
+                                                                      Wafer.SocSlot,
+                                                                      Wafer.Status
+                                                                    ), 
+                                                                    NormalStatic.IniPath);
+        }
+
+        //Joanne 20200930 Start Add
+        public void SetWaferData()
+        {
+            INI.WriteValue(Device, NormalStatic.Wafer, string.Format("{0},{1},{2},{3},{4}",
+                                                                      WaferData.Status,
+                                                                      WaferData.SocPort,
+                                                                      WaferData.SocSlot,
+                                                                      WaferData.DesPort,
+                                                                      WaferData.DesSlot
+                                                                    ),
+                                                                    NormalStatic.DataPath);
+        }
+        //Joanne 20200930 End Add
+    }
+
+    #endregion
+
+    #region Stage
+    public class StageInfo
+    {
+        public Waferinfo Wafer = new Waferinfo();
+        public Waferinfo Carrier = new Waferinfo();
+        public Waferinfo CarrierWafer = new Waferinfo();
+
+        //Joanne 20200930 Start Add
+        public DataInfo WaferData = new DataInfo();
+        public DataInfo CarrierData = new DataInfo();
+        //Joanne 20200930 End Add
+
+        private string Device;
+
+        public void StageInit(int index)
+        {
+            Device = string.Format("{0}{1}", NormalStatic.Stage, index);
+
+            Wafer = Wafer.ConvertedInfo(INI.ReadValue(Device, NormalStatic.Wafer, "", 1024, NormalStatic.IniPath));
+            Carrier = Carrier.ConvertedInfo(INI.ReadValue(Device, NormalStatic.Carrier, "", 1024, NormalStatic.IniPath));
+            CarrierWafer = Carrier.ConvertedInfo(INI.ReadValue(Device, NormalStatic.CarrierWafer, "", 1024, NormalStatic.IniPath));
+
+            //Joanne 20200930 Start Add
+            WaferData = WaferData.ConvertedDataInfo(INI.ReadValue(Device, NormalStatic.Wafer, "", 1024, NormalStatic.DataPath));
+            CarrierData = CarrierData.ConvertedDataInfo(INI.ReadValue(Device, NormalStatic.Carrier, "", 1024, NormalStatic.DataPath));
+            //Joanne 20200930 End Add
+        }
+
+        public void SetWafer()
+        {
+            INI.WriteValue(Device, NormalStatic.Wafer,  string.Format("{0},{1},{2}",
+                                                                       Wafer.SocPort,
+                                                                       Wafer.SocSlot,
+                                                                       Wafer.Status
+                                                                     ),
+                                                                     NormalStatic.IniPath);
+        }
+
+        public void SetCarrier()
+        {
+            
+             INI.WriteValue(Device, NormalStatic.Carrier,string.Format("{0},{1},{2}",
+                                                                        Carrier.SocPort,
+                                                                        Carrier.SocSlot,
+                                                                        Carrier.Status
+                                                                      ),
+                                                                      NormalStatic.IniPath);
+        }
+
+        public void SetCarrierWafer()
+        {
+            INI.WriteValue(Device, NormalStatic.CarrierWafer, string.Format("{0},{1},{2}",
+                                                                             CarrierWafer.SocPort,
+                                                                             CarrierWafer.SocSlot,
+                                                                             CarrierWafer.Status
+                                                                           ), 
+                                                                           NormalStatic.IniPath);
+        }
+
+        //Joanne 20200930 Start Add
+        public void SetWaferData()
+        {
+            INI.WriteValue(Device, NormalStatic.Wafer, string.Format("{0},{1},{2},{3}.{4}",
+                                                                      WaferData.Status,
+                                                                      WaferData.SocPort,
+                                                                      WaferData.SocSlot,
+                                                                      WaferData.DesPort,
+                                                                      WaferData.DesSlot
+                                                                    ),
+                                                                    NormalStatic.DataPath);
+        }
+
+        public void SetCarrierData()
+        {
+            INI.WriteValue(Device, NormalStatic.Carrier, string.Format("{0},{1},{2},{3},{4}",
+                                                                        CarrierData.Status,
+                                                                        CarrierData.SocPort,
+                                                                        CarrierData.SocSlot,
+                                                                        CarrierData.DesPort,
+                                                                        CarrierData.DesSlot
+                                                                      ),
+                                                                      NormalStatic.DataPath);
+        }
+        //Joanne 20200930 End Add
+    }
+
+    #endregion
+
+    #region Cassette
+    public class CassetteInfo
+    {
+        public Waferinfo[] Wafer;
+        public DataInfo[] WaferData;    //Joanne 20200930 Add
+        public string ID;
+        public CassetterPortType PortType;
+        public bool Presence;
+
+        public void CassetteInit(int index, int Slotcount)
+        {
+            ID = INI.ReadValue(String.Format("{0}{1}", NormalStatic.CstPort, index), NormalStatic.ID, " ", 1024, NormalStatic.IniPath);
+            Wafer = new Waferinfo[Slotcount];
+            WaferData = new DataInfo[Slotcount];    //Joanne 20200930 Add
+
+            for (int i = 0; i < Slotcount; i++)
+            {
+                Wafer[i] = new Waferinfo();
+                Wafer[i].clear();
+                SetWafer(index, i);
+
+                //Joanne 20200930 Start Add
+                WaferData[i] = new DataInfo();
+                WaferData[i].Clear();
+                SetWaferData(index, i);
+                //Joanne 20200930 End Add
+            }
+        }
+
+        public void SetWafer(int port ,int index)
+        {
+            Wafer[index].SocPort =  NormalStatic.CstPort + (port+1);
+            Wafer[index].SocSlot = index + 1;
+            INI.WriteValue(String.Format("{0}{1}", NormalStatic.CstPort, port), index.ToString(), string.Format("{0},{1},{2}",
+                                                                                                                 Wafer[index].SocPort,
+                                                                                                                 Wafer[index].SocSlot,
+                                                                                                                 Wafer[index].Status
+                                                                                                               ),
+                                                                                                               NormalStatic.IniPath);
+        }
+
+        public void SetID(int index,string id) 
+        {
+            INI.WriteValue(String.Format("{0}{1}", NormalStatic.CstPort, index), NormalStatic.ID, id, NormalStatic.IniPath); 
+        }
+
+        //Joanne 20200930 Start Add
+        public void SetWaferData(int port, int index)
+        {
+            INI.WriteValue(String.Format("{0}{1}", NormalStatic.CstPort, port), index.ToString(), string.Format("{0},{1},{2},{3},{4}",
+                                                                                                                 WaferData[index].Status,
+                                                                                                                 WaferData[index].SocPort,
+                                                                                                                 WaferData[index].SocSlot,
+                                                                                                                 WaferData[index].DesPort,
+                                                                                                                 WaferData[index].DesSlot
+                                                                                                               ),
+                                                                                                               NormalStatic.DataPath);
+        }
+        //Joanne 20200930 End Add
+    } 
+
+    #endregion
+
+    #region Magazine
+    public class MagazineInfo
+    {
+        public Waferinfo[] Wafer;
+        public Waferinfo[] Carrier;
+        public string ID;
+        public MagazinePortType PortType;
+        public bool Presence;
+
+        //Joanne 20200930 Start Add
+        public DataInfo[] WaferData;
+        public DataInfo[] CarrierData;
+        //Joanne 20200930 End Add
+
+        public void MagazineInit(int index, int Slotcount)
+        {
+            Wafer = new Waferinfo[Slotcount];
+            Carrier = new Waferinfo[Slotcount];
+
+            //Joanne 20200930 Start Add
+            WaferData = new DataInfo[Slotcount];
+            CarrierData = new DataInfo[Slotcount];
+            //Joanne 20200930 End Add
+
+            for (int i = 0; i < Slotcount; i++)
+            {
+                Wafer[i] = new Waferinfo();
+                Wafer[i].clear();
+                SetWafer(index, i);
+                Carrier[i] = new Waferinfo();
+                Carrier[i].clear();
+                SetCarrier(index, i);
+
+                //Joanne 20200930 Start Add
+                WaferData[i] = new DataInfo();
+                WaferData[i].Clear();
+                SetWaferData(index, i);
+                CarrierData[i] = new DataInfo();
+                CarrierData[i].Clear();
+                SetCarrierData(index, i);
+                //Joanne 20200930 End Add
+            }
+        }
+
+        public void SetWafer(int port,int index)
+        {
+            INI.WriteValue(String.Format("{0}{1}", NormalStatic.MagazinePort, port), 
+                            string.Format("{0}{1}", NormalStatic.Wafer, index), 
+                            string.Format("{0},{1},{2}",
+                                           Wafer[index].SocPort,
+                                           Wafer[index].SocSlot,
+                                           Wafer[index].Status
+                                         ), 
+                                         NormalStatic.IniPath);
+        }
+
+        public void SetCarrier(int port,int index)
+        {
+            Carrier[index].SocPort = NormalStatic.MagazinePort + (port + 1);
+            Carrier[index].SocSlot = index + 1;
+
+            INI.WriteValue(String.Format("{0}{1}", NormalStatic.MagazinePort, port), 
+                           string.Format("{0}{1}", NormalStatic.Carrier, index), 
+                           string.Format("{0},{1},{2}",
+                                          Carrier[index].SocPort,
+                                          Carrier[index].SocSlot,
+                                          Carrier[index].Status
+                                        ), 
+                                        NormalStatic.IniPath);
+        }
+
+        //Joanne 20200930 Start Add
+        public void SetWaferData(int PortIdx, int SlotIdx)
+        {
+            INI.WriteValue(string.Format("{0}{1}", NormalStatic.MagazinePort, PortIdx),
+                           string.Format("{0}{1}", NormalStatic.Wafer, SlotIdx),
+                           string.Format("{0},{1},{2},{3},{4}",
+                                          WaferData[SlotIdx].Status,
+                                          WaferData[SlotIdx].SocPort,
+                                          WaferData[SlotIdx].SocSlot,
+                                          WaferData[SlotIdx].DesPort,
+                                          WaferData[SlotIdx].DesSlot
+                                        ),
+                                        NormalStatic.DataPath);
+        }
+
+        public void SetCarrierData(int PortIdx, int SlotIdx)
+        {
+            INI.WriteValue(String.Format("{0}{1}", NormalStatic.MagazinePort, PortIdx),
+                           string.Format("{0}{1}", NormalStatic.Carrier, SlotIdx),
+                           string.Format("{0},{1},{2},{3},{4}",
+                                          CarrierData[SlotIdx].Status,
+                                          CarrierData[SlotIdx].SocPort,
+                                          CarrierData[SlotIdx].SocSlot,
+                                          CarrierData[SlotIdx].DesPort,
+                                          CarrierData[SlotIdx].DesSlot
+                                        ),
+                                        NormalStatic.DataPath);
+        }
+        //Joanne 20200930 End Add
+    }
+
+    #endregion
+
+    #region Wafer Info
+    public struct Waferinfo
+    {
+        public string SocPort { get; set; }
+        public int SocSlot { get; set; }
+        public WaferStatus Status { get; set; }
+       
+        public void clear() 
+        {
+            SocPort = string.Empty;
+            SocSlot = 0;
+            Status = WaferStatus.WithOut;
+        }
+
+        public Waferinfo ConvertedInfo(string ref_str) 
+        {
+            Waferinfo temp = new Waferinfo();
+            int tempint = -1;
+            if (ref_str == "")
+                temp.clear();
+            else
+            {
+                string[] splite = ref_str.Split(',');
+                temp.SocPort = splite[0];
+                temp.SocSlot = Int32.TryParse(splite[1], out tempint) ? tempint : -1;
+                temp.Status = (WaferStatus)Enum.Parse(typeof(WaferStatus), splite[2]);
+            }
+            return temp;
+        }
+    }
+    #endregion
+
+    #region Data Info
+    //Joanne 20200930 Start Add
+    public struct DataInfo
+    {
+        public string SocPort { get; set; }
+        public int SocSlot { get; set; }
+        public string DesPort { get; set; }
+        public int DesSlot { get; set; }
+        public WaferStatus Status { get; set; }
+        public bool IsTransferComplete { get; set; }
+
+        public void Clear()
+        {
+            SocPort = string.Empty;
+            SocSlot = 0;
+            DesPort = string.Empty;
+            DesSlot = 0;
+            Status = WaferStatus.WithOut;
+            IsTransferComplete = false;
+        }
+
+        public DataInfo ConvertedDataInfo(string ref_str)
+        {
+            DataInfo temp = new DataInfo();
+            int tempint = -1;
+
+            if (ref_str == "")
+            {
+                temp.Clear();
+            }
+            else
+            {
+                string[] splite = ref_str.Split(',');
+                temp.Status = (WaferStatus)Enum.Parse(typeof(WaferStatus), splite[0]);
+                temp.SocPort = splite[1];
+                temp.SocSlot = Int32.TryParse(splite[2], out tempint) ? tempint : -1;
+                temp.DesPort = splite[3];
+                temp.DesSlot = Int32.TryParse(splite[4], out tempint) ? tempint : -1;
+
+            }
+
+            return temp;
+        }
+    }
+    //Joanne 20200930 End Add
+    #endregion
+}
